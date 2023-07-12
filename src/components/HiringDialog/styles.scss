@@ -1,0 +1,76 @@
+
+.card-modal-main {
+  padding: 35px;
+}
+
+.card-modal-dialog {
+  .MuiPaper-root {
+    min-width: 60vw;
+    max-width: 60vw;
+    border-radius: 15px;
+  }
+
+  iframe {
+    width: 100%;
+    aspect-ratio: 16/ 9;
+    height: unset;
+    border-radius: 15px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-modal-dialog {
+    .MuiPaper-root {
+      min-width: 60vw;
+      max-width: 60vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .card-modal-dialog {
+    .MuiPaper-root {
+      min-width: 90vw;
+      max-width: 90vw;
+    }
+  }
+  .card-modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .card-modal-footer-name {
+    flex-basis: 100%;
+  }
+}
+
+.card-modal-footer {
+  display: flex;
+  place-content: space-between;
+  margin-top: 20px;
+}
+
+.card-modal-footer-name {
+  flex-grow: 1;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 100% !important;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}

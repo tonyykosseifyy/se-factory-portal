@@ -1,0 +1,125 @@
+@import "src/assets/styles/_variables";
+
+.hiring-card-container {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  height: 100%;
+}
+
+.hiring-card-favorite{
+  position: absolute;
+  top:20px;
+  right: 20px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hiring-card-image-container {
+  aspect-ratio: 0.95;
+  //border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.hiring-card-footer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.hiring-card-name {
+  margin-left: 10px !important;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  flex-grow: 1;
+}
+
+.hiring-card-three-points {
+  margin: auto;
+
+  svg{
+    color: rgb(204,204,204);
+  }
+}
+
+.hiring-card-main-container {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  &.prerelease {
+    cursor:unset;
+  }
+}
+
+.hiring-card-information-main-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  //display: none;
+  position: absolute;
+  background: white;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+
+  &.open {
+    opacity: 1 !important;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 10px 10px 0 3px #cccccc;
+    display: block;
+  }
+}
+
+.hiring-card-container {
+  display: flex;
+  flex-direction: column;
+  place-content: space-between;
+  padding: 20px;
+}
+
+.small-divider {
+  width: 10%;
+  height: 2px;
+  background: black;
+}
+
+.hiring-card-project-description {
+  //display: -webkit-box;
+  //-webkit-line-clamp: 3;
+  //-webkit-box-orient: vertical;
+  // overflow: scroll;
+  flex-grow: 1;
+  //margin:auto !important;
+  &.prerelease {
+    margin: auto 0 0 0 !important;
+    flex-grow: 1;
+  }
+
+}
+
+.hiring-card-information-container {
+  display: flex;
+  flex-direction: column;
+  place-content: space-between;
+  padding: 20px;
+  height: 100%;
+
+  button {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  a {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "se-devs",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@auth0/auth0-react": "^1.10.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/lab": "^5.0.0-alpha.72",
+    "@mui/material": "^5.4.0",
+    "@mui/styles": "^5.3.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "beautiful-react-hooks": "^3.7.0",
+    "firebase": "^9.8.3",
+    "js-cookie": "^3.0.1",
+    "lodash.isequal": "^4.5.0",
+    "mixpanel-browser": "^2.45.0",
+    "mui-modal-provider": "^2.0.0",
+    "node-sass": "^7.0.1",
+    "qs": "^6.11.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-firebase-hooks": "^5.0.3",
+    "react-pdf": "^5.7.0",
+    "react-query": "^3.34.14",
+    "react-router-dom": "5.3.0",
+    "react-scripts": "5.0.0",
+    "react-tiny-popover": "^7.1.0",
+    "react-youtube": "^7.14.0",
+    "sass": "^1.49.0",
+    "swiper": "6.8.4",
+    "web-vitals": "^2.1.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

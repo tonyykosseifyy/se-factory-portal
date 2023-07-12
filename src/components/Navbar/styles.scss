@@ -1,0 +1,55 @@
+@import "src/assets/styles/_variables";
+
+.header {
+  color: black !important;
+  font-weight: bolder;
+  transition: all 1s !important;
+  //background: $se_light_grey !important;
+  height: 400px;
+  
+  background: url("../../assets/core/se-background.png") no-repeat center;
+  background-size: cover;
+  place-content: space-between;
+}
+
+.nav-container-ul {
+  display: flex;
+  place-items: center;
+}
+.toolbar-elements {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+ 
+  align-items: center;
+}
+
+.nav-container {
+  ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  .nav-li {
+    &.desktop {
+      display: inline-block;
+    }
+
+    display: grid;
+
+  }
+
+  .nav-link {
+    display: block;
+    padding: 5px;
+    color: #031926;
+    text-decoration: none;
+    margin: 0 10px;
+    position: relative;
+  }
+}
+
+.drawer-item {
+  text-align: center !important;
+}

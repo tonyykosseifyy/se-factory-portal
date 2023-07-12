@@ -1,0 +1,50 @@
+@import "src/assets/styles/_variables";
+
+.loading-spinner {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%,-50%) translateZ(0);
+  top: 50%;
+  width: 90px;
+  height: 90px;
+  z-index: 1;
+  background: url("../../assets/core/SEF logo_round.svg");
+  background-size: contain;
+  animation: spinning 1.5s infinite ease-in-out;
+}
+
+.loading-spinner:after {
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  background-color:rgba(0,0,0,0);
+  border-radius:100%;
+  margin:-15px;
+  box-shadow: 0 4px 0 0 #28EEA7;
+  transition: all 1s linear;
+  animation: lds-eclipse 1s linear infinite;
+}
+
+
+
+@keyframes spinning {
+  0% { transform: translate(-50%,-50%) scale(1) translateZ(0) rotateY(0deg);}
+  50% { transform: translate(-50%,-50%) scale(1.1) translateZ(0) rotateY(180deg);}
+  100% { transform: translate(-50%,-50%) scale(1) translateZ(0) rotateY(360deg);}
+}
+
+@keyframes lds-eclipse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

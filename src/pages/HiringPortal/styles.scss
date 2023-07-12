@@ -1,0 +1,93 @@
+@import "src/assets/styles/_variables";
+
+.hiring-portal-container {
+  min-height: 100vh;
+  padding: 2% 10vh;
+  background: $se_light_grey;
+  max-width: 1200px;
+  margin: auto;
+
+  @media only screen and (max-width: 400px) {
+    padding: 2% 5vh;
+  }
+}
+
+.hiring-portal-wrapper {
+  background: $se_light_grey;
+}
+
+
+.hiring-portal-upper-section-details {
+  background: rgb(230, 230, 230);
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+}
+
+.hiring-portal-upper-section-subtitle {
+  margin-top: 15px;
+}
+
+.hiring-portal-upper-section-filter {
+  background: #E6E6E6;
+  border-radius: 10px;
+  height: 60px;
+  padding: 0px 25px;
+  display: flex;
+  cursor: pointer;
+}
+
+.hiring-portal-popover {
+  background: #E6E6E6;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  top: -50px;
+  max-width: calc(1200px - 25*2px);
+  padding: 38px 25px 32px;
+  width: calc(80vw - 62px);
+  z-index: 1000000000;
+  //transition: all 0.3s ease-in-out;
+  //transition-duration: 150ms;
+  //transform: scaleY(1);
+}
+
+.MuiAutocomplete-popper {
+  z-index: 10000000000 !important;
+}
+
+.hiring-portal-upper-section-filters {
+  padding: 10px 30px;
+  border-radius: 10px 0 10px 10px;
+  background: rgb(230, 230, 230);
+  display: flex;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .hiring-portal-cards-container {
+    .MuiGrid-root {
+      width: 100%;
+    }
+  }
+}
+
+.MuiInputLabel-root {
+  &.Mui-focused {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+}
+
+.MuiChip-root {
+  height: 25px !important;
+}
+
+.hiring-portal-intro-container {
+  margin-top: 26px;
+}
+
+.react-tiny-popover-container {
+  //transition:  all 0.3s ease-in-out;
+  //transition-duration: 150ms;
+  position: relative;
+}
