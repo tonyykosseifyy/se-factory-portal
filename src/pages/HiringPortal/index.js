@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { styled, useTheme } from "@mui/styles";
 import {
   Autocomplete,
@@ -76,7 +76,15 @@ const HiringPortal = () => {
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [cards, setCards] = useState([]);
 
-
+  const reset = useCallback(() => {
+    setLanguages([]);
+    setProjectTypes([]);
+    setHiringStatus("");
+    setPrevLanguages([]);
+    setPrevProjectTypes([]);
+    setPrevFavoritesOnly(false);
+    setFavoritesOnly(false);
+  },[]);
   useEffect(() => {
     if (students) {
       const languageOptionsTemp = new Set();
@@ -173,6 +181,10 @@ const HiringPortal = () => {
 							<span style={{marginRight:'7px'}}>//</span> find fsw graduates, check their final projects, resumes, githubs and more...
 						</Typography>
 						<div className='filters-wrapper'>
+              <Stack my={1} flexDirection='row' alignItems='center' justifyContent='space-between'>
+                <Typography fontWeight={800} textTransform='uppercase' fontSize={17} variant='h6' color='#A5A6A9'>Filter By</Typography>
+                <Typography onClick={() => reset()} fontWeight={800} fontSize={14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography>
+              </Stack>
 							<div className="filter-by-container">
 								<div
 									style={{
