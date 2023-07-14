@@ -7,9 +7,7 @@ import {useAuth0} from "@auth0/auth0-react";
 
 const AxiosContext = React.createContext();
 
-export default function AxiosProvider({
-                                          children,
-                                      }) {
+export default function AxiosProvider({ children }) {
 
     const { getAccessTokenSilently }  = useAuth0()
     const axios = useMemo(() => {

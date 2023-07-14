@@ -14,7 +14,7 @@ export default (
     };
 
     const useFavorites = () => {
-        const {Api} = useAxios()
+        const {Api} = useAxios();
 
         return useQuery({
             queryKey: FAVORITE_KEY,

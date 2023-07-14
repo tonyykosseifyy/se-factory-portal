@@ -1,0 +1,27 @@
+.logout_outer {
+  align-items: flex-start;
+  padding: 6px 40px;
+  background-color: #363738;
+  cursor: pointer;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+  color: #fcfcfd;
+  border: 2px solid #363738;
+}
+
+.logout_inner {
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: min-content;
+  flex: 1;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  text-shadow: 0px 0px 1px white;
+}
+
+.logout_outer:hover {
+  color: #363738;
+  background-color: transparent;
+  text-shadow: 0px 0px 1px black;
+}
