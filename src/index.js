@@ -15,6 +15,7 @@ import {queryClient, QueryClientProvider, ReactQueryDevtools} from "./api";
 import {GodModeProvider} from "./context/godMode";
 
 
+
 const Theme = createTheme({
     palette: {
         primary: {
@@ -31,9 +32,7 @@ const Theme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'normal',
+        fontFamily: 'Noto Sans Mono, monospace' 
     },});
 
 mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN,  {debug: process.env.REACT_APP_ENV === "development"})

@@ -36,19 +36,66 @@
   display: flex;
   cursor: pointer;
 }
-
-.hiring-portal-popover {
-  background: #E6E6E6;
-  border-radius: 0 0 10px 10px;
+.hiring-portal-filters-container::before {
+  content: "";
   position: absolute;
-  top: -50px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); 
+  z-index: 1;
+}
+
+
+.hiring-portal-filters-container {
+  background-image: url('../../assets/core/fsw-image.png');
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px ;
   max-width: calc(1200px - 25*2px);
   padding: 38px 25px 32px;
   width: calc(80vw - 62px);
   z-index: 1000000000;
+  border: 8px solid; 
+  position: relative;
+  overflow: hidden;
+
   //transition: all 0.3s ease-in-out;
   //transition-duration: 150ms;
   //transform: scaleY(1);
+}
+
+.filters-content {
+  position: relative;
+  z-index: 2;
+  color: white ;
+}
+.se-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.se-dot-white {
+  background: white;
+}
+.se-dot-green {
+  background: $fsw-color;
+}
+.se-dot-grey {
+  background: #A5A6A9;
+}
+
+.fsw-container {
+  border-color: $fsw-color;
+}
+.fsd-container {
+  border-color: $fsd-color;
+}
+.uix-container {
+  border-color: $uix-color;
 }
 
 .MuiAutocomplete-popper {
@@ -82,9 +129,6 @@
   height: 25px !important;
 }
 
-.hiring-portal-intro-container {
-  margin-top: 26px;
-}
 
 .react-tiny-popover-container {
   //transition:  all 0.3s ease-in-out;
