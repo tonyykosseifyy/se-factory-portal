@@ -24,7 +24,6 @@ import LogoutButton from '../ui-components/LogoutButton';
 import BootcampSelect from '../ui-components/NavbarSelect';
 
 const Navbar = () => {
-
     const isLoggedIn = Cookies.get('se-token');
     const { logout } = useAuth0();
     const { isGod, handlePreRelease, preRelease } = useGodMode()

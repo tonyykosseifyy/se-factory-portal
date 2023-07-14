@@ -16,7 +16,7 @@ export const GodModeProvider = ({children}) => {
     const { data: user } = hooks.useCurrentUser();
 
     useEffect(() => {
-        if(user){
+        if(user && user.email){
             setIsGod(user.email.endsWith("@sefactory.io"))
         }
     },[user])

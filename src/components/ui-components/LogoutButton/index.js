@@ -12,7 +12,7 @@ const LogoutButton = () => {
       logout();
       Cookies.remove('se-token');
     }} 
-    className='logout_outer'>
+      className='logout_outer'>
       <div className='logout_inner'>LOGOUT</div>
     </div>
   )
