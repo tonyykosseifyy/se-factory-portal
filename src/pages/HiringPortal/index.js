@@ -181,7 +181,7 @@ const HiringPortal = () => {
 							<span style={{marginRight:'7px'}}>//</span> find fsw graduates, check their final projects, resumes, githubs and more...
 						</Typography>
 						<div className='filters-wrapper'>
-              <Stack my={1} flexDirection='row' alignItems='center' justifyContent='space-between'>
+              <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
                 <Typography fontWeight={800} textTransform='uppercase' fontSize={17} variant='h6' color='#A5A6A9'>Filter By</Typography>
                 <Typography onClick={() => reset()} fontWeight={800} fontSize={14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography>
               </Stack>
@@ -192,11 +192,12 @@ const HiringPortal = () => {
 										flexBasis: !isSmall ? "50%" : "100%",
 									}}
 								>
-									<Typography my={1} variant={"h5"} fontSize={"17px"}>
+									{/* <Typography my={1} variant={"h5"} fontSize={"17px"}>
 										Project Type
-									</Typography>
+									</Typography> */}
 									<Autocomplete
 										multiple
+                    size='small'
 										value={projectTypes}
 										onChange={(e, newValue) => {
 											setProjectTypes(newValue);
@@ -213,7 +214,7 @@ const HiringPortal = () => {
 												{...params}
 												id={"languages"}
 												variant={"filled"}
-												label="Choose Project Types Here"
+												label="Project Type"
 											/>
 										)}
 									/>
@@ -225,11 +226,12 @@ const HiringPortal = () => {
 										padding: !isSmall ? "0 0 0 10px" : "5px 0",
 									}}
 								>
-									<Typography my={1} variant={"h5"} fontSize={"17px"}>
+									{/* <Typography my={1} variant={"h5"} fontSize={"17px"}>
 										Stacks Used
-									</Typography>
+									</Typography> */}
 									<Autocomplete
 										multiple
+                    size="small"
 										value={languages}
 										onChange={(e, newValue) => {
 											setLanguages(newValue);
@@ -242,7 +244,7 @@ const HiringPortal = () => {
 												{...params}
 												id={"languages"}
 												variant={"filled"}
-												label="Choose Stacks here"
+												label="Technologies Used"
 											/>
 										)}
 									/>
@@ -259,11 +261,13 @@ const HiringPortal = () => {
 											my={1}
 											mr={2}
 											variant={"h5"}
-											fontSize={"17px"}
+											fontSize={"16px"}
 										>
 											Only Favorites
 										</Typography>
 										<Checkbox
+                    sx={{color: 'white'}}
+                    size='small'
 											checked={favoritesOnly}
 											onChange={(event) =>
 												setFavoritesOnly(event.target.checked)
@@ -273,13 +277,14 @@ const HiringPortal = () => {
 									</div>
 								</div>
 							</div>
-							<div>
+							<Stack mt={1} flexDirection='row' justifyContent='center'>
 								<SEButton
-									color={"secondary"}
+                  color='primary'
+                  variant='contained'
 									sx={{
 										height: "40px",
-										backgroundColor: SE_GREY,
-										color: "white",
+										color: "black",
+                    minWidth: '220px'
 									}}
 									onClick={() => {
 										setPrevProjectTypes(projectTypes);
@@ -302,7 +307,7 @@ const HiringPortal = () => {
 								{/*    variant={"h5"} fontSize={"15px"} style={{cursor:'pointer'}} fontWeight={700} marginTop={4}>*/}
 								{/*    Show Results*/}
 								{/*</Typography>*/}
-							</div>
+							</Stack>
 						</div>
 						
 					</div>
