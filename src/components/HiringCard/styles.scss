@@ -13,12 +13,17 @@
 
 .hiring-card-favorite{
   position: absolute;
-  top:20px;
+  top: 20px;
   right: 20px;
   z-index: 10;
   cursor: pointer;
 }
-
+.small-divider {
+  width: 60px;
+  height: 2px;
+  background: black;
+  margin: 10px 0px ;
+}
 .hiring-card-image-container {
   aspect-ratio: 0.95;
   //border-radius: 10px;
@@ -33,12 +38,16 @@
   margin-top: 20px;
 }
 
-.hiring-card-name {
-  margin-left: 10px !important;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-  flex-grow: 1;
+// .hiring-card-name {
+//   margin-left: 10px !important;
+//   display: flex;
+//   flex-direction: column;
+//   place-content: center;
+//   flex-grow: 1;
+// }
+.avatar-border {
+  border-radius: 50%;
+  border: 2px solid $fsw-color;
 }
 
 .hiring-card-three-points {
@@ -53,6 +62,7 @@
   position: relative;
   cursor: pointer;
   height: 100%;
+  box-shadow: 2px 2px 7px #BABBBC ;
   &.prerelease {
     cursor:unset;
   }
@@ -75,7 +85,7 @@
   &.open {
     opacity: 1 !important;
     transition: all 0.3s ease-in-out;
-    box-shadow: 10px 10px 0 3px #cccccc;
+    box-shadow: 4px 4px 11px #BABBBC ;
     display: block;
   }
 }
@@ -87,11 +97,6 @@
   padding: 20px;
 }
 
-.small-divider {
-  width: 10%;
-  height: 2px;
-  background: black;
-}
 
 .hiring-card-project-description {
   //display: -webkit-box;
