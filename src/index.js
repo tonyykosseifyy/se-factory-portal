@@ -22,8 +22,13 @@ const Theme = createTheme({
         },
         secondary: {
             main: SE_LIGHT_GREY
-        }
-
+        },
+        tertiary: {
+            main: '#FB508E', // Tertiary color
+        },
+        quaternary: {
+            main: '#9864DA', // Quaternary color
+        },
     },
     typography: {
         fontFamily: 'Roboto',

@@ -20,7 +20,8 @@ import { queryClient } from "../../api";
 import { CURRENT_USER_KEY } from "../../api/config/keys";
 import { useHistory } from "react-router-dom";
 import { useGodMode } from "../../context/godMode";
-import LogoutButton from '../LogoutButton';
+import LogoutButton from '../ui-components/LogoutButton';
+import BootcampSelect from '../ui-components/BootcampSelect';
 
 const Navbar = () => {
 
@@ -58,6 +59,7 @@ const Navbar = () => {
                         Logout
                     </SEButton>
                 )} */}
+                <BootcampSelect />
                 <LogoutButton />
             </Stack>
                 
