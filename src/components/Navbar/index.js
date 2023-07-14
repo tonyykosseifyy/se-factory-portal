@@ -21,7 +21,7 @@ import { CURRENT_USER_KEY } from "../../api/config/keys";
 import { useHistory } from "react-router-dom";
 import { useGodMode } from "../../context/godMode";
 import LogoutButton from '../ui-components/LogoutButton';
-import BootcampSelect from '../ui-components/BootcampSelect';
+import BootcampSelect from '../ui-components/NavbarSelect';
 
 const Navbar = () => {
 
@@ -40,13 +40,10 @@ const Navbar = () => {
                 <img
                     className={"logo"}
                     src={Logo}
-                    height={80}
-                    width={200}
                     alt="logo"
-                    style={{ pointerEvents: "all", cursor: 'pointer' }}
                 />
             </a>
-            <Stack flexDirection='row' alignItems='stretch'>
+            <Stack flexDirection='row' alignItems='stretch' mt={'-7px'}>
                 {/* {Boolean(isLoggedIn) && (
                     <SEButton
                         variant={"contained"}

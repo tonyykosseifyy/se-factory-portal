@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import './index.scss' ;
@@ -43,7 +42,7 @@ const BootcampSelect = () => {
         value={bootcamp}
         onChange={handleChange}
         displayEmpty
-        inputProps={{ 'aria-label': 'Without label' }}
+        inputProps={{ 'aria-label': 'select bootcamp' }}
         mr={4}
         size='small'
         sx={{color: bootcampColor , fontWeight: 'bold' }}

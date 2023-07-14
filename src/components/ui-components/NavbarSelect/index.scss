@@ -1,0 +1,48 @@
+
+.bootcamp-select {
+  margin: 0px 20px ;
+}
+.bootcamp-select .MuiInputBase-root {
+  padding: 1px 18px;
+  background-color: #363738;
+  border-radius: 0px ;
+}
+
+// 
+.bootcamp-select > div > .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputSizeSmall {
+  padding-left: 0px ;
+  padding-right: 70px ;
+  font-size: 18px;
+  min-height: auto;
+  transition: color 0.25s ease ;
+} 
+
+.bootcamp-select .MuiOutlinedInput-notchedOutline {
+  border: none ;
+}
+.bootcamp-select > div > .MuiList-root {
+  background-color: red ;
+}
+
+@media screen and (max-width: 768px) {
+  .bootcamp-select .MuiInputBase-root {
+    padding: 1px 14px;
+  }
+  .bootcamp-select > div > .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputSizeSmall {
+    padding-right: 30px ;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .bootcamp-select .MuiInputBase-root {
+    padding: 0px 10px;
+    line-height: 15px ;
+  }
+  .bootcamp-select > div > .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputSizeSmall {
+    padding-right: 20px ;
+    font-size: 10px;
+  }
+  .bootcamp-select {
+    margin: 0px 10px ;
+  }
+}
