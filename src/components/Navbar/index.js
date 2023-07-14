@@ -49,8 +49,7 @@ const Navbar = () => {
                         variant={"contained"}
                         sx={{ backgroundColor: "#FB4747", color: "#FCFCFD" }}
                         onClick={() => {
-                            Cookies.remove('se-token');
-                            logout();
+                            
                         }}
                     >
                         Logout
