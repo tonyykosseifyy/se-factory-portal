@@ -25,10 +25,10 @@ const Theme = createTheme({
             main: SE_LIGHT_GREY
         },
         tertiary: {
-            main: '#FB508E', // Tertiary color
+            main: '#FB508E', 
         },
         quaternary: {
-            main: '#9864DA', // Quaternary color
+            main: '#9864DA',
         },
     },
     typography: {

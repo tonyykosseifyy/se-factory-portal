@@ -172,130 +172,127 @@ const HiringPortal = () => {
 						<Typography mt={2} variant='h5' fontWeight={900} fontSize={16} color='#888888'>
 							<span style={{marginRight:'7px'}}>//</span> find fsw graduates, check their final projects, resumes, githubs and more...
 						</Typography>
-						<div
-							style={{
-								display: "flex",
-								marginTop: "25px",
-								flexWrap: "wrap",
-							}}
-						>
-							<div
-								style={{
-									width: !isSmall ? "50%" : "100%",
-									flexBasis: !isSmall ? "50%" : "100%",
-								}}
-							>
-								<Typography my={1} variant={"h5"} fontSize={"17px"}>
-									Project Type
-								</Typography>
-								<Autocomplete
-									multiple
-									value={projectTypes}
-									onChange={(e, newValue) => {
-										setProjectTypes(newValue);
+						<div className='filters-wrapper'>
+							<div className="filter-by-container">
+								<div
+									style={{
+										width: !isSmall ? "50%" : "100%",
+										flexBasis: !isSmall ? "50%" : "100%",
 									}}
-									options={PROJECT_TYPES}
-									onClick={(e) => {
-										e.preventDefault();
-										setFilterOpen(true);
-									}}
-									filterSelectedOptions
-									sx={{ zIndex: "10000000000" }}
-									renderInput={(params) => (
-										<CustomTextField
-											{...params}
-											id={"languages"}
-											variant={"filled"}
-											label="Choose Project Types Here"
-										/>
-									)}
-								/>
-							</div>
-							<div
-								style={{
-									width: !isSmall ? "50%" : "100%",
-									flexBasis: !isSmall ? "50%" : "100%",
-									padding: !isSmall ? "0 0 0 10px" : "5px 0",
-								}}
-							>
-								<Typography my={1} variant={"h5"} fontSize={"17px"}>
-									Stacks Used
-								</Typography>
-								<Autocomplete
-									multiple
-									value={languages}
-									onChange={(e, newValue) => {
-										setLanguages(newValue);
-									}}
-									options={languageOptions}
-									filterSelectedOptions
-									sx={{ zIndex: "10000000000" }}
-									renderInput={(params) => (
-										<CustomTextField
-											{...params}
-											id={"languages"}
-											variant={"filled"}
-											label="Choose Stacks here"
-										/>
-									)}
-								/>
-							</div>
-							<div
-								style={{
-									width: !isSmall ? "50%" : "100%",
-									flexBasis: !isSmall ? "50%" : "100%",
-									padding: "5px 0",
-								}}
-							>
-								<div style={{ display: "flex", marginTop: "10px" }}>
-									<Typography
-										my={1}
-										mr={2}
-										variant={"h5"}
-										fontSize={"17px"}
-									>
-										Only Favorites
+								>
+									<Typography my={1} variant={"h5"} fontSize={"17px"}>
+										Project Type
 									</Typography>
-									<Checkbox
-										checked={favoritesOnly}
-										onChange={(event) =>
-											setFavoritesOnly(event.target.checked)
-										}
-										inputProps={{ "aria-label": "controlled" }}
+									<Autocomplete
+										multiple
+										value={projectTypes}
+										onChange={(e, newValue) => {
+											setProjectTypes(newValue);
+										}}
+										options={PROJECT_TYPES}
+										onClick={(e) => {
+											e.preventDefault();
+											setFilterOpen(true);
+										}}
+										filterSelectedOptions
+										sx={{ zIndex: "10000000000" }}
+										renderInput={(params) => (
+											<CustomTextField
+												{...params}
+												id={"languages"}
+												variant={"filled"}
+												label="Choose Project Types Here"
+											/>
+										)}
 									/>
 								</div>
+								<div
+									style={{
+										width: !isSmall ? "50%" : "100%",
+										flexBasis: !isSmall ? "50%" : "100%",
+										padding: !isSmall ? "0 0 0 10px" : "5px 0",
+									}}
+								>
+									<Typography my={1} variant={"h5"} fontSize={"17px"}>
+										Stacks Used
+									</Typography>
+									<Autocomplete
+										multiple
+										value={languages}
+										onChange={(e, newValue) => {
+											setLanguages(newValue);
+										}}
+										options={languageOptions}
+										filterSelectedOptions
+										sx={{ zIndex: "10000000000" }}
+										renderInput={(params) => (
+											<CustomTextField
+												{...params}
+												id={"languages"}
+												variant={"filled"}
+												label="Choose Stacks here"
+											/>
+										)}
+									/>
+								</div>
+								<div
+									style={{
+										width: !isSmall ? "50%" : "100%",
+										flexBasis: !isSmall ? "50%" : "100%",
+										padding: "5px 0",
+									}}
+								>
+									<div style={{ display: "flex", marginTop: "10px" }}>
+										<Typography
+											my={1}
+											mr={2}
+											variant={"h5"}
+											fontSize={"17px"}
+										>
+											Only Favorites
+										</Typography>
+										<Checkbox
+											checked={favoritesOnly}
+											onChange={(event) =>
+												setFavoritesOnly(event.target.checked)
+											}
+											inputProps={{ "aria-label": "controlled" }}
+										/>
+									</div>
+								</div>
+							</div>
+							<div>
+								<SEButton
+									color={"secondary"}
+									sx={{
+										height: "40px",
+										backgroundColor: SE_GREY,
+										color: "white",
+									}}
+									onClick={() => {
+										setPrevProjectTypes(projectTypes);
+										setPrevLanguages(languages);
+										setFilterOpen(false);
+										setPrevFavoritesOnly(favoritesOnly);
+									}}
+								>
+									Show Results
+								</SEButton>
+								{/*<Typography*/}
+								{/*    onClick={() => {*/}
+								{/*        setPrevProjectTypes(projectTypes)*/}
+								{/*        setPrevLanguages(languages)*/}
+								{/*        setFilterOpen(false)*/}
+								{/*        setPrevFavoritesOnly(favoritesOnly)*/}
+
+								{/*        }*/}
+								{/*    }*/}
+								{/*    variant={"h5"} fontSize={"15px"} style={{cursor:'pointer'}} fontWeight={700} marginTop={4}>*/}
+								{/*    Show Results*/}
+								{/*</Typography>*/}
 							</div>
 						</div>
-						<div>
-							<SEButton
-								color={"secondary"}
-								sx={{
-									height: "40px",
-									backgroundColor: SE_GREY,
-									color: "white",
-								}}
-								onClick={() => {
-									setPrevProjectTypes(projectTypes);
-									setPrevLanguages(languages);
-									setFilterOpen(false);
-									setPrevFavoritesOnly(favoritesOnly);
-								}}
-							>
-								Show Results
-							</SEButton>
-							{/*<Typography*/}
-							{/*    onClick={() => {*/}
-							{/*        setPrevProjectTypes(projectTypes)*/}
-							{/*        setPrevLanguages(languages)*/}
-							{/*        setFilterOpen(false)*/}
-							{/*        setPrevFavoritesOnly(favoritesOnly)*/}
-
-							{/*        }*/}
-							{/*    }*/}
-							{/*    variant={"h5"} fontSize={"15px"} style={{cursor:'pointer'}} fontWeight={700} marginTop={4}>*/}
-							{/*    Show Results*/}
-							{/*</Typography>*/}
-						</div>
+						
 					</div>
 				</div>
 				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} marginBottom={3}>
