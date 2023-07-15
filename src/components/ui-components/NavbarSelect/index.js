@@ -4,21 +4,48 @@ import Select from '@mui/material/Select';
 import './index.scss' ;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useTheme } from '@emotion/react';
+import { useLocation, useHistory } from 'react-router-dom';
 
+const getBootcamp = (queryParams, history, location) => {
+	const bootcamp = queryParams.get('bootcamp');
+	if (!bootcamp || !['FSW', 'FSD', 'UIX'].includes(bootcamp)) {
+		queryParams.set('bootcamp', 'FSW');
+    history.push({
+      pathname: location.pathname,
+      search: `?${queryParams.toString()}`,
+    });
+		return 'FSW';
+	}
+	return bootcamp;
+};
 
 
 const BootcampSelect = () => {
-  const [bootcamp, setbootcamp] = useState('FSW');
+  const location = useLocation();
+  const history = useHistory();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const [bootcamp, setbootcamp] = useState(getBootcamp(queryParams, history, location));
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
+
   const handleChange = (event) => {
     setbootcamp(event.target.value);
+    queryParams.set('bootcamp', event.target.value);
+    console.log(queryParams.toString())
+    // Updating the URL with modified bootcamp query parameter
+    history.push({
+      pathname: location.pathname,
+      search: `?${queryParams.toString()}`,
+    });
   };
 
   const toggleOpen = useCallback(() => {
     setOpen(!open);
   },[])
+
   const bootcampColor = useMemo(() => {
     const { palette } = theme;
     switch (bootcamp) {
