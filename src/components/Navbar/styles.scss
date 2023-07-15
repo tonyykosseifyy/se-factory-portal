@@ -8,6 +8,8 @@
   align-items: center;
   padding: 4vh 10vw ;
   background-color: $se-light-background-grey ;
+  position: relative;
+  z-index: 3;
 
   .logo {
     pointer-events: all;
