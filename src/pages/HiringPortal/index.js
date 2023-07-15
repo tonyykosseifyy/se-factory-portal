@@ -151,12 +151,6 @@ const HiringPortal = () => {
   //
   // },[prevLanguages,prevProjectTypes])
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => setFilterOpen(false), {
-      passive: true,
-    });
-  }, []);
-
   return (
     <div className={"hiring-portal-wrapper"}>
       <div className={"hiring-portal-container"}>
@@ -167,9 +161,9 @@ const HiringPortal = () => {
 					<div className='filters-content'>
 						<Stack flexDirection='row' alignItems='center' justifyContent='space-between'>
 							<Stack flexDirection='row' >
-								<Typography variant='h1' fontWeight={900} fontSize={27} color={theme.palette.primary.main}>&gt;</Typography>
-								<Typography ml={2} variant='h1' fontWeight={900} fontSize={25} color={theme.palette.primary.main}>FSW</Typography>
-								<Typography ml={1} variant='h1' fontWeight={900} fontSize={25} color='white'>hiring portal</Typography>
+								<Typography variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={theme.palette.primary.main}>&gt;</Typography>
+								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={theme.palette.primary.main}>FSW</Typography>
+								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color='white'>hiring portal</Typography>
 							</Stack>
 							<Stack flexDirection='row' alignItems='center' gap={1}>
 								<div className='se-dot se-dot-white'/>
@@ -177,13 +171,13 @@ const HiringPortal = () => {
 								<div className='se-dot se-dot-green'/>
 							</Stack>
 						</Stack>
-						<Typography mt={2} variant='h5' fontWeight={900} fontSize={16} color='#888888'>
+						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 13 : 14 : 18} color='#888888'>
 							<span style={{marginRight:'7px'}}>//</span> find fsw graduates, check their final projects, resumes, githubs and more...
 						</Typography>
 						<div className='filters-wrapper'>
               <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
-                <Typography fontWeight={800} textTransform='uppercase' fontSize={17} variant='h6' color='#A5A6A9'>Filter By</Typography>
-                <Typography onClick={() => reset()} fontWeight={800} fontSize={14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography>
+                <Typography fontWeight={800} textTransform='uppercase' fontSize={isSM ? 14 : 17} variant='h6' color='#A5A6A9'>Filter By</Typography>
+                <Typography onClick={() => reset()} fontWeight={800} fontSize={isSM ? 12 : 14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography>
               </Stack>
 							<div className="filter-by-container">
 								<div
@@ -208,7 +202,7 @@ const HiringPortal = () => {
 											setFilterOpen(true);
 										}}
 										filterSelectedOptions
-										sx={{ zIndex: "10000000000" }}
+										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
 											<CustomTextField
 												{...params}
@@ -224,6 +218,8 @@ const HiringPortal = () => {
 										width: !isSmall ? "50%" : "100%",
 										flexBasis: !isSmall ? "50%" : "100%",
 										padding: !isSmall ? "0 0 0 10px" : "5px 0",
+                    marginTop: !isSmall ? 0 : 20,
+
 									}}
 								>
 									{/* <Typography my={1} variant={"h5"} fontSize={"17px"}>
@@ -238,7 +234,7 @@ const HiringPortal = () => {
 										}}
 										options={languageOptions}
 										filterSelectedOptions
-										sx={{ zIndex: "10000000000" }}
+										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
 											<CustomTextField
 												{...params}
@@ -256,12 +252,12 @@ const HiringPortal = () => {
 										padding: "5px 0",
 									}}
 								>
-									<div style={{ display: "flex", marginTop: "10px" }}>
+									<div style={{ display: "flex", marginTop: "10px", alignItems:'center' }}>
 										<Typography
 											my={1}
-											mr={2}
+											mr={isSM ? 1: 2}
 											variant={"h5"}
-											fontSize={"16px"}
+											fontSize={isSM ? 14 : 16}
 										>
 											Only Favorites
 										</Typography>
@@ -277,14 +273,14 @@ const HiringPortal = () => {
 									</div>
 								</div>
 							</div>
-							<Stack mt={1} flexDirection='row' justifyContent='center'>
+							<Stack mt={2} mb={1} flexDirection='row' justifyContent='center'>
 								<SEButton
                   color='primary'
                   variant='contained'
 									sx={{
 										height: "40px",
 										color: "black",
-                    minWidth: '220px'
+                    minWidth: isSM ? '120px':'220px'
 									}}
 									onClick={() => {
 										setPrevProjectTypes(projectTypes);
@@ -318,7 +314,7 @@ const HiringPortal = () => {
 					) : (
 						<>
 							<Grid item xs={12} my={2}>
-								<Typography variant={"h5"} fontSize={"18px"}>
+								<Typography variant={"h5"} fontSize={isSmall ? isSM  ? 14 : 16 : 18 }>
 									Can't find what you're looking for? Some students might have
 									in-depth knowledge in specific technologies and didn't use
 									them in the final project.
