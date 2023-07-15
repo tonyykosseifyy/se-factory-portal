@@ -7,7 +7,8 @@ export const HIRING_PORTAL_ROUTE = {
     name: 'Hiring Portal',
     component: HiringPortal,
     protectedRoute: true,
-    exact: true
+    exact: true,
+
 }
 
 export const ROUTES_WITH_LAYOUT = [

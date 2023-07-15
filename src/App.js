@@ -15,11 +15,11 @@ const App = () => {
           <Route exact path="/connect/:providerName" component={LoginRedirect} />
 
           {
-              ROUTES_WITH_LAYOUT.map(({layout: Layout, routes, basePath, exact}) =>
+              ROUTES_WITH_LAYOUT.map(({layout: Layout, routes, basePath, exact}, index) =>
               {
 
                 return (
-                    <Route path={basePath} exact={exact}>
+                    <Route key={index} path={basePath} exact={exact}>
                       <Layout>
                         <Switch>
                           {routes.map(({path, component, protectedRoute, exact: exactRoute}, index) => {
