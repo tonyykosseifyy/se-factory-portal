@@ -26,7 +26,6 @@ import BootcampSelect from "../ui-components/NavbarSelect";
 import { useHistory } from 'react-router-dom';
 
 
-
 const Navbar = () => {
 	
 

@@ -15,6 +15,7 @@ import { LANGUAGES } from "../../utils/constants/languages";
 import { PROJECT_TYPES } from "../../utils/constants/projects-types";
 import { arraySubset } from "../../utils/helpers/arraySubset";
 import "./styles.scss";
+import { useLocation } from "react-router-dom";
 import {
   AVAILABLE_FOR_HIRE,
   HIRED,
@@ -40,6 +41,10 @@ import SEButton from "../../components/SEButton";
 import { SE_GREY } from "../../utils/constants/colors";
 import { portalAccessed, searchLog } from "../../logger/analyticsTracking";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useMemo } from "react";
+import portalData from "./portal-data";
+import CustomButton from "../../components/ui-components/CustomButton";
+
 
 export const CustomTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
@@ -55,6 +60,9 @@ export const CustomTextField = styled(TextField)({
 });
 
 const HiringPortal = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
   const { data: user, isLoading: isLoadingUser } = hooks.useCurrentUser();
   const [languages, setLanguages] = useState([]);
   const [projectTypes, setProjectTypes] = useState([]);
@@ -75,6 +83,26 @@ const HiringPortal = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [cards, setCards] = useState([]);
+
+  const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
+  
+  const bootcampColor = useMemo(() => {
+    const { palette } = theme;
+    switch (bootcamp) {
+      case 'FSW':
+        return palette.primary.main;
+      case 'FSD':
+        return palette.fsd.main;
+      case 'UIX':
+        return palette.uix.main;
+      default:
+        return palette.primary.main;
+  }}, [ location, bootcamp ]);
+
+  useEffect(() => {
+      const queryParams = new URLSearchParams(location.search);
+      setBootcamp( queryParams.get('bootcamp')) ;
+  }, [location]);
 
   const reset = useCallback(() => {
     setLanguages([]);
@@ -155,24 +183,24 @@ const HiringPortal = () => {
     <div className={"hiring-portal-wrapper"}>
       <div className={"hiring-portal-container"}>
 				<div
-					className={"hiring-portal-filters-container fsw-container"}
+					className={`hiring-portal-filters-container ${bootcamp?.toLowerCase()}-container`}
 					style={{ width: "100%" }}
 				>
 					<div className='filters-content'>
 						<Stack flexDirection='row' alignItems='center' justifyContent='space-between'>
 							<Stack flexDirection='row' >
-								<Typography variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={theme.palette.primary.main}>&gt;</Typography>
-								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={theme.palette.primary.main}>FSW</Typography>
+								<Typography variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={bootcampColor}>&gt;</Typography>
+								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={bootcampColor}>{portalData[bootcamp]?.title}</Typography>
 								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color='white'>hiring portal</Typography>
 							</Stack>
 							<Stack flexDirection='row' alignItems='center' gap={1}>
 								<div className='se-dot se-dot-white'/>
 								<div className='se-dot se-dot-grey'/>
-								<div className='se-dot se-dot-green'/>
+								<div className={`se-dot se-dot-${bootcamp.toLowerCase()}`}/>
 							</Stack>
 						</Stack>
 						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 13 : 14 : 18} color='#888888'>
-							<span style={{marginRight:'7px'}}>//</span> find fsw graduates, check their final projects, resumes, githubs and more...
+							<span style={{marginRight:'7px'}}>//</span> {portalData[bootcamp]?.below_title}
 						</Typography>
 						<div className='filters-wrapper'>
               <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
@@ -263,6 +291,7 @@ const HiringPortal = () => {
 										</Typography>
 										<Checkbox
                     sx={{color: 'white'}}
+                    color="secondary"
                     size='small'
 											checked={favoritesOnly}
 											onChange={(event) =>
@@ -274,9 +303,8 @@ const HiringPortal = () => {
 								</div>
 							</div>
 							<Stack mt={2} mb={1} flexDirection='row' justifyContent='center'>
-								<SEButton
-                  color='primary'
-                  variant='contained'
+								<CustomButton
+                  className={`${bootcamp?.toLowerCase()}-button`}
 									sx={{
 										height: "40px",
 										color: "black",
@@ -290,7 +318,7 @@ const HiringPortal = () => {
 									}}
 								>
 									Show Results
-								</SEButton>
+								</CustomButton>
 								{/*<Typography*/}
 								{/*    onClick={() => {*/}
 								{/*        setPrevProjectTypes(projectTypes)*/}

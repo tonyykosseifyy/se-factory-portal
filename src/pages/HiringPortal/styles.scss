@@ -68,6 +68,8 @@
   border: 8px solid; 
   position: relative;
   overflow: hidden;
+  transition: border-color .4s ease-out ;
+
 
   @media screen and (max-width: 600px) {
     padding: 20px 15px 17px;
@@ -87,6 +89,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
+  transition: .4s ease-out ;
   @media only screen and (max-width: 900px) {
     width: 15px;
     height: 15px;
@@ -100,8 +103,14 @@
 .se-dot-white {
   background: white;
 }
-.se-dot-green {
+.se-dot-fsw {
   background: $fsw-color;
+}
+.se-dot-fsd {
+  background: $fsd-color;
+}
+.se-dot-uix {
+  background: $uix-color;
 }
 .se-dot-grey {
   background: #A5A6A9;

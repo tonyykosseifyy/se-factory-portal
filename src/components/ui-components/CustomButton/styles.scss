@@ -1,0 +1,11 @@
+@import "src/assets/styles/_variables";
+
+.uix-button.MuiButtonBase-root.MuiButton-root {
+  background-color: $uix-color !important;
+}
+.fsw-button.MuiButtonBase-root.MuiButton-root {
+  background-color: $fsw-color !important;
+}
+.fsd-button.MuiButtonBase-root.MuiButton-root {
+  background-color: $fsd-color !important;
+}

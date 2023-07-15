@@ -24,10 +24,10 @@ const Theme = createTheme({
         secondary: {
             main: SE_LIGHT_GREY
         },
-        tertiary: {
+        uix: {
             main: '#FB508E', 
         },
-        quaternary: {
+        fsd: {
             main: '#9864DA',
         },
     },

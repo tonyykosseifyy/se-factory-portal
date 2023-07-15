@@ -52,9 +52,9 @@ const BootcampSelect = () => {
       case 'FSW':
         return palette.primary.main;
       case 'FSD':
-        return palette.quaternary.main;
+        return palette.fsd.main;
       case 'UIX':
-        return palette.tertiary.main;
+        return palette.uix.main;
       default:
         return palette.primary.main;
   }}, [ bootcamp ]);
