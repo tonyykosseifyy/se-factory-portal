@@ -4,7 +4,7 @@ import './styles.scss';
 
 const Loader = ({SELogo = false, height = 'calc(100vh - 74px)'}) => {
     return (
-        <div style={{height, width: '100%', display: 'flex', placeContent: "center", placeItems: 'center'}}>
+        <div style={{height, width: '100%', display: 'flex',backgroundColor: '#F1F2F3', placeContent: "center", placeItems: 'center'}}>
             {
                 SELogo ?
 
