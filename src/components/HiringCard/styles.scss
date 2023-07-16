@@ -83,6 +83,7 @@
   opacity: 0;
   transition: all 0.3s ease-in-out;
   border-radius: 10px;
+  pointer-events: none;
 
   &.open {
     opacity: 1 !important;

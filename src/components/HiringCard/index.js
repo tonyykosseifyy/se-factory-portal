@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Grid, Typography, useMediaQuery, useTheme, Avatar, Stack } from "@mui/material";
 import "./styles.scss";
 import { SE_GREEN, SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
@@ -22,6 +22,11 @@ import { useAxios } from "../../context/axios";
 import { MUTATION_KEYS } from "../../api/config/keys";
 import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
+const favoriteIconPressed = (e) => {
+  return (e.target.localName === "path" && !e.target?.getAttribute('d').startsWith('M6')) || (e.target.localName === "svg" && !e.target.getAttribute("data-testid") === 'MoreHorizIcon') ;
+}
+
 const HiringCard = ({
   id,
   attributes: {
@@ -41,7 +46,7 @@ const HiringCard = ({
   },
 }) => {
   const [open, setOpen] = useState(false);
-
+  const optionsIcon = useRef(null);
   const theme = useTheme();
   const { preRelease: PRE_RELEASE } = useGodMode();
   const { Api } = useAxios();
@@ -67,15 +72,20 @@ const HiringCard = ({
 
   const { showModal } = useModal();
 
+  
   const handleClick = (e, skipCheck, pressedOn) => {
-    if (e.target.localName === "path" || e.target.localName === "svg") {
+    if (favoriteIconPressed(e)) {
       const fav = isFavorited();
       const operation = fav ? deleteFavorite : createFavorite;
       operation({
         Api,
         id: fav ? fav.id : id,
       });
-    } else {
+    } 
+    else if (e.target === optionsIcon.current) {
+      setOpen(true);
+    }
+    else {
       if (!PRE_RELEASE && hiringStatus !== HIRED) {
         if (
           skipCheck ||
@@ -155,9 +165,7 @@ const HiringCard = ({
 							</Typography>
 						</Stack>
 						<MoreHorizIcon 
-            onClick={(e) => {
-              setOpen(true);
-            }}
+            ref={optionsIcon}
             // onMouseLeave={() => {
             //   setOpen(false);
             //   hoveredOverLog({ ...analyticsBasicParams() });
