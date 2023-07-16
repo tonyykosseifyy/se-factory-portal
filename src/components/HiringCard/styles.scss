@@ -15,14 +15,14 @@
   position: absolute;
   top: 22px;
   right: 22px;
-  z-index: 10;
   cursor: pointer;
+  z-index: 1000 ;
 }
 .small-divider {
   width: 60px;
   height: 2px;
   background: black;
-  margin: 10px 0px ;
+  margin: 7px 0px ;
 }
 .hiring-card-image-container {
   aspect-ratio: 0.95;
@@ -31,7 +31,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px ;
-
+  flex: 1;
 }
 
 .hiring-card-footer {
@@ -68,6 +68,12 @@
   &.prerelease {
     cursor:unset;
   }
+  // @media screen and (min-width: 700px) {
+  //   min-height: 350px;
+  // }
+  // @media screen and (min-width: 1000px) {
+  //   min-height: fit-content;
+  // }
 }
 
 .hiring-card-information-main-container {
@@ -84,12 +90,14 @@
   transition: all 0.3s ease-in-out;
   border-radius: 10px;
   pointer-events: none;
+  z-index: 4;
 
   &.open {
     opacity: 1 !important;
     transition: all 0.3s ease-in-out;
     box-shadow: 4px 4px 11px #BABBBC ;
     display: block;
+    pointer-events: all;
   }
 }
 
@@ -98,9 +106,17 @@
   flex-direction: column;
   place-content: space-between;
   padding: 20px;
+  z-index: 3;
 }
-
-
+.hiring-card-flip {
+  position: absolute;
+  bottom: 17px;
+  right: 20px;
+  z-index: 100;
+}
+.flip-none {
+  opacity: 0;
+}
 .hiring-card-project-description {
   //display: -webkit-box;
   //-webkit-line-clamp: 3;

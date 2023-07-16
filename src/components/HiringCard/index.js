@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo, useCallback } from "react";
 import { Grid, Typography, useMediaQuery, useTheme, Avatar, Stack } from "@mui/material";
 import "./styles.scss";
 import { SE_GREEN, SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
@@ -24,6 +24,7 @@ import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const favoriteIconPressed = (e) => {
+  console.log(e.classList && e.classList.value) ;
   return (e.target.localName === "path" && !e.target?.getAttribute('d').startsWith('M6')) || (e.target.localName === "svg" && !e.target.getAttribute("data-testid") === 'MoreHorizIcon') ;
 }
 
@@ -55,7 +56,6 @@ const HiringCard = ({
   const { mutate: deleteFavorite } = useMutation(MUTATION_KEYS.DELETE_FAVORITE);
   const { mutate: createFavorite } = useMutation(MUTATION_KEYS.POST_FAVORITE);
 
-  console.log(PRE_RELEASE);
   const isFavorited = () =>
     favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
 
@@ -68,24 +68,25 @@ const HiringCard = ({
       graduateStatus: hiringStatus,
     };
   };
-  const isSM = useMediaQuery(theme.breakpoints.down("md"));
-
+  const isSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMD = useMediaQuery(theme.breakpoints.down("md"));
   const { showModal } = useModal();
 
-  
+  const flipCard = useCallback((e) => {
+    hoveredOverLog({ ...analyticsBasicParams() })
+    setOpen(true);
+    e.stopPropagation();
+  },[]) 
+  const toggleFavorite = useCallback((e) => {
+    const fav = isFavorited();
+    const operation = fav ? deleteFavorite : createFavorite;
+    operation({
+      Api,
+      id: fav ? fav.id : id,
+    });
+    e.stopPropagation();
+  },[])
   const handleClick = (e, skipCheck, pressedOn) => {
-    if (favoriteIconPressed(e)) {
-      const fav = isFavorited();
-      const operation = fav ? deleteFavorite : createFavorite;
-      operation({
-        Api,
-        id: fav ? fav.id : id,
-      });
-    } 
-    else if (e.target === optionsIcon.current) {
-      setOpen(true);
-    }
-    else {
       if (!PRE_RELEASE && hiringStatus !== HIRED) {
         if (
           skipCheck ||
@@ -109,7 +110,6 @@ const HiringCard = ({
           });
         }
       }
-    }
   };
 
   const projectTypeHandle = () => {
@@ -132,20 +132,20 @@ const HiringCard = ({
       onMouseOver={(e) => {
         setOpen(true);
       }}
-      onClick={(e) => handleClick(e, false, "Card")}
+      
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
       }}
     >
-      <div className={"hiring-card-favorite"}>
+      <div className={"hiring-card-favorite"} onClick={(e) => toggleFavorite(e)}>
         {isFavorited() ? (
-          <FavoriteIcon color={"primary"} />
+          <FavoriteIcon sx={{width: '27px', height: '27px'}} color={"primary"} />
         ) : (
-          <FavoriteBorderIcon color={"primary"} />
+          <FavoriteBorderIcon sx={{width: '27px', height: '27px'}} color={"primary"} />
         )}
       </div>
-      <div className={"hiring-card-container"}>
+      <div className={"hiring-card-container"} >
         <div
           className={"hiring-card-image-container"}
           style={{ backgroundImage: `url(${coverImage})` }}
@@ -164,28 +164,14 @@ const HiringCard = ({
 								{name}
 							</Typography>
 						</Stack>
-						<MoreHorizIcon 
-            ref={optionsIcon}
-            // onMouseLeave={() => {
-            //   setOpen(false);
-            //   hoveredOverLog({ ...analyticsBasicParams() });
-            // }}
-              sx={{color: '#A5A6A9'}}  
-              
-              />
-            {/* 3 dots icon */}
 						
-            {/* <Typography
-              variant={"body1"}
-              fontWeight={"bold"}
-              style={{ color: hiringStatus ? SE_GREEN : SE_MID_GREY }}
-            >
-              {hiringStatus ? AVAILABLE_FOR_HIRE : HIRED}
-            </Typography> */}
           </Stack>
         </div>
       </div>
+     
+      
       <div
+        onClick={(e) => handleClick(e, false, "Card")}
         className={`hiring-card-information-main-container ${open && "open"}`}
       >
         <div className={"hiring-card-information-container"}>
@@ -198,7 +184,7 @@ const HiringCard = ({
               maxHeight:
                 PRE_RELEASE || !hiringStatus
                   ? "calc(100% - 40px)"
-                  : isSM
+                  : isMD
                   ? "calc(100% - 143px)"
                   : "calc(100% - 96px)",
             }}
@@ -206,14 +192,15 @@ const HiringCard = ({
             <Typography
               variant={"h6"}
               fontWeight={"bolder"}
-              sx={{ color: SE_MID_GREY, fontSize: "16px" }}
+              sx={{ color: SE_MID_GREY}}
+              fontSize={isSM ? 15: 16}
             >
               &gt; {projectTypeHandle()}
             </Typography>
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
-              sx={{ fontSize: "24px" }}
+              fontSize={isSM ? 18: 24}
             >
               {title}
             </Typography>
@@ -224,8 +211,8 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography variant={"body2"}>{description[0]?.line}</Typography>
-              <Typography variant={"body2"}>{description[1]?.line}</Typography>
+              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[0]?.line}</Typography>
+              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography>
             </div>
           </div>
           {hiringStatus && (
@@ -310,6 +297,13 @@ const HiringCard = ({
             </>
           )}
         </div>
+      </div>
+      <div className={`hiring-card-flip ${open && 'flip-none'}` }>
+        <MoreHorizIcon 
+          ref={optionsIcon}
+          onClick={(e) => flipCard(e)}            
+          sx={{color: '#A5A6A9'}}  
+        />
       </div>
     </div>
   );
