@@ -154,7 +154,17 @@ const HiringCard = ({
 								{name}
 							</Typography>
 						</Stack>
-						<MoreHorizIcon sx={{color: '#A5A6A9'}}  />
+						<MoreHorizIcon 
+            onClick={(e) => {
+              setOpen(true);
+            }}
+            // onMouseLeave={() => {
+            //   setOpen(false);
+            //   hoveredOverLog({ ...analyticsBasicParams() });
+            // }}
+              sx={{color: '#A5A6A9'}}  
+              
+              />
             {/* 3 dots icon */}
 						
             {/* <Typography
