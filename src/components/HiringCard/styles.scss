@@ -33,6 +33,10 @@
   border-radius: 10px ;
   flex: 1;
 }
+.hiring-card-image-container-uix {
+  aspect-ratio: 0.719;
+  border-radius: 0px ;  
+}
 
 .hiring-card-footer {
   display: flex;
@@ -73,6 +77,12 @@
   }
   // @media screen and (min-width: 1000px) {
   //   min-height: fit-content;
+  // }
+}
+.hiring-card-main-container-uix {
+  // @media screen and (max-width: 768px) { 
+  //   min-height: fit-content;
+  //   max-height: 400px !important;
   // }
 }
 

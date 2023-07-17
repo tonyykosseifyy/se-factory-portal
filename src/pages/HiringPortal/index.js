@@ -46,6 +46,30 @@ import portalData from "./portal-data";
 import CustomButton from "../../components/ui-components/CustomButton";
 import "./border.scss";
 
+const uix_students = [
+  {
+    id: 1,
+    name: "Majed Habli",
+    aboutMe: "Passionate learner with a keen interest in computer science.Creative problem solver fascinated by the intersection of design and technology",
+  },
+  {
+    id: 2,
+    name: "Mohammad Haidar",
+    aboutMe: "Creative problem solver fascinated by the intersection of design and technology.Passionate learner with a keen interest in computer science",
+  },
+  {
+    id: 3,
+    name: "Mostafa Kreidly",
+    aboutMe: "Enthusiastic explorer of data analytics and its application in various industries.Passionate learner with a keen interest in computer science",
+  },
+  {
+    id: 4,
+    name: "Zeina Saleh",
+    aboutMe: "Dedicated coder striving to create innovative solutions for real-world challenges.",
+  },
+];
+
+
 export const CustomTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
     borderRadius: "10px",
@@ -364,7 +388,26 @@ const HiringPortal = () => {
 							</Grid>
 							{
 								// cards?.length > 0 ?
-								cards.map((props, index) => (
+								bootcamp === 'UIX' ? 
+                cards.slice(0,4).map((props, index) => (
+                  <Grid
+                    style={{
+                      marginTop: isSmall && "10px",
+                      marginBottom: isSmall && "10px",
+                    }}
+                    key={`card-${index}`}
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    mt={2}
+                  >
+                    <HiringCard {...props} uix_user={uix_students[index]} bootcamp={bootcamp} />
+                  </Grid>
+                  ))
+                : 
+                cards.map((props, index) => (
 									<Grid
 										style={{
 											marginTop: isSmall && "10px",
@@ -378,7 +421,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-										<HiringCard {...props} bootcamp={bootcamp} />
+                    <HiringCard {...props} bootcamp={bootcamp} />
 									</Grid>
 								))
 								// :

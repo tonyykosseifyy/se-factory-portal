@@ -23,11 +23,27 @@ import { MUTATION_KEYS } from "../../api/config/keys";
 import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
+import image1 from '../../assets/common/uix1.png';
+import image2 from '../../assets/common/uix2.png';
+import image3 from '../../assets/common/uix3.png';
+import image4 from '../../assets/common/uix4.png';
 
+const images = [image1, image2, image3, image4];
+
+function getRandomNumber(id) {
+  // Convert the ID to a number
+  const parsedId = parseInt(id, 10);
+  
+  // Perform calculations based on the ID
+  const randomNumber = ((parsedId * 37) % 4) + 1;
+  
+  return randomNumber;
+}
 
 const HiringCard = ({
   bootcamp,
   id,
+  uix_user, 
   attributes: {
     name,
     title,
@@ -66,9 +82,16 @@ const HiringCard = ({
     };
   };
   const bootcampColor = useMemo(() => {
-    return bootcamp === "FSW" ? "primary" : bootcamp === "FSD" ? "fsd" : "primary";
-  },[bootcamp]);
-  console.log(bootcamp);
+    switch (bootcamp) {
+      case 'FSW':
+        return "primary";
+      case 'FSD':
+        return 'fsd';
+      case 'UIX':
+        return 'uix';
+      default:
+        return 'primary';
+  }}, [ bootcamp ]);
 
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -129,7 +152,7 @@ const HiringCard = ({
 
   return (
     <div
-      className={`hiring-card-main-container ${
+      className={`hiring-card-main-container hiring-card-main-container-${bootcamp.toLowerCase()} ${
         (PRE_RELEASE || hiringStatus === HIRED) && "prerelease"
       }`}
       onMouseOver={(e) => {
@@ -150,21 +173,21 @@ const HiringCard = ({
       </div>
       <div className={"hiring-card-container"} >
         <div
-          className={"hiring-card-image-container"}
-          style={{ backgroundImage: `url(${coverImage})` }}
+          className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
+          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`:`url(${coverImage})` }}
         />
         <div className={"hiring-card-footer"}>
           <Stack sx={{width:'100%'}} flexDirection='row' alignItems='center' justifyContent='space-between'>
 						<Stack flexDirection='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
 								<Avatar 
-									src={coverImage}
+									src={bootcamp === 'UIX' ? '' : coverImage}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>
 							</div>
 							<Typography variant={"h6"} fontSize={15} fontWeight={"bold"}>
-								{name}
+								{bootcamp === 'UIX' ? uix_user.name :name}
 							</Typography>
 						</Stack>
 						
@@ -172,7 +195,6 @@ const HiringCard = ({
         </div>
       </div>
      
-      
       <div
         onClick={(e) => handleClick(e, false, "Card")}
         className={`hiring-card-information-main-container ${open && "open"}`}
@@ -192,20 +214,20 @@ const HiringCard = ({
                   : "calc(100% - 96px)",
             }}
           >
-            <Typography
+            {bootcamp !== 'UIX' && <Typography
               variant={"h6"}
               fontWeight={"bolder"}
               sx={{ color: SE_MID_GREY}}
               fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
-            </Typography>
+            </Typography>}
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
               fontSize={isSM ? 18: 24}
             >
-              {title}
+              {bootcamp === 'UIX' ? uix_user['name']: title }
             </Typography>
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
@@ -214,8 +236,8 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[0]?.line}</Typography>
-              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography>
+              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:description[0]?.line}</Typography>
+              {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
             </div>
           </div>
           {hiringStatus && (
@@ -253,6 +275,7 @@ const HiringCard = ({
                       About Me
                     </CustomButton>
                   </Grid>
+                    
                   <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton
                       variant={"contained"}
@@ -274,48 +297,73 @@ const HiringCard = ({
                       Book Interview
                     </SEButton>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={6} lg={6}>
-                    <SEButton
-                      variant={"contained"}
-                      color={"secondary"}
-                      disableElevation
-                      sx={{
-                        height: "40px",
-                        backgroundColor: SE_GREY,
-                        color: "white",
-                      }}
-                      onClick={() =>
-                        githubPressed({ ...analyticsBasicParams() })
-                      }
-                      fullWidth
-                      href={github}
-                      target="_blank"
-                    >
-                      Project Demo
-                    </SEButton>
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={6} lg={6}>
-                    <SEButton
-                      variant={"contained"}
-                      color={"secondary"}
-                      disableElevation
-                      sx={{
-                        height: "40px",
-                        backgroundColor: SE_GREY,
-                        color: "white",
-                      }}
-                      // should be change to live project
-                      // onClick={() =>
-                      //   githubPressed({ ...analyticsBasicParams() })
-                      // }
-                      fullWidth
-                      href={github}
-                      target="_blank"
-                    >
-                      Live Project
-                    </SEButton>
-                  </Grid>
+                  { bootcamp === 'uix' ?
                   
+                  (<>
+                    <Grid item xs={12} sm={12} md={6} lg={6}>
+                      <SEButton
+                        variant={"contained"}
+                        color={"secondary"}
+                        disableElevation
+                        sx={{
+                          height: "40px",
+                          backgroundColor: SE_GREY,
+                          color: "white",
+                        }}
+                        onClick={() =>
+                          githubPressed({ ...analyticsBasicParams() })
+                        }
+                        fullWidth
+                        href={github}
+                        target="_blank"
+                      >
+                        Project Demo
+                      </SEButton>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} lg={6}>
+                      <SEButton
+                        variant={"contained"}
+                        color={"secondary"}
+                        disableElevation
+                        sx={{
+                          height: "40px",
+                          backgroundColor: SE_GREY,
+                          color: "white",
+                        }}
+                        // should be change to live project
+                        // onClick={() =>
+                        //   githubPressed({ ...analyticsBasicParams() })
+                        // }
+                        fullWidth
+                        href={github}
+                        target="_blank"
+                      >
+                        Live Project
+                      </SEButton>
+                    </Grid>
+                  </>)
+                  :
+                  (<Grid item xs={12} sm={12} md={12} lg={12}>
+                    <SEButton
+                        variant={"contained"}
+                        color='secondary'
+                        sx={{
+                          backgroundColor: SE_GREY,
+                          color: "white",
+                        }}
+                        fullWidth
+                        href={github}
+                        target="_blank"
+                        // should be changed to view behance
+                        // onClick={() =>
+                        // 	githubPressed({ ...analyticsBasicParams() })
+                        // }
+                        disableElevation
+                      >
+                        View Behance
+                      </SEButton>
+                  </Grid>)
+                  }
                 </Grid>
               )}
             </>
