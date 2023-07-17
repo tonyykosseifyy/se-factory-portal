@@ -378,7 +378,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-										<HiringCard {...props} />
+										<HiringCard {...props} bootcamp={bootcamp} />
 									</Grid>
 								))
 								// :

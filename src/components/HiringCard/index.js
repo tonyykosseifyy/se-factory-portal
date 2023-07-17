@@ -23,12 +23,10 @@ import { MUTATION_KEYS } from "../../api/config/keys";
 import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-const favoriteIconPressed = (e) => {
-  console.log(e.classList && e.classList.value) ;
-  return (e.target.localName === "path" && !e.target?.getAttribute('d').startsWith('M6')) || (e.target.localName === "svg" && !e.target.getAttribute("data-testid") === 'MoreHorizIcon') ;
-}
+
 
 const HiringCard = ({
+  bootcamp,
   id,
   attributes: {
     name,
@@ -67,6 +65,11 @@ const HiringCard = ({
       graduateStatus: hiringStatus,
     };
   };
+  const bootcampColor = useMemo(() => {
+    return bootcamp === "FSW" ? "primary" : bootcamp === "FSD" ? "fsd" : "primary";
+  },[bootcamp]);
+  console.log(bootcamp);
+
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
   const { showModal } = useModal();
@@ -139,9 +142,9 @@ const HiringCard = ({
     >
       <div className={"hiring-card-favorite"} onClick={(e) => toggleFavorite(e)}>
         {isFavorited() ? (
-          <FavoriteIcon sx={{width: '27px', height: '27px'}} color={"primary"} />
+          <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         ) : (
-          <FavoriteBorderIcon sx={{width: '27px', height: '27px'}} color={"primary"} />
+          <FavoriteBorderIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         )}
       </div>
       <div className={"hiring-card-container"} >
@@ -152,7 +155,7 @@ const HiringCard = ({
         <div className={"hiring-card-footer"}>
           <Stack sx={{width:'100%'}} flexDirection='row' alignItems='center' justifyContent='space-between'>
 						<Stack flexDirection='row' alignItems='center' gap={2}> 
-							<div className='avatar-border'>
+							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
 								<Avatar 
 									src={coverImage}
 									alt={name}
