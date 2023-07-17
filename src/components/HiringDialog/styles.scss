@@ -1,6 +1,20 @@
+@import "src/assets/styles/_variables";
+
 
 .card-modal-main {
   padding: 35px;
+}
+.card-modal-main-fsd .MuiTabs-flexContainer .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary {
+  color: $fsd-color !important;
+}
+.card-modal-main-uix .MuiTabs-flexContainer .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary {
+  color: $uix-color !important;
+}
+.card-modal-main-fsd .MuiTabs-indicator {
+  background-color: $fsd-color !important;
+}
+.card-modal-main-uix .MuiTabs-indicator {
+  background-color: $uix-color !important;
 }
 
 .card-modal-dialog {

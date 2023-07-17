@@ -106,6 +106,7 @@ const HiringCard = ({
             languages,
             projectType,
             hiringStatus,
+            bootcamp,
             onCancel: () => {
               modal.hide();
             },
@@ -222,10 +223,9 @@ const HiringCard = ({
               {PRE_RELEASE ? (
                 <Grid container spacing={1}>
                   <Grid item xs={12}>
-                    <SEButton
-                      variant={"contained"}
+                    <CustomButton
+                      className={`${bootcamp?.toLowerCase()}-button`}
                       fullWidth
-                      color={"primary"}
                       href={pdf}
                       target="_blank"
                       disableElevation
@@ -234,7 +234,7 @@ const HiringCard = ({
                       }}
                     >
                       View CV
-                    </SEButton>
+                    </CustomButton>
                   </Grid>
                 </Grid>
               ) : (
