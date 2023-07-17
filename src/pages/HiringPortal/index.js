@@ -228,7 +228,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setProjectTypes(newValue);
 										}}
-										options={PROJECT_TYPES}
+										options={bootcamp === 'FSW' ? PROJECT_TYPES: []}
 										onClick={(e) => {
 											e.preventDefault();
 											setFilterOpen(true);
@@ -264,7 +264,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setLanguages(newValue);
 										}}
-										options={languageOptions}
+										options={bootcamp === 'FSW' ? PROJECT_TYPES: []}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (

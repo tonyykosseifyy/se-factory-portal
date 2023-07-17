@@ -22,7 +22,7 @@ import { useAxios } from "../../context/axios";
 import { MUTATION_KEYS } from "../../api/config/keys";
 import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
+import CustomButton from "../ui-components/CustomButton";
 
 
 const HiringCard = ({
@@ -240,18 +240,20 @@ const HiringCard = ({
               ) : (
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <SEButton
-                      variant={"contained"}
-                      color={"primary"}
+                    <CustomButton
                       disableElevation
                       fullWidth
+                      className={`${bootcamp?.toLowerCase()}-button`}
+
                       sx={{
                         height: "40px",
+                        color: "black",
+
                       }}
                       onClick={(e) => handleClick(e, true, "About Me Button")}
                     >
                       About Me
-                    </SEButton>
+                    </CustomButton>
                   </Grid>
                   <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton

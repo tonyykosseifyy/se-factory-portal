@@ -2,10 +2,20 @@
 
 .uix-button.MuiButtonBase-root.MuiButton-root {
   background-color: $uix-color !important;
+  transition: all .25s ease !important;
+
 }
 .fsw-button.MuiButtonBase-root.MuiButton-root {
   background-color: $fsw-color !important;
+  transition: all .25s ease !important;
+
 }
 .fsd-button.MuiButtonBase-root.MuiButton-root {
   background-color: $fsd-color !important;
+  transition: all .25s ease !important;
+}
+
+
+.fsd-button.MuiButtonBase-root.MuiButton-root:hover, .uix-button.MuiButtonBase-root.MuiButton-root:hover, .fsw-button.MuiButtonBase-root.MuiButton-root:hover {
+  filter: brightness(0.8);
 }
