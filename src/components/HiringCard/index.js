@@ -239,21 +239,40 @@ const HiringCard = ({
                 </Grid>
               ) : (
                 <Grid container spacing={1}>
-                  <Grid item xs={12} sm={12} md={12} lg={12}>
+                  <Grid item xs={12} sm={12} md={6} lg={6}>
                     <CustomButton
                       disableElevation
                       fullWidth
                       className={`${bootcamp?.toLowerCase()}-button`}
-
                       sx={{
                         height: "40px",
                         color: "black",
-
                       }}
                       onClick={(e) => handleClick(e, true, "About Me Button")}
                     >
                       About Me
                     </CustomButton>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6}>
+                    <SEButton
+                      variant={"contained"}
+                      color={"secondary"}
+                      disableElevation
+                      fullWidth
+                      href={calendly}
+                      onClick={() =>
+                        interviewBooked({ ...analyticsBasicParams() })
+                      }
+                      target="_blank"
+                      sx={{
+                        height: "40px",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Book Interview
+                    </SEButton>
                   </Grid>
                   <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton
@@ -280,22 +299,23 @@ const HiringCard = ({
                       variant={"contained"}
                       color={"secondary"}
                       disableElevation
-                      fullWidth
-                      href={calendly}
-                      onClick={() =>
-                        interviewBooked({ ...analyticsBasicParams() })
-                      }
-                      target="_blank"
                       sx={{
                         height: "40px",
-                        textOverflow: "ellipsis",
-                        overflow: "hidden",
-                        whiteSpace: "nowrap",
+                        backgroundColor: SE_GREY,
+                        color: "white",
                       }}
+                      // should be change to live project
+                      // onClick={() =>
+                      //   githubPressed({ ...analyticsBasicParams() })
+                      // }
+                      fullWidth
+                      href={github}
+                      target="_blank"
                     >
-                      Book Interview
+                      Live Project
                     </SEButton>
                   </Grid>
+                  
                 </Grid>
               )}
             </>

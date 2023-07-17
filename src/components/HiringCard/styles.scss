@@ -68,9 +68,9 @@
   &.prerelease {
     cursor:unset;
   }
-  // @media screen and (min-width: 700px) {
-  //   min-height: 350px;
-  // }
+  @media screen and (min-width: 320px) {
+    min-height: 450px;
+  }
   // @media screen and (min-width: 1000px) {
   //   min-height: fit-content;
   // }
