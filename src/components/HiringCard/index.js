@@ -297,7 +297,7 @@ const HiringCard = ({
                       Book Interview
                     </SEButton>
                   </Grid>
-                  { bootcamp === 'uix' ?
+                  { bootcamp != 'UIX' ?
                   
                   (<>
                     <Grid item xs={12} sm={12} md={6} lg={6}>
