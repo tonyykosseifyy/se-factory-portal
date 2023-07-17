@@ -312,7 +312,7 @@ const HiringPortal = () => {
 									sx={{
 										height: "40px",
 										color: "black",
-                    minWidth: isSM ? '120px':'220px'
+                    minWidth: isSM ? '160px':'220px'
 									}}
 									onClick={() => {
 										setPrevProjectTypes(projectTypes);
