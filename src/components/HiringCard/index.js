@@ -196,7 +196,7 @@ const HiringCard = ({
               variant={"h6"}
               fontWeight={"bolder"}
               sx={{ color: SE_MID_GREY}}
-              fontSize={isSM ? 15: 16}
+              fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
             </Typography>

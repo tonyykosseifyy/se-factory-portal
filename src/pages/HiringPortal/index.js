@@ -195,7 +195,7 @@ const HiringPortal = () => {
 							<Stack flexDirection='row' >
 								<Typography sx={{transition:'.4s ease-out'}} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={bootcampColor}>&gt;</Typography>
 								<Typography sx={{transition:'.4s ease-out'}} ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color={bootcampColor}>{portalData[bootcamp]?.title}</Typography>
-								<Typography ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color='white'>hiring portal</Typography>
+								<Typography ml={isSmall ? 1: 2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 16 : 18 : 25} color='white'>hiring portal</Typography>
 							</Stack>
 							<Stack flexDirection='row' alignItems='center' gap={1}>
 								<div className='se-dot se-dot-white'/>
@@ -203,7 +203,7 @@ const HiringPortal = () => {
 								<div className={`se-dot se-dot-${bootcamp.toLowerCase()}`}/>
 							</Stack>
 						</Stack>
-						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 13 : 14 : 18} color='#888888'>
+						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 12 : 14 : 18} color='#888888'>
 							<span style={{marginRight:'7px'}}>//</span> {portalData[bootcamp]?.below_title}
 						</Typography>
 						<div className='filters-wrapper'>
