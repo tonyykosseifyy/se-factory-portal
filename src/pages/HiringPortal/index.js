@@ -68,6 +68,36 @@ const uix_students = [
     aboutMe: "Dedicated coder striving to create innovative solutions for real-world challenges.",
   },
 ];
+const fsd_students = [
+  {
+    id: 1,
+    name: 'Abdallah Alkhatib',
+    project_name: "StockSense",
+    description: "Developed a predictive model to forecast stock market trends based on historical data and technical indicators.",
+    pictureUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV2Y1QlKlIjfqEp21YDx_ExNsJWz3hjG8tQ&usqp=CAU"
+  },
+  {
+    id: 2,
+    name: 'Jana Alkhatib',
+    project_name: "MovieMate",
+    description: "Built a recommendation system using collaborative filtering to suggest personalized movie recommendations to users.",
+    pictureUrl: "https://example.com/movie-recommendation.jpg"
+  },
+  {
+    id: 3,
+    name: 'Khalil lakkis',
+    project_name: "SocialSentinel",
+    description: "Implemented a natural language processing algorithm to analyze sentiment in social media posts and classify them as positive, negative, or neutral.",
+    pictureUrl: "https://example.com/sentiment-analysis.jpg"
+  },
+  {
+    id: 4,
+    name: 'Samir Salloum',
+    project_name: "FraudShield",
+    description: "Created a machine learning model to detect fraudulent credit card transactions with high accuracy, minimizing financial losses for a bank.",
+    pictureUrl: "https://example.com/credit-card-fraud-detection.jpg"
+  }
+];
 
 
 export const CustomTextField = styled(TextField)({
@@ -406,7 +436,26 @@ const HiringPortal = () => {
                     <HiringCard {...props} uix_user={uix_students[index]} bootcamp={bootcamp} />
                   </Grid>
                   ))
-                : 
+                : bootcamp === 'FSD' ? 
+                cards.slice(0,4).map((props, index) => (
+                  <Grid
+                    style={{
+                      marginTop: isSmall && "10px",
+                      marginBottom: isSmall && "10px",
+                    }}
+                    key={`card-${index}`}
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    mt={2}
+                  >
+                    <HiringCard {...props} fsd_user={fsd_students[index]} bootcamp={bootcamp} />
+                  </Grid>
+                  ))
+                
+                :
                 cards.map((props, index) => (
 									<Grid
 										style={{

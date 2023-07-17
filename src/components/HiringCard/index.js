@@ -29,7 +29,10 @@ import image3 from '../../assets/common/uix3.png';
 import image4 from '../../assets/common/uix4.png';
 
 const images = [image1, image2, image3, image4];
+const fsd_images = [
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaifwqs1mBNpQLGrVO5-DqFxc7vQlrhCZDcA&usqp=CAU',
 
+]
 function getRandomNumber(id) {
   // Convert the ID to a number
   const parsedId = parseInt(id, 10);
@@ -44,6 +47,7 @@ const HiringCard = ({
   bootcamp,
   id,
   uix_user, 
+  fsd_user,
   attributes: {
     name,
     title,
@@ -174,20 +178,20 @@ const HiringCard = ({
       <div className={"hiring-card-container"} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
-          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`:`url(${coverImage})` }}
+          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`: bootcamp === 'FSD' ? `url(${fsd_user.pictureUrl})` :`url(${coverImage})` }}
         />
         <div className={"hiring-card-footer"}>
           <Stack sx={{width:'100%'}} flexDirection='row' alignItems='center' justifyContent='space-between'>
 						<Stack flexDirection='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
 								<Avatar 
-									src={bootcamp === 'UIX' ? '' : coverImage}
+									src={bootcamp === 'UIX' || bootcamp === 'FSD' ? '' : coverImage}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>
 							</div>
 							<Typography variant={"h6"} fontSize={15} fontWeight={"bold"}>
-								{bootcamp === 'UIX' ? uix_user.name :name}
+								{bootcamp === 'UIX' ? uix_user.name : bootcamp === 'FSD' ? fsd_user.name: name}
 							</Typography>
 						</Stack>
 						
@@ -214,20 +218,30 @@ const HiringCard = ({
                   : "calc(100% - 96px)",
             }}
           >
-            {bootcamp !== 'UIX' && <Typography
+            {bootcamp !== 'UIX' ? bootcamp === 'FSD' ? 
+              <Typography
+              variant={"h6"}
+              fontWeight={"bolder"}
+              sx={{ color: SE_MID_GREY}}
+              fontSize={isSM ? 14: 16}
+            >
+              &gt; Data Science
+            </Typography>
+            : 
+            <Typography
               variant={"h6"}
               fontWeight={"bolder"}
               sx={{ color: SE_MID_GREY}}
               fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
-            </Typography>}
+            </Typography>: null }
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
               fontSize={isSM ? 18: 24}
             >
-              {bootcamp === 'UIX' ? uix_user['name']: title }
+              { bootcamp === 'UIX' ? uix_user['name']: bootcamp ==='FSD' ? fsd_user['project_name'] :title }
             </Typography>
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
@@ -236,7 +250,7 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:description[0]?.line}</Typography>
+              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description[0]?.line}</Typography>
               {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
             </div>
           </div>
