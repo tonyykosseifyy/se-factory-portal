@@ -44,7 +44,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useMemo } from "react";
 import portalData from "./portal-data";
 import CustomButton from "../../components/ui-components/CustomButton";
-
+import "./border.scss";
 
 export const CustomTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
@@ -186,6 +186,10 @@ const HiringPortal = () => {
 					className={`hiring-portal-filters-container ${bootcamp?.toLowerCase()}-container`}
 					style={{ width: "100%" }}
 				>
+          {/* <div className={`hiring-border border-top se-dot-${bootcamp.toLowerCase()}`}/>
+          <div className={`hiring-border border-right se-dot-${bootcamp.toLowerCase()}`}/>
+          <div className={`hiring-border border-bottom se-dot-${bootcamp.toLowerCase()}`}/>
+          <div className={`hiring-border border-left se-dot-${bootcamp.toLowerCase()}`}/> */}
 					<div className='filters-content'>
 						<Stack flexDirection='row' alignItems='center' justifyContent='space-between'>
 							<Stack flexDirection='row' >

@@ -1,0 +1,102 @@
+.hiring-border {
+  position: absolute;
+  opacity: 0;
+  border-radius: 10px ;
+}
+.border-top {
+  top: -12px ;
+  left: -12px ;
+  right: -12px ;
+  transform-origin: left;
+  // animation-play-state: running;
+  animation: border-animation .2s ease .1s forwards;
+}
+.border-right {
+  top: -12px ;
+  bottom: -12px ;
+  right: -12px ;
+  transform-origin: top;
+  animation: border-animation2 .2s ease .28s forwards ;
+}
+.border-bottom {
+  left: -12px ;
+  right: -12px ;
+  bottom: -12px ;
+  transform-origin: right;
+  animation: border-animation .2s ease .5s forwards ;
+}
+.border-left {
+  top: -12px ;
+  left: -12px ;
+  bottom: -12px ;
+  transform-origin: bottom;
+  animation: border-animation2 .2s ease-out .7s forwards ;
+}
+
+.border-top, .border-bottom {
+  height: 12px ;
+}
+.border-top {
+  width: calc(100% + 24px) ;
+}
+.border-bottom {
+  width: calc(100% + 24px) ;
+}
+.border-left, .border-right {
+  height: calc(100% + 24px) ;
+}
+
+.border-left {
+  width: 12px ;
+}
+.border-right {
+  width: 12px ;
+}
+
+// .border-top {
+//   border-top-left-radius: 10px ;
+//   border-top-right-radius: 10px ;
+// }
+// .border-bottom {
+//   border-bottom-left-radius: 10px ;
+//   border-bottom-right-radius: 10px ;
+// }
+// .border-left {
+//   border-top-left-radius: 10px ;
+//   border-bottom-left-radius: 10px ;
+// }
+// .border-right {
+//   border-top-right-radius: 10px ;
+//   border-bottom-right-radius: 10px ;
+// }
+
+@keyframes border-animation {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: scaleX(.1);
+  }
+  100% {
+    transform: scaleX(1) ;
+    opacity: 1;
+  }
+}
+
+
+@keyframes border-animation2 {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: scaleY(.1);
+  }
+  100% {
+    transform: scaleY(1) ;
+    opacity: 1
+  }
+}

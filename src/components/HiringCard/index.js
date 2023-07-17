@@ -56,8 +56,7 @@ const HiringCard = ({
   const { mutate: deleteFavorite } = useMutation(MUTATION_KEYS.DELETE_FAVORITE);
   const { mutate: createFavorite } = useMutation(MUTATION_KEYS.POST_FAVORITE);
 
-  const isFavorited = () =>
-    favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
+  const isFavorited = () => favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
 
   const analyticsBasicParams = () => {
     return {
@@ -77,7 +76,7 @@ const HiringCard = ({
     setOpen(true);
     e.stopPropagation();
   },[]) 
-  const toggleFavorite = useCallback((e) => {
+  const toggleFavorite = (e) => {
     const fav = isFavorited();
     const operation = fav ? deleteFavorite : createFavorite;
     operation({
@@ -85,7 +84,7 @@ const HiringCard = ({
       id: fav ? fav.id : id,
     });
     e.stopPropagation();
-  },[])
+  }
   const handleClick = (e, skipCheck, pressedOn) => {
       if (!PRE_RELEASE && hiringStatus !== HIRED) {
         if (
