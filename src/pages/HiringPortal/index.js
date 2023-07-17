@@ -288,7 +288,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setLanguages(newValue);
 										}}
-										options={bootcamp === 'FSW' ? PROJECT_TYPES: []}
+										options={bootcamp === 'FSW' ? LANGUAGES: []}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -388,7 +388,7 @@ const HiringPortal = () => {
 							</Grid>
 							{
 								// cards?.length > 0 ?
-								bootcamp === 'UIX' ? 
+							bootcamp === 'UIX' ? 
                 cards.slice(0,4).map((props, index) => (
                   <Grid
                     style={{
