@@ -81,21 +81,21 @@ const fsd_students = [
     name: 'Jana Alkhatib',
     project_name: "MovieMate",
     description: "Built a recommendation system using collaborative filtering to suggest personalized movie recommendations to users.",
-    pictureUrl: "https://example.com/movie-recommendation.jpg"
+    pictureUrl: "https://us.123rf.com/450wm/owline27/owline271910/owline27191000072/131291190-film-logo-design-inspiration-for-business-and-company.jpg?ver=6"
   },
   {
     id: 3,
     name: 'Khalil lakkis',
     project_name: "SocialSentinel",
     description: "Implemented a natural language processing algorithm to analyze sentiment in social media posts and classify them as positive, negative, or neutral.",
-    pictureUrl: "https://example.com/sentiment-analysis.jpg"
+    pictureUrl: "https://assets-global.website-files.com/5cb5162c145f7c1a41cbdb88/5ef3a854ce5b318c23c2fe5e_socialsentinel%402x.jpg"
   },
   {
     id: 4,
     name: 'Samir Salloum',
     project_name: "FraudShield",
     description: "Created a machine learning model to detect fraudulent credit card transactions with high accuracy, minimizing financial losses for a bank.",
-    pictureUrl: "https://example.com/credit-card-fraud-detection.jpg"
+    pictureUrl: "https://as2.ftcdn.net/v2/jpg/03/31/20/23/1000_F_331202316_eoD6AcKCH1bVhx0MJe8QkmzdUaP8wIvQ.jpg"
   }
 ];
 
