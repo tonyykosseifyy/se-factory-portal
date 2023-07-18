@@ -29,9 +29,11 @@ import image3 from '../../assets/common/uix3.png';
 import image4 from '../../assets/common/uix4.png';
 
 const images = [image1, image2, image3, image4];
-const fsd_images = [
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaifwqs1mBNpQLGrVO5-DqFxc7vQlrhCZDcA&usqp=CAU',
-
+const avatar_images = [
+  "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
+  'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
+  'https://xsgames.co/randomusers/assets/avatars/male/55.jpg',
+  '	https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
 ]
 function getRandomNumber(id) {
   // Convert the ID to a number
@@ -185,7 +187,7 @@ const HiringCard = ({
 						<Stack flexDirection='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
 								<Avatar 
-									src={bootcamp === 'UIX' || bootcamp === 'FSD' ? '' : coverImage}
+									src={avatar_images[getRandomNumber(id) -1]}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>
