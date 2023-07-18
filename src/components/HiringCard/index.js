@@ -183,8 +183,8 @@ const HiringCard = ({
           style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`: bootcamp === 'FSD' ? `url(${fsd_user.pictureUrl})` :`url(${coverImage})` }}
         />
         <div className={"hiring-card-footer"}>
-          <Stack sx={{width:'100%'}} flexDirection='row' alignItems='center' justifyContent='space-between'>
-						<Stack flexDirection='row' alignItems='center' gap={2}> 
+          <Stack sx={{width:'100%'}} direction='row' alignItems='center' justifyContent='space-between'>
+						<Stack direction='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
 								<Avatar 
 									src={avatar_images[getRandomNumber(id) -1]}
@@ -252,7 +252,7 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description[0]?.line}</Typography>
+              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description[0]?.line}</Typography>
               {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
             </div>
           </div>
@@ -333,7 +333,7 @@ const HiringCard = ({
                         href={github}
                         target="_blank"
                       >
-                        Project Demo
+                        View Github
                       </SEButton>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={6}>
