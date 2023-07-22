@@ -21,16 +21,6 @@ import {
   HIRED,
   HIRING_STATUS,
 } from "../../utils/constants/hiring-status";
-// import Fanar from "../../assets/partners/AlFanar.jpeg";
-// import Drosos from "../../assets/partners/Drosos.png";
-// import EU from "../../assets/partners/EU.png";
-// import HopesLeb from "../../assets/partners/HopesLeb.png";
-// import Life from "../../assets/partners/Life.jpeg";
-// import Unicef from "../../assets/partners/Unicef.png";
-// import Netherlands from '../../assets/partners/netherlands.png';
-// import AbdelAziz from '../../assets/partners/abdelAziz.png';
-// import Deloitte from '../../assets/partners/deloitte.png';
-// import Generations from '../../assets/partners/generationOfInnovation.png';
 import Partners from "../../assets/partners/SEF_sponsors apr 2023.png";
 import { ReactComponent as ArrowDown } from "../../assets/common/Vector.svg";
 import { Popover } from "react-tiny-popover";
@@ -155,7 +145,7 @@ const HiringPortal = () => {
 
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
-      setBootcamp( queryParams.get('bootcamp')) ;
+      setBootcamp(queryParams.get('bootcamp')) ;
   }, [location]);
 
   const reset = useCallback(() => {
@@ -167,6 +157,7 @@ const HiringPortal = () => {
     setPrevFavoritesOnly(false);
     setFavoritesOnly(false);
   },[]);
+  // should remove : this function sets the language in the filter
   useEffect(() => {
     if (students) {
       const languageOptionsTemp = new Set();
@@ -223,15 +214,6 @@ const HiringPortal = () => {
   useEffect(() => {
     portalAccessed({ user });
   }, []);
-  // useEffect(()=> {
-  //
-  //     setCards(projects.filter((proj) =>
-  //             prevProjectTypes.length!==0?arraySubset(prevProjectTypes,proj.projectType):true
-  //         ).filter((proj) =>
-  //             prevLanguages.length!==0?arraySubset(prevLanguages,proj.languages):true
-  //         ))
-  //
-  // },[prevLanguages,prevProjectTypes])
 
   return (
     <div className={"hiring-portal-wrapper"}>
@@ -240,10 +222,6 @@ const HiringPortal = () => {
 					className={`hiring-portal-filters-container ${bootcamp?.toLowerCase()}-container`}
 					style={{ width: "100%" }}
 				>
-          {/* <div className={`hiring-border border-top se-dot-${bootcamp.toLowerCase()}`}/>
-          <div className={`hiring-border border-right se-dot-${bootcamp.toLowerCase()}`}/>
-          <div className={`hiring-border border-bottom se-dot-${bootcamp.toLowerCase()}`}/>
-          <div className={`hiring-border border-left se-dot-${bootcamp.toLowerCase()}`}/> */}
 					<div className='filters-content'>
 						<Stack flexDirection='row' alignItems='center' justifyContent='space-between'>
 							<Stack flexDirection='row' >
@@ -272,9 +250,6 @@ const HiringPortal = () => {
 										flexBasis: !isSmall ? "50%" : "100%",
 									}}
 								>
-									{/* <Typography my={1} variant={"h5"} fontSize={"17px"}>
-										Project Type
-									</Typography> */}
 									<Autocomplete
 										multiple
                     size='small'
@@ -308,9 +283,6 @@ const HiringPortal = () => {
 
 									}}
 								>
-									{/* <Typography my={1} variant={"h5"} fontSize={"17px"}>
-										Stacks Used
-									</Typography> */}
 									<Autocomplete
 										multiple
                     size="small"
@@ -377,18 +349,6 @@ const HiringPortal = () => {
 								>
 									Show Results
 								</CustomButton>
-								{/*<Typography*/}
-								{/*    onClick={() => {*/}
-								{/*        setPrevProjectTypes(projectTypes)*/}
-								{/*        setPrevLanguages(languages)*/}
-								{/*        setFilterOpen(false)*/}
-								{/*        setPrevFavoritesOnly(favoritesOnly)*/}
-
-								{/*        }*/}
-								{/*    }*/}
-								{/*    variant={"h5"} fontSize={"15px"} style={{cursor:'pointer'}} fontWeight={700} marginTop={4}>*/}
-								{/*    Show Results*/}
-								{/*</Typography>*/}
 							</Stack>
 						</div>
 						
@@ -473,27 +433,6 @@ const HiringPortal = () => {
                     <HiringCard {...props} bootcamp={bootcamp} />
 									</Grid>
 								))
-								// :
-								// <>
-								//     <Grid item xs={12} my={2}>
-								//
-								//         <Typography variant={"h5"} fontSize={"18px"}>
-								//             Can't find what you're looking for? Some students might have in-depth knowledge in specific technologies and didn't use them in the final project.
-								//             <span style={{fontWeight:'700'}}> Please reach out!  <a href="mailto: hire@sefactory.io" style={{color:`unset`}}>hire@sefactory.io</a></span>
-								//         </Typography>
-								//
-								//     </Grid>
-								//     {
-								//         students?.map((props,index) => (
-								//             <Grid style={{
-								//                 marginTop: isSmall && '10px', marginBottom: isSmall && '10px'
-								//
-								//             }} key={`card-${index}`} item xs={12} sm={6} md={6} lg={4} mt={2}>
-								//                 <HiringCard {...props} />
-								//             </Grid>
-								//         ))
-								//     }
-								// </>
 							}
 						</>
 					)}
@@ -532,138 +471,6 @@ const HiringPortal = () => {
               />
             </div>
           </Grid>
-          {/* <Grid item xs={12} sm={12} md={5} lg={5}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }} src={Fanar} alt={'fanar'} />
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={2} lg={2}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:isSmall? "45%":"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={EU} alt={'eu'} />
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={5} lg={5}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={Life} alt={'life'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={Drosos} alt={'droso'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-                    <Grid item xs={12} sm={12} md={3} lg={3} >
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={Unicef} alt={'unicef'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={HopesLeb} alt={'hopes'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={AbdelAziz} alt={'hopes'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply',
-                                
-                            }}  src={Generations} alt={'hopes'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={Deloitte} alt={'hopes'} />
-                        </div>
-                    </Grid>
-                    <Grid item md={1} lg={1}/>
-
-                    <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <div style={{
-                            display:'flex',
-                            height:'100%'
-                        }}>
-                            <img style={{
-                                width:"100%",
-                                margin:'auto',
-                                mixBlendMode: 'multiply'
-                            }}  src={Netherlands} alt={'hopes'} />
-                        </div>
-                    </Grid> */}
         </Grid>
       </div>
     </div>
