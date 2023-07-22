@@ -118,12 +118,12 @@ const HiringPortal = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [languageOptions, setLanguageOptions] = useState([]);
   const { data: students, isLoading: isLoadingStudents } = hooks.useStudents();
-  const { data: favorites, isLoading: isLoadingFavorites } =
-    hooks.useFavorites();
+  const { data: favorites, isLoading: isLoadingFavorites } = hooks.useFavorites();
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [prevFavoritesOnly, setPrevFavoritesOnly] = useState(false);
   const theme = useTheme();
   const [filterMounted, setFilterMounted] = useState(false);
+  
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [cards, setCards] = useState([]);
