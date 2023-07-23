@@ -15,17 +15,18 @@ const EVENTS = {
 
 
 export const hoveredOverLog = ({user, graduateProfile, languages, project_types, graduateStatus}) => {
+    console.log('languages', languages);
+    console.log('project_types', project_types);
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.HOVERED_OVER_CARD, {
-        // should fix later, .map of undefined error
         graduateProfile, programmingLanguages: languages?.map(e=> e.language), projectType: project_types?.map(e=> e.type), graduateStatus
     })}
 
 
-export const viewCVLog = ({user, graduateProfile, languages, projectType, graduateStatus}) => {
+export const viewCVLog = ({user, graduateProfile, languages, project_types, graduateStatus}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.VIEW_CV, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus
+        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: project_types.map(e=> e.type), graduateStatus
     })}
 
 export const searchLog = ({user, prevLanguages, prevProjectTypes}) => {
@@ -47,30 +48,30 @@ export const portalAccessed = ({user}) => {
 
 }
 
-export const projectPressed = ({user, graduateProfile, languages, projectType, graduateStatus, pressedOn}) => {
+export const projectPressed = ({user, graduateProfile, languages, project_types, graduateStatus, pressedOn}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.PROJECT_PRESSED, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus, pressedOn
+        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: project_types.map(e=> e.type), graduateStatus, pressedOn
     })
 }
 
-export const interviewBooked = ({user, graduateProfile, languages, projectType, graduateStatus}) => {
+export const interviewBooked = ({user, graduateProfile, languages, project_types, graduateStatus}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.INTERVIEW_BOOKED, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus
+        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: project_types.map(e=> e.type), graduateStatus
     })
 }
 
-export const githubPressed =  ({user, graduateProfile, languages, projectType, graduateStatus}) => {
+export const githubPressed =  ({user, graduateProfile, languages, project_types, graduateStatus}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.GITHUB_PRESSED, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus
+        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: project_types.map(e=> e.type), graduateStatus
     })
 }
 
-export const videoPlayed =  ({user, graduateProfile, languages, projectType, graduateStatus}) => {
+export const videoPlayed =  ({user, graduateProfile, languages, project_types, graduateStatus}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.VIDEO_PLAYED, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus
+        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: project_types.map(e=> e.type), graduateStatus
     })
 }

@@ -75,6 +75,7 @@ const HiringCard = ({
 
   const isFavorited = () => favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
 
+
   const analyticsBasicParams = () => {
     return {
       user,
