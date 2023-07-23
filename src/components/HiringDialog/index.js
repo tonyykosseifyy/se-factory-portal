@@ -50,7 +50,7 @@ const HiringDialog = ({
   images,
   projectURL,
   languages,
-  projectType,
+  project_types,
   hiringStatus,
 	bootcamp,
   ...props
@@ -66,7 +66,7 @@ const HiringDialog = ({
       user,
       graduateProfile: name,
       languages,
-      projectType,
+      project_types,
       graduateStatus: hiringStatus,
     };
   };

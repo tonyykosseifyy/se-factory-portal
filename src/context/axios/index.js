@@ -8,8 +8,6 @@ import {useAuth0} from "@auth0/auth0-react";
 const AxiosContext = React.createContext();
 
 export default function AxiosProvider({ children }) {
-
-    const { getAccessTokenSilently }  = useAuth0()
     const axios = useMemo(() => {
         const axios = Axios.create({
             baseURL: process.env.REACT_APP_API_HOST,
@@ -31,7 +29,7 @@ export default function AxiosProvider({ children }) {
     }, []);
 
     // Students
-    const getStudents = (filter='?populate=*&pagination[page]=1&pagination[pageSize]=100') =>
+    const getStudents = (filter='') =>
         axios.get(STUDENTS_API_ROUTE+filter).then(data => data);
 
     // User

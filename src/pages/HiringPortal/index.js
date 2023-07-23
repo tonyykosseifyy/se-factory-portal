@@ -16,21 +16,10 @@ import { PROJECT_TYPES } from "../../utils/constants/projects-types";
 import { arraySubset } from "../../utils/helpers/arraySubset";
 import "./styles.scss";
 import { useLocation } from "react-router-dom";
-import {
-  AVAILABLE_FOR_HIRE,
-  HIRED,
-  HIRING_STATUS,
-} from "../../utils/constants/hiring-status";
 import Partners from "../../assets/partners/SEF_sponsors apr 2023.png";
-import { ReactComponent as ArrowDown } from "../../assets/common/Vector.svg";
-import { Popover } from "react-tiny-popover";
-import useResizeObserver from "beautiful-react-hooks/useResizeObserver";
 import { hooks } from "../../api";
 import Loader from "../../components/Loader";
-import SEButton from "../../components/SEButton";
-import { SE_GREY } from "../../utils/constants/colors";
 import { portalAccessed, searchLog } from "../../logger/analyticsTracking";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useMemo } from "react";
 import portalData from "./portal-data";
 import CustomButton from "../../components/ui-components/CustomButton";
@@ -110,20 +99,15 @@ const HiringPortal = () => {
   const { data: user, isLoading: isLoadingUser } = hooks.useCurrentUser();
   const [languages, setLanguages] = useState([]);
   const [projectTypes, setProjectTypes] = useState([]);
-  const [hiringStatus, setHiringStatus] = useState("");
   const [prevLanguages, setPrevLanguages] = useState([]);
   const [prevProjectTypes, setPrevProjectTypes] = useState([]);
-  const [prevFilterOpen, setPrevFilterOpen] = useState(false);
-  const [filters, setFilters] = useState({});
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [languageOptions, setLanguageOptions] = useState([]);
   const { data: students, isLoading: isLoadingStudents } = hooks.useStudents();
   const { data: favorites, isLoading: isLoadingFavorites } = hooks.useFavorites();
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [prevFavoritesOnly, setPrevFavoritesOnly] = useState(false);
   const theme = useTheme();
-  const [filterMounted, setFilterMounted] = useState(false);
-  
+  console.log(students);
+
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [cards, setCards] = useState([]);
@@ -151,65 +135,15 @@ const HiringPortal = () => {
   const reset = useCallback(() => {
     setLanguages([]);
     setProjectTypes([]);
-    setHiringStatus("");
     setPrevLanguages([]);
     setPrevProjectTypes([]);
     setPrevFavoritesOnly(false);
     setFavoritesOnly(false);
   },[]);
-  // should remove : this function sets the language in the filter
-  useEffect(() => {
-    if (students) {
-      const languageOptionsTemp = new Set();
 
-      students.forEach((student) => {
-        student.attributes.programmingLanguages.forEach((e) => {
-          if (e.language) {
-            languageOptionsTemp.add(e.language);
-          }
-        });
-      });
 
-      setLanguageOptions(Array.from(languageOptionsTemp).sort());
-    }
-  }, [students]);
-
-  useEffect(() => {
-    if (students) {
-      setCards(
-        students
-          .filter((proj) =>
-            prevLanguages.length !== 0
-              ? arraySubset(
-                  prevLanguages,
-                  proj.attributes.programmingLanguages.map((e) => e.language)
-                )
-              : true
-          )
-          .filter((proj) =>
-            prevProjectTypes.length !== 0
-              ? arraySubset(
-                  prevProjectTypes,
-                  proj.attributes.projectType.map((e) => e.type)
-                )
-              : true
-          )
-          .filter((proj) => {
-            if (prevFavoritesOnly) {
-              const favoriteIds = favorites.map(
-                (e) => e?.attributes?.student?.data?.id
-              );
-              return favoriteIds.includes(proj.id);
-            }
-            return true;
-          })
-          .sort((a, b) => {
-            return a.attributes.name > b.attributes.name ? 1 : -1;
-          })
-      );
-      searchLog({ user, prevLanguages, prevProjectTypes });
-    }
-  }, [students, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]);
+  // whenever these change: [students, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
+  // searchLog({ user, prevLanguages, prevProjectTypes });
 
   useEffect(() => {
     portalAccessed({ user });
@@ -258,10 +192,6 @@ const HiringPortal = () => {
 											setProjectTypes(newValue);
 										}}
 										options={bootcamp === 'FSW' ? PROJECT_TYPES: []}
-										onClick={(e) => {
-											e.preventDefault();
-											setFilterOpen(true);
-										}}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -343,7 +273,6 @@ const HiringPortal = () => {
 									onClick={() => {
 										setPrevProjectTypes(projectTypes);
 										setPrevLanguages(languages);
-										setFilterOpen(false);
 										setPrevFavoritesOnly(favoritesOnly);
 									}}
 								>
@@ -379,7 +308,7 @@ const HiringPortal = () => {
 							{
 								// cards?.length > 0 ?
 							bootcamp === 'UIX' ? 
-                cards.slice(0,4).map((props, index) => (
+              students.slice(0,4).map((props, index) => (
                   <Grid
                     style={{
                       marginTop: isSmall && "10px",
@@ -397,7 +326,7 @@ const HiringPortal = () => {
                   </Grid>
                   ))
                 : bootcamp === 'FSD' ? 
-                cards.slice(0,4).map((props, index) => (
+                students.slice(0,4).map((props, index) => (
                   <Grid
                     style={{
                       marginTop: isSmall && "10px",
@@ -416,7 +345,7 @@ const HiringPortal = () => {
                   ))
                 
                 :
-                cards.map((props, index) => (
+                students.map((props, index) => (
 									<Grid
 										style={{
 											marginTop: isSmall && "10px",

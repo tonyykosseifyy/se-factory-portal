@@ -50,21 +50,18 @@ const HiringCard = ({
   id,
   uix_user, 
   fsd_user,
-  attributes: {
-    name,
-    title,
-    projectDescription: description,
-    github,
-    youtubeId,
-    coverImage,
-    projectType,
-    pdf,
-    screenshots,
-    programmingLanguages: languages,
-    calendly,
-    projectURL,
-    hiringStatus,
-  },
+  name,
+  title,
+  projectDescription: description,
+  github,
+  youtubeId,
+  coverImage,
+  pdf,
+  languages,
+  calendly,
+  projectURL,
+  hiringStatus,
+  project_types
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
@@ -83,7 +80,7 @@ const HiringCard = ({
       user,
       graduateProfile: name,
       languages,
-      projectType,
+      project_types,
       graduateStatus: hiringStatus,
     };
   };
@@ -118,14 +115,13 @@ const HiringCard = ({
     e.stopPropagation();
   }
   const handleClick = (e, skipCheck, pressedOn) => {
-      if (!PRE_RELEASE && hiringStatus !== HIRED) {
+      if (!PRE_RELEASE) {
         if (
           skipCheck ||
           (e.target.localName !== "button" && e.target.localName !== "a")
         ) {
           projectPressed({ ...analyticsBasicParams(), pressedOn });
           const modal = showModal(HiringDialog, {
-            images: screenshots,
             calendly,
             youtubeId,
             name,
@@ -133,7 +129,7 @@ const HiringCard = ({
             pdf,
             projectURL,
             languages,
-            projectType,
+            project_types,
             hiringStatus,
             bootcamp,
             onCancel: () => {
@@ -146,11 +142,12 @@ const HiringCard = ({
 
   const projectTypeHandle = () => {
     let str = "";
-    projectType?.forEach((e, index) => {
+    project_types?.forEach((e, index) => {
+      console.log(e);
       if (index > 0) {
-        str += " & " + e.type;
+        str += " & " + e.project_type;
       } else {
-        str += e.type;
+        str += e.project_type;
       }
     });
     return str;
@@ -252,7 +249,7 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description[0]?.line}</Typography>
+              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description}</Typography>
               {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
             </div>
           </div>

@@ -14,10 +14,11 @@ const EVENTS = {
 }
 
 
-export const hoveredOverLog = ({user, graduateProfile, languages, projectType, graduateStatus}) => {
+export const hoveredOverLog = ({user, graduateProfile, languages, project_types, graduateStatus}) => {
     mixpanel.identify(user.email)
     mixpanel.track(EVENTS.HOVERED_OVER_CARD, {
-        graduateProfile, programmingLanguages: languages.map(e=> e.language), projectType: projectType.map(e=> e.type), graduateStatus
+        // should fix later, .map of undefined error
+        graduateProfile, programmingLanguages: languages?.map(e=> e.language), projectType: project_types?.map(e=> e.type), graduateStatus
     })}
 
 
@@ -34,7 +35,6 @@ export const searchLog = ({user, prevLanguages, prevProjectTypes}) => {
             programmingLanguages: prevLanguages , projectType: prevProjectTypes
         })
     }
-
 }
 export const portalAccessed = ({user}) => {
     mixpanel.identify(user.email)
