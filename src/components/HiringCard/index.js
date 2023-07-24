@@ -4,7 +4,6 @@ import "./styles.scss";
 import { SE_GREEN, SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
-import PDFDialog from "../PDFDialog";
 import SEButton from "../SEButton";
 import { AVAILABLE_FOR_HIRE, HIRED } from "../../utils/constants/hiring-status";
 import {
@@ -14,7 +13,6 @@ import {
   projectPressed,
   viewCVLog,
 } from "../../logger/analyticsTracking";
-import { useAuth0 } from "@auth0/auth0-react";
 import { hooks, useMutation } from "../../api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -33,7 +31,7 @@ const avatar_images = [
   "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
   'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
   'https://xsgames.co/randomusers/assets/avatars/male/55.jpg',
-  '	https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
+  'https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
 ]
 function getRandomNumber(id) {
   // Convert the ID to a number
@@ -74,7 +72,6 @@ const HiringCard = ({
   const { mutate: createFavorite } = useMutation(MUTATION_KEYS.POST_FAVORITE);
 
   const isFavorited = () => favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
-
 
   const analyticsBasicParams = () => {
     return {

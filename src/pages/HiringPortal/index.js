@@ -97,15 +97,16 @@ const HiringPortal = () => {
   const queryParams = new URLSearchParams(location.search);
 
   const { data: user, isLoading: isLoadingUser } = hooks.useCurrentUser();
-  const [languages, setLanguages] = useState([]);
-  const [projectTypes, setProjectTypes] = useState([]);
-  const [prevLanguages, setPrevLanguages] = useState([]);
-  const [prevProjectTypes, setPrevProjectTypes] = useState([]);
+  
+  const [ languages, setLanguages ] = useState([]);
+  const [ projectTypes, setProjectTypes ] = useState([]);
+  const [ favoritesOnly, setFavoritesOnly ] = useState(false);
+
+
   const { data: students, isLoading: isLoadingStudents } = hooks.useStudents();
-  const { data: favorites, isLoading: isLoadingFavorites } = hooks.useFavorites();
-  const [favoritesOnly, setFavoritesOnly] = useState(false);
-  const [prevFavoritesOnly, setPrevFavoritesOnly] = useState(false);
+
   const theme = useTheme();
+  
   console.log(students);
 
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
@@ -135,9 +136,6 @@ const HiringPortal = () => {
   const reset = useCallback(() => {
     setLanguages([]);
     setProjectTypes([]);
-    setPrevLanguages([]);
-    setPrevProjectTypes([]);
-    setPrevFavoritesOnly(false);
     setFavoritesOnly(false);
   },[]);
 
@@ -270,11 +268,6 @@ const HiringPortal = () => {
 										color: "black",
                     minWidth: isSM ? '160px':'220px'
 									}}
-									onClick={() => {
-										setPrevProjectTypes(projectTypes);
-										setPrevLanguages(languages);
-										setPrevFavoritesOnly(favoritesOnly);
-									}}
 								>
 									Show Results
 								</CustomButton>
@@ -284,7 +277,7 @@ const HiringPortal = () => {
 					</div>
 				</div>
 				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} marginBottom={3}>
-					{isLoadingFavorites || isLoadingStudents ? (
+					{ isLoadingUser || isLoadingStudents ? (
 						<Loader SELogo />
 					) : (
 						<>

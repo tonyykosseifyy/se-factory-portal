@@ -17,20 +17,29 @@ export default (
 
     const useStudents = (filter={
         filters: {
-            title: {
-              $eq: 'hello',
+            languages : {
+                language: { $in: ['Angular'] }
             },
-        },
+            project_types: {
+                project_type: { $in: ['Website'] }
+            }
+            // languages : {
+            //   language: { $in: ['Angular'] }
+            // },
+            // // project_types: {
+            // //   id: { $in: 22 }
+            // // },
+          },
     }) => {
         const { Api } = useAxios();
 
-        // const query_string = qs.stringify({ filter: filter }, { encode: false });
-        // console.log('query_string',query_string);
+        const query_string = qs.stringify( filter , { encode: false });
+        console.log('query_string',query_string);
 
         return useQuery({
-            queryKey: buildStudentKey(),
+            queryKey: [buildStudentKey(), filter],
             queryFn: async () =>
-                Api.getStudents().then(({data}) => data),
+                Api.getStudents(query_string).then(({data}) => data),
             ...defaultOptions,
             staleTime: 1000000,
         });
