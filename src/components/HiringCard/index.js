@@ -71,7 +71,10 @@ const HiringCard = ({
   const { mutate: deleteFavorite } = useMutation(MUTATION_KEYS.DELETE_FAVORITE);
   const { mutate: createFavorite } = useMutation(MUTATION_KEYS.POST_FAVORITE);
 
-  const isFavorited = () => favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
+  const isFavorited = () => {
+    return false 
+    // favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
+  }
 
   const analyticsBasicParams = () => {
     return {

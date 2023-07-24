@@ -11,8 +11,8 @@ import {
 	Stack
 } from "@mui/material";
 import HiringCard from "../../components/HiringCard";
-import { LANGUAGES } from "../../utils/constants/languages";
-import { PROJECT_TYPES } from "../../utils/constants/projects-types";
+import { FSW_LANGUAGES } from "../../utils/constants/languages";
+import { FSW_PROJECT_TYPES } from "../../utils/constants/projects-types";
 import { arraySubset } from "../../utils/helpers/arraySubset";
 import "./styles.scss";
 import { useLocation } from "react-router-dom";
@@ -102,8 +102,13 @@ const HiringPortal = () => {
   const [ projectTypes, setProjectTypes ] = useState([]);
   const [ favoritesOnly, setFavoritesOnly ] = useState(false);
 
+  const [ filters, setFilters ] = useState({
+    languages: [],
+    project_types: [],
+    favorites_only: false
+  });
 
-  const { data: students, isLoading: isLoadingStudents } = hooks.useStudents();
+  const { data: students, isLoading: isLoadingStudents } = hooks.useStudents({ filters });
 
   const theme = useTheme();
   
@@ -111,7 +116,6 @@ const HiringPortal = () => {
 
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const [cards, setCards] = useState([]);
 
   const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
   
@@ -131,6 +135,7 @@ const HiringPortal = () => {
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
+      reset();
   }, [location]);
 
   const reset = useCallback(() => {
@@ -189,7 +194,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setProjectTypes(newValue);
 										}}
-										options={bootcamp === 'FSW' ? PROJECT_TYPES: []}
+										options={bootcamp === 'FSW' ? FSW_PROJECT_TYPES: []}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -218,7 +223,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setLanguages(newValue);
 										}}
-										options={bootcamp === 'FSW' ? LANGUAGES: []}
+										options={bootcamp === 'FSW' ? FSW_LANGUAGES: []}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -268,6 +273,13 @@ const HiringPortal = () => {
 										color: "black",
                     minWidth: isSM ? '160px':'220px'
 									}}
+                  onClick={() => {
+                    setFilters({
+                      languages,
+                      projectTypes,
+                      favorites_only: favoritesOnly
+                    });
+                  }}
 								>
 									Show Results
 								</CustomButton>

@@ -15,25 +15,12 @@ export default (
         staleTime,
     };
 
-    const useStudents = (filter={
-        filters: {
-            languages : {
-                language: { $in: ['Angular'] }
-            },
-            project_types: {
-                project_type: { $in: ['Website'] }
-            }
-            // languages : {
-            //   language: { $in: ['Angular'] }
-            // },
-            // // project_types: {
-            // //   id: { $in: 22 }
-            // // },
-          },
-    }) => {
+    const useStudents = (filter={}) => {
         const { Api } = useAxios();
 
-        const query_string = qs.stringify( filter , { encode: false });
+        console.log(filter);
+
+        const query_string = qs.stringify( filter , { encode: false } );
         console.log('query_string',query_string);
 
         return useQuery({
@@ -49,3 +36,18 @@ export default (
         useStudents
     }
 }
+
+// // filters: {
+        //     languages : {
+        //         language: { $in: ['Angular'] }
+        //     },
+        //     project_types: {
+        //         project_type: { $in: ['Website'] }
+        //     }
+        //     // languages : {
+        //     //   language: { $in: ['Angular'] }
+        //     // },
+        //     // // project_types: {
+        //     // //   id: { $in: 22 }
+        //     // // },
+        //   },
