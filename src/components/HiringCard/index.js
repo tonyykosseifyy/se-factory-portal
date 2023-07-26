@@ -154,7 +154,6 @@ const HiringCard = ({
   const projectTypeHandle = () => {
     let str = "";
     projectTypes?.forEach((e, index) => {
-      console.log(e);
       if (index > 0) {
         str += " & " + e.projectType;
       } else {

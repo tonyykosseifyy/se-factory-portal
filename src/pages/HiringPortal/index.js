@@ -110,22 +110,12 @@ const HiringPortal = () => {
   const [ cloudPlatforms, setCloudPlatforms ] = useState([]);
   const [ dataVisualizationTools, setDataVisualization ] = useState([]);
 
-  const [ filters, setFilters ] = useState({
-    languages,
-    projectTypes,
-    favorite: favoritesOnly,
-    bootcamp,
-    // fsd filters
-    databaseTechnologies,
-    cloudPlatforms,
-    dataVisualizationTools
-  });
+  const [ filters, setFilters ] = useState({ bootcamp });
 
   const { data: students, isLoading: isLoadingStudents, refetch } = hooks.useStudents({ filters });
 
   const theme = useTheme();
   
-  console.log(students);
 
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -144,16 +134,13 @@ const HiringPortal = () => {
         return palette.primary.main;
   }}, [ location, bootcamp ]);
 
-  console.log(
-    'datbase tech', databaseTechnologies
-  )
 
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
   }, [location]);
 
-  const reset = useCallback(() => {
+  const reset = () => {
     setLanguages([]);
     setProjectTypes([]);
     setFavoritesOnly(false);
@@ -161,16 +148,21 @@ const HiringPortal = () => {
     setDatabaseTech([]);
     setCloudPlatforms([]);
     setDataVisualization([]);
-  },[]);
+    setFilters({
+      favorite: false,
+    })
+  };
 
 
   // whenever these change: [students?, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
   // searchLog({ user, prevLanguages, prevProjectTypes });
   useEffect(() => {
     reset();
-    setFilters({ ...filters, bootcamp })
+    setFilters({ bootcamp, favorite: false  });
     refetch();
   },[bootcamp]);
+
+  console.log(filters);
 
   useEffect(() => {
     portalAccessed({ user });
