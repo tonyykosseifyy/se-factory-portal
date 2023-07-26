@@ -32,7 +32,8 @@ const avatar_images = [
   'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
   'https://xsgames.co/randomusers/assets/avatars/male/55.jpg',
   'https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
-]
+];
+
 function getRandomNumber(id) {
   // Convert the ID to a number
   const parsedId = parseInt(id, 10);
@@ -56,7 +57,6 @@ const HiringCard = ({
   bootcamp,
   id,
   uix_user, 
-  fsd_user,
   name,
   title,
   projectDescription: description,
@@ -189,7 +189,7 @@ const HiringCard = ({
       <div className={"hiring-card-container"} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
-          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`: bootcamp === 'FSD' ? `url(${fsd_user.pictureUrl})` :`url(${coverImage})` }}
+          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`:`url(${coverImage})` }}
         />
         <div className={"hiring-card-footer"}>
           <Stack sx={{width:'100%'}} direction='row' alignItems='center' justifyContent='space-between'>
@@ -202,7 +202,7 @@ const HiringCard = ({
 								/>
 							</div>
 							<Typography variant={"h6"} fontSize={15} fontWeight={"bold"}>
-								{bootcamp === 'UIX' ? uix_user.name : bootcamp === 'FSD' ? fsd_user.name: name}
+								{bootcamp === 'UIX' ? uix_user.name : name}
 							</Typography>
 						</Stack>
 						
@@ -229,16 +229,7 @@ const HiringCard = ({
                   : "calc(100% - 96px)",
             }}
           >
-            {bootcamp !== 'UIX' ? bootcamp === 'FSD' ? 
-              <Typography
-              variant={"h6"}
-              fontWeight={"bolder"}
-              sx={{ color: SE_MID_GREY}}
-              fontSize={isSM ? 14: 16}
-            >
-              &gt; Data Science
-            </Typography>
-            : 
+            {bootcamp !== 'UIX' ?  
             <Typography
               variant={"h6"}
               fontWeight={"bolder"}
@@ -252,7 +243,7 @@ const HiringCard = ({
               fontWeight={"bolder"}
               fontSize={isSM ? 18: 24}
             >
-              { bootcamp === 'UIX' ? uix_user['name']: bootcamp ==='FSD' ? fsd_user['project_name'] :title }
+              { bootcamp === 'UIX' ? uix_user['name'] : title }
             </Typography>
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
@@ -261,8 +252,7 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']:bootcamp ==='FSD' ? fsd_user['description']: description}</Typography>
-              {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
+              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']: description}</Typography>
             </div>
           </div>
             <>

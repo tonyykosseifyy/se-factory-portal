@@ -106,15 +106,19 @@ const HiringPortal = () => {
   const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
   
   // fsd filters 
-  const [ databaseTech, setDatabaseTech ] = useState([]);
+  const [ databaseTechnologies, setDatabaseTech ] = useState([]);
   const [ cloudPlatforms, setCloudPlatforms ] = useState([]);
-  const [ dataVisualization, setDataVisualization ] = useState([]);
+  const [ dataVisualizationTools, setDataVisualization ] = useState([]);
 
   const [ filters, setFilters ] = useState({
-    languages: [],
-    project_types: [],
+    languages,
+    projectTypes,
     favorite: favoritesOnly,
-    bootcamp
+    bootcamp,
+    // fsd filters
+    databaseTechnologies,
+    cloudPlatforms,
+    dataVisualizationTools
   });
 
   const { data: students, isLoading: isLoadingStudents, refetch } = hooks.useStudents({ filters });
@@ -141,13 +145,12 @@ const HiringPortal = () => {
   }}, [ location, bootcamp ]);
 
   console.log(
-    'datbase tech', databaseTech
+    'datbase tech', databaseTechnologies
   )
 
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
-      reset();
   }, [location]);
 
   const reset = useCallback(() => {
@@ -158,12 +161,16 @@ const HiringPortal = () => {
     setDatabaseTech([]);
     setCloudPlatforms([]);
     setDataVisualization([]);
-    
   },[]);
 
 
   // whenever these change: [students?, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
   // searchLog({ user, prevLanguages, prevProjectTypes });
+  useEffect(() => {
+    reset();
+    setFilters({ ...filters, bootcamp })
+    refetch();
+  },[bootcamp]);
 
   useEffect(() => {
     portalAccessed({ user });
@@ -292,7 +299,7 @@ const HiringPortal = () => {
 									<Autocomplete
 										multiple
                     size='small'
-										value={dataVisualization}
+										value={dataVisualizationTools}
 										onChange={(e, newValue) => {
 											setDataVisualization(newValue);
 										}}
@@ -320,7 +327,7 @@ const HiringPortal = () => {
 									<Autocomplete
 										multiple
                     size='small'
-										value={databaseTech}
+										value={databaseTechnologies}
 										onChange={(e, newValue) => {
                       setDatabaseTech(newValue);
 										}}
@@ -384,7 +391,10 @@ const HiringPortal = () => {
                       languages,
                       projectTypes,
                       favorite: favoritesOnly,
-                      bootcamp
+                      bootcamp,
+                      databaseTechnologies: databaseTechnologies?.map(item => item.name) ,
+                      cloudPlatforms,
+                      dataVisualizationTools
                     });
                     refetch();
                   }}
@@ -438,25 +448,6 @@ const HiringPortal = () => {
                     <HiringCard {...props} uix_user={uix_students[index]} bootcamp={bootcamp} />
                   </Grid>
                   ))
-                : bootcamp === 'FSD' ? 
-                students?.slice(0,4).map((props, index) => (
-                  <Grid
-                    style={{
-                      marginTop: isSmall && "10px",
-                      marginBottom: isSmall && "10px",
-                    }}
-                    key={`card-${index}`}
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
-                    lg={4}
-                    mt={2}
-                  >
-                    <HiringCard {...props} fsd_user={fsd_students[index]} bootcamp={bootcamp} />
-                  </Grid>
-                  ))
-                
                 :
                 students?.map((props, index) => (
 									<Grid

@@ -184,3 +184,9 @@
   //transition-duration: 150ms;
   position: relative;
 }
+@media screen and (max-width: 1024px) {
+  .hiring-portal-container .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-filled.MuiFormLabel-colorPrimary.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-filled {
+    font-size: 14px !important;
+    margin-top: 1px !important;
+  }
+}
