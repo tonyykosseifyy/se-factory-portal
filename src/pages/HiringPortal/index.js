@@ -102,10 +102,14 @@ const HiringPortal = () => {
   const [ projectTypes, setProjectTypes ] = useState([]);
   const [ favoritesOnly, setFavoritesOnly ] = useState(false);
 
+  const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
+
+
   const [ filters, setFilters ] = useState({
     languages: [],
     project_types: [],
-    favorites_only: false
+    favorite: favoritesOnly,
+    bootcamp
   });
 
   const { data: students, isLoading: isLoadingStudents } = hooks.useStudents({ filters });
@@ -117,7 +121,6 @@ const HiringPortal = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
   
   const bootcampColor = useMemo(() => {
     const { palette } = theme;
@@ -277,7 +280,8 @@ const HiringPortal = () => {
                     setFilters({
                       languages,
                       projectTypes,
-                      favorites_only: favoritesOnly
+                      favorite: favoritesOnly,
+                      bootcamp
                     });
                   }}
 								>

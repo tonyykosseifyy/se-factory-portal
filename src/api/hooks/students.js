@@ -20,11 +20,11 @@ export default (
 
         console.log(filter);
 
-        const query_string = qs.stringify( filter , { encode: false } );
+        const query_string = qs.stringify( filter, { encode: false } );
         console.log('query_string',query_string);
 
         return useQuery({
-            queryKey: [buildStudentKey(), filter],
+            queryKey: [buildStudentKey(), filter, (new Date()).toISOString().slice(0, 19)],
             queryFn: async () =>
                 Api.getStudents(query_string).then(({data}) => data),
             ...defaultOptions,

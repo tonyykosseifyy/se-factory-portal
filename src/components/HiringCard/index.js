@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useCallback } from "react";
+import React, { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { Grid, Typography, useMediaQuery, useTheme, Avatar, Stack } from "@mui/material";
 import "./styles.scss";
 import { SE_GREEN, SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
@@ -43,6 +43,15 @@ function getRandomNumber(id) {
   return randomNumber;
 }
 
+const includesFavorite = ( favoriteBy, user ) => {
+  for (let i = 0; i < favoriteBy?.length; i++) {
+    if (favoriteBy[i]?.id === user?.id) {
+      return true
+    }
+  }
+  return false
+};
+
 const HiringCard = ({
   bootcamp,
   id,
@@ -59,6 +68,7 @@ const HiringCard = ({
   calendly,
   projectURL,
   hiringStatus,
+  favoriteBy,
   project_types
 }) => {
   const [open, setOpen] = useState(false);
@@ -67,14 +77,10 @@ const HiringCard = ({
   const { preRelease: PRE_RELEASE } = useGodMode();
   const { Api } = useAxios();
   const { data: user } = hooks.useCurrentUser();
-  const { data: favorite } = hooks.useFavorites();
-  const { mutate: deleteFavorite } = useMutation(MUTATION_KEYS.DELETE_FAVORITE);
-  const { mutate: createFavorite } = useMutation(MUTATION_KEYS.POST_FAVORITE);
+  const { mutate: deleteFavorite } = useMutation([MUTATION_KEYS.DELETE_FAVORITE, { id }]);
+  const { mutate: createFavorite } = useMutation([MUTATION_KEYS.POST_FAVORITE, { id }]);
 
-  const isFavorited = () => {
-    return false 
-    // favorite.find(({ attributes }) => attributes?.student?.data?.id === id);
-  }
+  const [ isFavorite, setIsFavorite ] = useState(false);
 
   const analyticsBasicParams = () => {
     return {
@@ -105,16 +111,22 @@ const HiringCard = ({
     hoveredOverLog({ ...analyticsBasicParams() })
     setOpen(true);
     e.stopPropagation();
-  },[]) 
-  const toggleFavorite = (e) => {
-    const fav = isFavorited();
-    const operation = fav ? deleteFavorite : createFavorite;
+  },[]) ;
+  const toggleIsFavorite = (e) => {
+    const operation = isFavorite ? deleteFavorite : createFavorite;
     operation({
       Api,
-      id: fav ? fav.id : id,
+      id
     });
     e.stopPropagation();
+    setIsFavorite((prev) => !prev);
   }
+
+  useEffect(() => {
+    setIsFavorite(includesFavorite(favoriteBy, user));
+  },[favoriteBy, user])
+
+  
   const handleClick = (e, skipCheck, pressedOn) => {
       if (!PRE_RELEASE) {
         if (
@@ -154,6 +166,8 @@ const HiringCard = ({
     return str;
   };
 
+
+
   return (
     <div
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp.toLowerCase()} ${
@@ -168,8 +182,8 @@ const HiringCard = ({
         hoveredOverLog({ ...analyticsBasicParams() });
       }}
     >
-      <div className={"hiring-card-favorite"} onClick={(e) => toggleFavorite(e)}>
-        {isFavorited() ? (
+      <div className={"hiring-card-favorite"} onClick={(e) => toggleIsFavorite(e)}>
+        {isFavorite ? (
           <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         ) : (
           <FavoriteBorderIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />

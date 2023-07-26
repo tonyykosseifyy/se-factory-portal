@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useMemo} from "react";
 import Axios from 'axios'
 import Cookies from 'js-cookie';
-import {AUTHENTICATION_API_ROUTE, FAVORITES_API_ROUTE, STUDENTS_API_ROUTE, USER_API_ROUTE} from "./api-routes";
+import {AUTHENTICATION_API_ROUTE, FAVORITES_API_ROUTE, STUDENTS_API_ROUTE, USER_API_ROUTE, STUDENTS_FAVORITE_ROUTE } from "./api-routes";
 
 
 const AxiosContext = React.createContext();
@@ -28,6 +28,14 @@ export default function AxiosProvider({ children }) {
         return axios;
     }, []);
 
+    const displayError = (err) => {
+        return {
+            data: {
+                data: [],
+                message: 'Error'
+            }
+        }
+    }
     // Students
     const getStudents = (query_string) =>
         axios.get(STUDENTS_API_ROUTE+query_string).then(data => data);
@@ -41,10 +49,21 @@ export default function AxiosProvider({ children }) {
     // Favorites
     const getFavorites = (filter='?populate=*&pagination[page]=1&pagination[pageSize]=100') => axios.get(FAVORITES_API_ROUTE+filter).then(data => data);
 
-    const createFavorite = (id) => axios.post(FAVORITES_API_ROUTE, { data: {student: id}}).then(data => data);
-
-    const deleteFavorite = (id) => axios.delete(FAVORITES_API_ROUTE+'/'+ id).then(data => data);
-
+    const createFavorite = (id) => {
+        try {
+            return axios.post(STUDENTS_FAVORITE_ROUTE + `/addFavorite/${id}`) ;
+        } catch(err) {
+            return displayError(err);
+        }
+    }
+    
+    const deleteFavorite = (id) => {
+        try {
+            return axios.delete(STUDENTS_FAVORITE_ROUTE + `/deleteFavorite/${id}`) ;
+        } catch(err) {
+            return displayError(err);
+        }
+    }
     return (
         <AxiosContext.Provider value={{
             axios,
