@@ -35,28 +35,30 @@ const Theme = createTheme({
         fontFamily: 'Noto Sans Mono, monospace' 
     },});
 
-mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN,  {debug: process.env.REACT_APP_ENV === "development"})
+// mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN,  {debug: process.env.REACT_APP_ENV === "development"})
+
+mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN,  {debug: true })
 
 ReactDOM.render(
     <Router>
         <Auth0ProviderWithHistory>
             <AxiosProvider>
 
-                    <QueryClientProvider client={queryClient}>
-                        <GodModeProvider>
+                <QueryClientProvider client={queryClient}>
+                    <GodModeProvider>
 
-                        {
-                            process.env.REACT_APP_ENV!=="production"
-                            &&
-                            <ReactQueryDevtools initialIsOpen/>
+                    {
+                        process.env.REACT_APP_ENV!=="production"
+                        &&
+                        <ReactQueryDevtools initialIsOpen/>
 
-                        }
-                        <ThemeProvider theme={Theme}>
-                            <CssBaseline/>
-                            <ModalProvider>
-                                <App />
-                            </ModalProvider>
-                        </ThemeProvider>
+                    }
+                    <ThemeProvider theme={Theme}>
+                        <CssBaseline/>
+                        <ModalProvider>
+                            <App />
+                        </ModalProvider>
+                    </ThemeProvider>
             </GodModeProvider>
 
             </QueryClientProvider>

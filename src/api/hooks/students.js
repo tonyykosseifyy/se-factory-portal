@@ -18,11 +18,7 @@ export default (
     const useStudents = (filter={}) => {
         const { Api } = useAxios();
 
-        console.log(filter);
-
-
         const query_string = qs.stringify( filter, { encode: false } );
-        console.log('query_string',query_string);
 
         return useQuery({
             queryKey: [buildStudentKey(), filter],

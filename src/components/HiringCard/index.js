@@ -1,17 +1,18 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { Grid, Typography, useMediaQuery, useTheme, Avatar, Stack } from "@mui/material";
 import "./styles.scss";
-import { SE_GREEN, SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
+import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
-import { AVAILABLE_FOR_HIRE, HIRED } from "../../utils/constants/hiring-status";
 import {
   githubPressed,
   hoveredOverLog,
   interviewBooked,
   projectPressed,
   viewCVLog,
+  liveProjectPressed,
+  behancePressed
 } from "../../logger/analyticsTracking";
 import { hooks, useMutation } from "../../api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -22,11 +23,7 @@ import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
 import image1 from '../../assets/common/uix1.png';
-import image2 from '../../assets/common/uix2.png';
-import image3 from '../../assets/common/uix3.png';
-import image4 from '../../assets/common/uix4.png';
 
-const images = [image1, image2, image3, image4];
 const avatar_images = [
   "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
   'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
@@ -68,7 +65,10 @@ const HiringCard = ({
   calendly,
   projectURL,
   favoriteBy,
-  projectTypes
+  projectTypes,
+  dataVisualizationTools, 
+  cloudPlatforms, 
+  databaseTechnologies
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
@@ -83,10 +83,8 @@ const HiringCard = ({
 
   const analyticsBasicParams = () => {
     return {
-      user,
-      graduateProfile: name,
-      languages,
-      projectTypes,
+      user, graduateProfile: name, 
+      languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
     };
   };
   const bootcampColor = useMemo(() => {
@@ -136,12 +134,15 @@ const HiringCard = ({
           const modal = showModal(HiringDialog, {
             calendly,
             youtubeId,
-            name,
+            name ,
             github,
             pdf,
             projectURL,
             languages,
             projectTypes,
+            dataVisualizationTools, 
+            cloudPlatforms, 
+            databaseTechnologies,             
             bootcamp,
             onCancel: () => {
               modal.hide();
@@ -162,7 +163,6 @@ const HiringCard = ({
     });
     return str;
   };
-
 
   return (
     <div
@@ -343,10 +343,9 @@ const HiringCard = ({
                           backgroundColor: SE_GREY,
                           color: "white",
                         }}
-                        // should be change to live project
-                        // onClick={() =>
-                        //   githubPressed({ ...analyticsBasicParams() })
-                        // }
+                        onClick={() =>
+                          liveProjectPressed({ ...analyticsBasicParams() })
+                        }
                         fullWidth
                         href={github}
                         target="_blank"
@@ -367,10 +366,9 @@ const HiringCard = ({
                         fullWidth
                         href={github}
                         target="_blank"
-                        // should be changed to view behance
-                        // onClick={() =>
-                        // 	githubPressed({ ...analyticsBasicParams() })
-                        // }
+                        onClick={() =>
+                        	behancePressed({ ...analyticsBasicParams() })
+                        }
                         disableElevation
                       >
                         View Behance

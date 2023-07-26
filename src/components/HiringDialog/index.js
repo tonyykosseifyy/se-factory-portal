@@ -3,14 +3,11 @@ import {
   Box,
   Dialog,
   Grid,
-  ImageList,
-  ImageListItem,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import YouTube from "react-youtube";
-import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
-import PDFDialog from "../PDFDialog";
+import { SE_GREY } from "../../utils/constants/colors";
 import "./styles.scss";
 import { useModal } from "mui-modal-provider";
 import SEButton from "../SEButton";
@@ -20,25 +17,17 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ClearIcon from "@mui/icons-material/Clear";
-import SwiperCore, {
-  EffectCoverflow,
-  Navigation,
-  Pagination,
-  Autoplay,
-} from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import {
   githubPressed,
   interviewBooked,
   videoPlayed,
   viewCVLog,
+  behancePressed,
+  liveProjectPressed
 } from "../../logger/analyticsTracking";
-import { useAuth0 } from "@auth0/auth0-react";
 import { hooks } from "../../api";
 import CustomButton from "../ui-components/CustomButton";
 
-SwiperCore.use([EffectCoverflow, Pagination, Autoplay, Navigation]);
 
 const HiringDialog = ({
   calendly,
@@ -49,10 +38,13 @@ const HiringDialog = ({
   onCancel,
   images,
   projectURL,
-  languages,
-  project_types,
   hiringStatus,
 	bootcamp,
+  languages, 
+  projectTypes, 
+  dataVisualizationTools, 
+  cloudPlatforms, 
+  databaseTechnologies, 
   ...props
 }) => {
   const { showModal } = useModal();
@@ -63,11 +55,8 @@ const HiringDialog = ({
 
   const analyticsBasicParams = () => {
     return {
-      user,
-      graduateProfile: name,
-      languages,
-      project_types,
-      graduateStatus: hiringStatus,
+      user, graduateProfile: name, 
+      languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
     };
   };
 
@@ -169,10 +158,9 @@ const HiringDialog = ({
 															fullWidth
 															href={github}
 															target="_blank"
-															// should be changed to view behance
-															// onClick={() =>
-															// 	githubPressed({ ...analyticsBasicParams() })
-															// }
+															onClick={() =>
+																behancePressed({ ...analyticsBasicParams() })
+															}
 															disableElevation
 														>
 															View Behance
@@ -210,10 +198,9 @@ const HiringDialog = ({
 															fullWidth
 															href={github}
 															target="_blank"
-															// should be changed to projectURL
-															// onClick={() =>
-															// 	githubPressed({ ...analyticsBasicParams() })
-															// }
+															onClick={() => 
+                                liveProjectPressed({ ...analyticsBasicParams() })
+															}
 															disableElevation
 														>
 															Live Project
@@ -225,48 +212,6 @@ const HiringDialog = ({
                   </div>
                 </Grid>
               </TabPanel>
-              {/*<TabPanel value="2">*/}
-              {/*    /!*<ImageList sx={{ width: '100%', height: "600px" }} variant="masonary" cols={isSmall? images.imagePerRow.mobile: images.imagePerRow.desktop}  gap={20}>*!/*/}
-              {/*    /!*    {images.images.map((item) => (*!/*/}
-              {/*    /!*        <ImageListItem key={item.title}>*!/*/}
-              {/*    /!*            <img*!/*/}
-              {/*    /!*                src={`${item.img}`}*!/*/}
-              {/*    /!*                srcSet={`${item.img}`}*!/*/}
-              {/*    /!*                alt={item.title}*!/*/}
-              {/*    /!*                loading="lazy"*!/*/}
-              {/*    /!*            />*!/*/}
-              {/*    /!*        </ImageListItem>*!/*/}
-              {/*    /!*    ))}*!/*/}
-              {/*    /!*</ImageList>*!/*/}
-              {/*    <Swiper*/}
-              {/*        effect={"coverflow"}*/}
-              {/*        grabCursor={true}*/}
-              {/*        autoplay={{*/}
-              {/*            delay: 1000,*/}
-              {/*        }}*/}
-              {/*        loop={true}*/}
-              {/*        centeredSlides={true}*/}
-              {/*        slidesPerView={isSmall? "1":"3"}*/}
-              {/*        coverflowEffect={{*/}
-              {/*            rotate: 50,*/}
-              {/*            stretch: 0,*/}
-              {/*            depth: 100,*/}
-              {/*            modifier: 1,*/}
-              {/*            slideShadows: false,*/}
-              {/*        }}*/}
-              {/*        pagination={true}*/}
-              {/*        navigation={true}*/}
-              {/*        className="mySwiper"*/}
-              {/*    >*/}
-              {/*        {images?.data?.map(({attributes: {url: img, caption: title}}, i) => {*/}
-              {/*            return (*/}
-              {/*                <SwiperSlide key={i}>*/}
-              {/*                    <img src={img} alt={title} />*/}
-              {/*                </SwiperSlide>*/}
-              {/*            );*/}
-              {/*        })}*/}
-              {/*    </Swiper>*/}
-              {/*</TabPanel>*/}
             </TabContext>
           </Grid>
         </Grid>

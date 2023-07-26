@@ -105,10 +105,10 @@ const HiringPortal = () => {
   useEffect(() => {
     reset();
     setFilters({ bootcamp, favorite: false  });
+    searchLog({ bootcamp });
     refetch();
   },[bootcamp]);
 
-  console.log(filters);
 
   useEffect(() => {
     portalAccessed({ user });
@@ -334,6 +334,15 @@ const HiringPortal = () => {
                       cloudPlatforms,
                       dataVisualizationTools
                     });
+                    searchLog({
+                      languages,
+                      projectTypes,
+                      favorite: favoritesOnly,
+                      bootcamp,
+                      databaseTechnologies: databaseTechnologies?.map(item => item.name) ,
+                      cloudPlatforms,
+                      dataVisualizationTools
+                    })
                     refetch();
                   }}
 								>
