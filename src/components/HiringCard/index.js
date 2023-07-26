@@ -56,8 +56,8 @@ const includesFavorite = ( favoriteBy, user ) => {
 const HiringCard = ({
   bootcamp,
   id,
-  uix_user, 
   name,
+  aboutMe,
   title,
   projectDescription: description,
   github,
@@ -188,12 +188,12 @@ const HiringCard = ({
       <div className={"hiring-card-container"} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
-          style={{ backgroundImage: bootcamp === 'UIX' ? `url(${images[uix_user.id - 1]})`:`url(${coverImage})` }}
+          style={{ backgroundImage: `url(${coverImage})` }}
         />
         <div className={"hiring-card-footer"}>
           <Stack sx={{width:'100%'}} direction='row' alignItems='center' justifyContent='space-between'>
 						<Stack direction='row' alignItems='center' gap={2}> 
-							<div className='avatar-border' style={{borderColor: theme.palette[bootcampColor].main}}>
+							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
 								<Avatar 
 									src={avatar_images[getRandomNumber(id) -1]}
 									alt={name}
@@ -201,7 +201,7 @@ const HiringCard = ({
 								/>
 							</div>
 							<Typography variant={"h6"} fontSize={15} fontWeight={"bold"}>
-								{bootcamp === 'UIX' ? uix_user.name : name}
+								{name}
 							</Typography>
 						</Stack>
 						
@@ -242,7 +242,7 @@ const HiringCard = ({
               fontWeight={"bolder"}
               fontSize={isSM ? 18: 24}
             >
-              { bootcamp === 'UIX' ? uix_user['name'] : title }
+              { bootcamp === 'UIX' ? name : title }
             </Typography>
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
@@ -251,7 +251,7 @@ const HiringCard = ({
                 PRE_RELEASE && " prerelease"
               }`}
             >
-              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? uix_user['aboutMe']: description}</Typography>
+              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? aboutMe: description}</Typography>
             </div>
           </div>
             <>

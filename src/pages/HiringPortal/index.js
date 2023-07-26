@@ -25,59 +25,6 @@ import portalData from "./portal-data";
 import CustomButton from "../../components/ui-components/CustomButton";
 import "./border.scss";
 
-const uix_students = [
-  {
-    id: 1,
-    name: "Majed Habli",
-    aboutMe: "Passionate learner with a keen interest in computer science.Creative problem solver fascinated by the intersection of design and technology",
-  },
-  {
-    id: 2,
-    name: "Mohammad Haidar",
-    aboutMe: "Creative problem solver fascinated by the intersection of design and technology.Passionate learner with a keen interest in computer science",
-  },
-  {
-    id: 3,
-    name: "Mostafa Kreidly",
-    aboutMe: "Enthusiastic explorer of data analytics and its application in various industries.Passionate learner with a keen interest in computer science",
-  },
-  {
-    id: 4,
-    name: "Zeina Saleh",
-    aboutMe: "Dedicated coder striving to create innovative solutions for real-world challenges.",
-  },
-];
-const fsd_students = [
-  {
-    id: 1,
-    name: 'Abdallah Alkhatib',
-    project_name: "StockSense",
-    description: "Developed a predictive model to forecast stock market trends based on historical data and technical indicators.",
-    pictureUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV2Y1QlKlIjfqEp21YDx_ExNsJWz3hjG8tQ&usqp=CAU"
-  },
-  {
-    id: 2,
-    name: 'Jana Alkhatib',
-    project_name: "MovieMate",
-    description: "Built a recommendation system using collaborative filtering to suggest personalized movie recommendations to users.",
-    pictureUrl: "https://us.123rf.com/450wm/owline27/owline271910/owline27191000072/131291190-film-logo-design-inspiration-for-business-and-company.jpg?ver=6"
-  },
-  {
-    id: 3,
-    name: 'Khalil lakkis',
-    project_name: "SocialSentinel",
-    description: "Implemented a natural language processing algorithm to analyze sentiment in social media posts and classify them as positive, negative, or neutral.",
-    pictureUrl: "https://assets-global.website-files.com/5cb5162c145f7c1a41cbdb88/5ef3a854ce5b318c23c2fe5e_socialsentinel%402x.jpg"
-  },
-  {
-    id: 4,
-    name: 'Samir Salloum',
-    project_name: "FraudShield",
-    description: "Created a machine learning model to detect fraudulent credit card transactions with high accuracy, minimizing financial losses for a bank.",
-    pictureUrl: "https://as2.ftcdn.net/v2/jpg/03/31/20/23/1000_F_331202316_eoD6AcKCH1bVhx0MJe8QkmzdUaP8wIvQ.jpg"
-  }
-];
-
 
 export const CustomTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
@@ -152,7 +99,6 @@ const HiringPortal = () => {
       favorite: false,
     })
   };
-
 
   // whenever these change: [students?, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
   // searchLog({ user, prevLanguages, prevProjectTypes });
@@ -421,27 +367,8 @@ const HiringPortal = () => {
 								</Typography>
 							</Grid>
 							{
-								// cards?.length > 0 ?
-							bootcamp === 'UIX' ? 
-              students?.slice(0,4).map((props, index) => (
-                  <Grid
-                    style={{
-                      marginTop: isSmall && "10px",
-                      marginBottom: isSmall && "10px",
-                    }}
-                    key={`card-${index}`}
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
-                    lg={4}
-                    mt={2}
-                  >
-                    <HiringCard {...props} uix_user={uix_students[index]} bootcamp={bootcamp} />
-                  </Grid>
-                  ))
-                :
-                students?.map((props, index) => (
+								// cards?.length > 0 
+                students && Array.isArray(students) && students?.map((props, index) => (
 									<Grid
 										style={{
 											marginTop: isSmall && "10px",
