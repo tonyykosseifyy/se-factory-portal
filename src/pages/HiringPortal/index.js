@@ -11,8 +11,9 @@ import {
 	Stack
 } from "@mui/material";
 import HiringCard from "../../components/HiringCard";
-import { FSW_LANGUAGES } from "../../utils/constants/languages";
-import { FSW_PROJECT_TYPES } from "../../utils/constants/projects-types";
+import bootcamps_languages from "../../utils/constants/languages";
+import bootcamps_project_types from "../../utils/constants/projects-types";
+import fsd_filters from '../../utils/constants/fsd_filters';
 import "./styles.scss";
 import { useLocation } from "react-router-dom";
 import Partners from "../../assets/partners/SEF_sponsors apr 2023.png";
@@ -97,12 +98,17 @@ const HiringPortal = () => {
 
   const { data: user, isLoading: isLoadingUser } = hooks.useCurrentUser();
   
+  // common filters 
   const [ languages, setLanguages ] = useState([]);
   const [ projectTypes, setProjectTypes ] = useState([]);
   const [ favoritesOnly, setFavoritesOnly ] = useState(false);
 
   const [ bootcamp, setBootcamp ] = useState(queryParams.get('bootcamp'));
-
+  
+  // fsd filters 
+  const [ databaseTech, setDatabaseTech ] = useState([]);
+  const [ cloudPlatforms, setCloudPlatforms ] = useState([]);
+  const [ dataVisualization, setDataVisualization ] = useState([]);
 
   const [ filters, setFilters ] = useState({
     languages: [],
@@ -134,6 +140,10 @@ const HiringPortal = () => {
         return palette.primary.main;
   }}, [ location, bootcamp ]);
 
+  console.log(
+    'datbase tech', databaseTech
+  )
+
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
@@ -144,6 +154,11 @@ const HiringPortal = () => {
     setLanguages([]);
     setProjectTypes([]);
     setFavoritesOnly(false);
+    // reset fsd filters
+    setDatabaseTech([]);
+    setCloudPlatforms([]);
+    setDataVisualization([]);
+    
   },[]);
 
 
@@ -196,7 +211,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setProjectTypes(newValue);
 										}}
-										options={bootcamp === 'FSW' ? FSW_PROJECT_TYPES: []}
+										options={bootcamps_project_types[bootcamp]}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -215,7 +230,6 @@ const HiringPortal = () => {
 										flexBasis: !isSmall ? "50%" : "100%",
 										padding: !isSmall ? "0 0 0 10px" : "5px 0",
                     marginTop: !isSmall ? 0 : 20,
-
 									}}
 								>
 									<Autocomplete
@@ -225,7 +239,7 @@ const HiringPortal = () => {
 										onChange={(e, newValue) => {
 											setLanguages(newValue);
 										}}
-										options={bootcamp === 'FSW' ? FSW_LANGUAGES: []}
+										options={bootcamps_languages[bootcamp]}
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
@@ -238,6 +252,96 @@ const HiringPortal = () => {
 										)}
 									/>
 								</div>
+            { bootcamp === 'FSD' && 
+            <>
+                <div
+									style={{
+										width: !isSmall ? "33%" : "100%",
+										flexBasis: !isSmall ? "33%" : "100%",
+                    marginTop: '20px'
+									}}
+								>
+									<Autocomplete
+										multiple
+                    size='small'
+										value={cloudPlatforms}
+										onChange={(e, newValue) => {
+											setCloudPlatforms(newValue);
+										}}
+										options={fsd_filters["Cloud Platforms"]}
+										filterSelectedOptions
+										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										renderInput={(params) => (
+											<CustomTextField
+												{...params}
+												id={"Cloud_Platforms"}
+												variant={"filled"}
+												label="Cloud Platforms"
+											/>
+										)}
+									/>
+								</div>
+                <div
+									style={{
+										width: !isSmall ? "33%" : "100%",
+										flexBasis: !isSmall ? "33%" : "100%",
+                    marginTop: '20px',
+                    padding: !isSmall ? "0 0 0 10px" : "5px 0",
+									}}
+								>
+									<Autocomplete
+										multiple
+                    size='small'
+										value={dataVisualization}
+										onChange={(e, newValue) => {
+											setDataVisualization(newValue);
+										}}
+										options={fsd_filters["Data Visualization"]}
+										filterSelectedOptions
+										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										renderInput={(params) => (
+											<CustomTextField
+												{...params}
+												id={"Data_Visualization "}
+												variant={"filled"}
+												label="Data Visualization"
+											/>
+										)}
+									/>
+								</div>
+                <div
+									style={{
+										width: !isSmall ? "33%" : "100%",
+                    flex: 1,
+                    marginTop: '20px',
+                    padding: !isSmall ? "0 0 0 10px" : "5px 0",
+									}}
+								>
+									<Autocomplete
+										multiple
+                    size='small'
+										value={databaseTech}
+										onChange={(e, newValue) => {
+                      setDatabaseTech(newValue);
+										}}
+										options={fsd_filters["Database Technologies"]}
+                    getOptionLabel={(option) => option.name}
+                    groupBy={(option) => option.category}
+
+										filterSelectedOptions
+										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										renderInput={(params) => (
+											<CustomTextField
+												{...params}
+												id={"Database_Technologies"}
+												variant={"filled"}
+												label="Database Technologies"
+											/>
+										)}
+									/>
+								</div>
+              </>
+              }
 								<div
 									style={{
 										width: !isSmall ? "50%" : "100%",
