@@ -13,7 +13,6 @@ import {
 import HiringCard from "../../components/HiringCard";
 import { FSW_LANGUAGES } from "../../utils/constants/languages";
 import { FSW_PROJECT_TYPES } from "../../utils/constants/projects-types";
-import { arraySubset } from "../../utils/helpers/arraySubset";
 import "./styles.scss";
 import { useLocation } from "react-router-dom";
 import Partners from "../../assets/partners/SEF_sponsors apr 2023.png";
@@ -112,7 +111,7 @@ const HiringPortal = () => {
     bootcamp
   });
 
-  const { data: students, isLoading: isLoadingStudents } = hooks.useStudents({ filters });
+  const { data: students, isLoading: isLoadingStudents, refetch } = hooks.useStudents({ filters });
 
   const theme = useTheme();
   
@@ -148,7 +147,7 @@ const HiringPortal = () => {
   },[]);
 
 
-  // whenever these change: [students, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
+  // whenever these change: [students?, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
   // searchLog({ user, prevLanguages, prevProjectTypes });
 
   useEffect(() => {
@@ -283,6 +282,7 @@ const HiringPortal = () => {
                       favorite: favoritesOnly,
                       bootcamp
                     });
+                    refetch();
                   }}
 								>
 									Show Results
@@ -299,7 +299,7 @@ const HiringPortal = () => {
 						<>
 							<Grid item xs={12} my={2}>
 								<Typography variant={"h5"} fontSize={isSmall ? isSM  ? 14 : 16 : 18 }>
-									Can't find what you're looking for? Some students might have
+									Can't find what you're looking for? Some students? might have
 									in-depth knowledge in specific technologies and didn't use
 									them in the final project.
 									<span style={{ fontWeight: "700" }}>
@@ -317,7 +317,7 @@ const HiringPortal = () => {
 							{
 								// cards?.length > 0 ?
 							bootcamp === 'UIX' ? 
-              students.slice(0,4).map((props, index) => (
+              students?.slice(0,4).map((props, index) => (
                   <Grid
                     style={{
                       marginTop: isSmall && "10px",
@@ -335,7 +335,7 @@ const HiringPortal = () => {
                   </Grid>
                   ))
                 : bootcamp === 'FSD' ? 
-                students.slice(0,4).map((props, index) => (
+                students?.slice(0,4).map((props, index) => (
                   <Grid
                     style={{
                       marginTop: isSmall && "10px",
@@ -354,7 +354,7 @@ const HiringPortal = () => {
                   ))
                 
                 :
-                students.map((props, index) => (
+                students?.map((props, index) => (
 									<Grid
 										style={{
 											marginTop: isSmall && "10px",

@@ -67,9 +67,8 @@ const HiringCard = ({
   languages,
   calendly,
   projectURL,
-  hiringStatus,
   favoriteBy,
-  project_types
+  projectTypes
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
@@ -87,8 +86,7 @@ const HiringCard = ({
       user,
       graduateProfile: name,
       languages,
-      project_types,
-      graduateStatus: hiringStatus,
+      projectTypes,
     };
   };
   const bootcampColor = useMemo(() => {
@@ -112,6 +110,7 @@ const HiringCard = ({
     setOpen(true);
     e.stopPropagation();
   },[]) ;
+
   const toggleIsFavorite = (e) => {
     const operation = isFavorite ? deleteFavorite : createFavorite;
     operation({
@@ -142,8 +141,7 @@ const HiringCard = ({
             pdf,
             projectURL,
             languages,
-            project_types,
-            hiringStatus,
+            projectTypes,
             bootcamp,
             onCancel: () => {
               modal.hide();
@@ -155,23 +153,22 @@ const HiringCard = ({
 
   const projectTypeHandle = () => {
     let str = "";
-    project_types?.forEach((e, index) => {
+    projectTypes?.forEach((e, index) => {
       console.log(e);
       if (index > 0) {
-        str += " & " + e.project_type;
+        str += " & " + e.projectType;
       } else {
-        str += e.project_type;
+        str += e.projectType;
       }
     });
     return str;
   };
 
 
-
   return (
     <div
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp.toLowerCase()} ${
-        (PRE_RELEASE || hiringStatus === HIRED) && "prerelease"
+        (PRE_RELEASE ) && "prerelease"
       }`}
       onMouseOver={(e) => {
         setOpen(true);
@@ -225,7 +222,7 @@ const HiringCard = ({
               flexDirection: "column",
               flexGrow: "1",
               maxHeight:
-                PRE_RELEASE || !hiringStatus
+                PRE_RELEASE
                   ? "calc(100% - 40px)"
                   : isMD
                   ? "calc(100% - 143px)"
@@ -268,7 +265,6 @@ const HiringCard = ({
               {/* <Typography variant={"body2"} fontSize={isSM ? 12: 13}>{description[1]?.line}</Typography> */}
             </div>
           </div>
-          {hiringStatus && (
             <>
               {PRE_RELEASE ? (
                 <Grid container spacing={1}>
@@ -395,7 +391,6 @@ const HiringCard = ({
                 </Grid>
               )}
             </>
-          )}
         </div>
       </div>
       <div className={`hiring-card-flip ${open && 'flip-none'}` }>
