@@ -11,7 +11,6 @@ import { SE_GREY } from "../../utils/constants/colors";
 import "./styles.scss";
 import { useModal } from "mui-modal-provider";
 import SEButton from "../SEButton";
-import { useTheme } from "@mui/styles";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -49,8 +48,6 @@ const HiringDialog = ({
 }) => {
   const { showModal } = useModal();
 
-  const theme = useTheme();
-
   const { data: user } = hooks.useCurrentUser();
 
   const analyticsBasicParams = () => {
@@ -59,8 +56,6 @@ const HiringDialog = ({
       languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
     };
   };
-
-  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const [value, setValue] = React.useState("1");
 

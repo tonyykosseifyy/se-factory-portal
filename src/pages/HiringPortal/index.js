@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, useTheme } from "@mui/styles";
 import {
   Autocomplete,
@@ -100,11 +100,10 @@ const HiringPortal = () => {
     })
   };
 
-  // whenever these change: [students?, prevLanguages, prevProjectTypes, prevFavoritesOnly, favorites]
-  // searchLog({ user, prevLanguages, prevProjectTypes });
+
   useEffect(() => {
     reset();
-    setFilters({ bootcamp, favorite: false  });
+    setFilters({ bootcamp, favorite: false });
     searchLog({ bootcamp });
     refetch();
   },[bootcamp]);
@@ -377,7 +376,7 @@ const HiringPortal = () => {
 							</Grid>
 							{
 								// cards?.length > 0 
-                students && Array.isArray(students) && students?.map((props, index) => (
+                students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
 										style={{
 											marginTop: isSmall && "10px",

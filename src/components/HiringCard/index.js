@@ -80,7 +80,7 @@ const HiringCard = ({
   const { mutate: createFavorite } = useMutation([MUTATION_KEYS.POST_FAVORITE, { id }]);
 
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
-  console.log(isFavorite, name);
+
 
   const analyticsBasicParams = () => {
     return {
@@ -173,7 +173,6 @@ const HiringCard = ({
       onMouseOver={(e) => {
         setOpen(true);
       }}
-      
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
