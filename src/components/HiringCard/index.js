@@ -41,7 +41,7 @@ function getRandomNumber(id) {
   return randomNumber;
 }
 
-const includesFavorite = ( favoriteBy, user ) => {
+const includesFavorite = ( favoriteBy, user, name ) => {
   for (let i = 0; i < favoriteBy?.length; i++) {
     if (favoriteBy[i]?.id === user?.id) {
       return true
@@ -79,7 +79,8 @@ const HiringCard = ({
   const { mutate: deleteFavorite } = useMutation([MUTATION_KEYS.DELETE_FAVORITE, { id }]);
   const { mutate: createFavorite } = useMutation([MUTATION_KEYS.POST_FAVORITE, { id }]);
 
-  const [ isFavorite, setIsFavorite ] = useState(false);
+  const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
+  console.log(isFavorite, name);
 
   const analyticsBasicParams = () => {
     return {
@@ -120,7 +121,7 @@ const HiringCard = ({
   }
 
   useEffect(() => {
-    setIsFavorite(includesFavorite(favoriteBy, user));
+    setIsFavorite(includesFavorite(favoriteBy, user, name));
   },[favoriteBy, user])
 
   

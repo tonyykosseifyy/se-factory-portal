@@ -383,7 +383,7 @@ const HiringPortal = () => {
 											marginTop: isSmall && "10px",
 											marginBottom: isSmall && "10px",
 										}}
-										key={`card-${index}`}
+										key={`card-${props.id}`}
 										item
 										xs={12}
 										sm={6}
@@ -391,7 +391,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-                    <HiringCard {...props} bootcamp={bootcamp} />
+                    <HiringCard key={props.id} {...props} bootcamp={bootcamp} />
 									</Grid>
 								))
 							}
