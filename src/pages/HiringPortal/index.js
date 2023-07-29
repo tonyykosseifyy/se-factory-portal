@@ -111,7 +111,7 @@ const HiringPortal = () => {
 
   useEffect(() => {
     portalAccessed({ user });
-  }, []);
+  }, [user]);
 
   return (
     <div className={"hiring-portal-wrapper"}>
