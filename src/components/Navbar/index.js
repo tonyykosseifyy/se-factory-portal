@@ -43,17 +43,7 @@ const Navbar = () => {
         <img className={"logo"} src={Logo} alt="logo" />
       </a>
       <Stack flexDirection="row" alignItems="stretch" mt={"-7px"}>
-        {/* {Boolean(isLoggedIn) && (
-                    <SEButton
-                        variant={"contained"}
-                        sx={{ backgroundColor: "#FB4747", color: "#FCFCFD" }}
-                        onClick={() => {
-                            
-                        }}
-                    >
-                        Logout
-                    </SEButton>
-                )} */}
+
         <BootcampSelect />
         <LogoutButton />
       </Stack>
