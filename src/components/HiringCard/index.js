@@ -167,7 +167,7 @@ const HiringCard = ({
 
   return (
     <div
-      className={`hiring-card-main-container hiring-card-main-container-${bootcamp.toLowerCase()} ${
+      className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()} ${
         (PRE_RELEASE ) && "prerelease"
       }`}
       onMouseOver={(e) => {

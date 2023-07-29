@@ -130,7 +130,7 @@ const HiringPortal = () => {
 							<Stack flexDirection='row' alignItems='center' gap={1}>
 								<div className='se-dot se-dot-white'/>
 								<div className='se-dot se-dot-grey'/>
-								<div className={`se-dot se-dot-${bootcamp.toLowerCase()}`}/>
+								<div className={`se-dot se-dot-${bootcamp?.toLowerCase()}`}/>
 							</Stack>
 						</Stack>
 						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 12 : 14 : 18} color='#888888'>
