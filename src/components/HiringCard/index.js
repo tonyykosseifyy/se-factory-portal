@@ -198,7 +198,7 @@ const HiringCard = ({
 							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
 								<Avatar 
                   // just for testing, leave only avatarImage in production
-									src={avatarImage || avatar_images[getRandomNumber(id) - 1]}
+									src={avatarImage}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>

@@ -44,6 +44,7 @@ const HiringDialog = ({
   dataVisualizationTools, 
   cloudPlatforms, 
   databaseTechnologies, 
+  behance,
   ...props
 }) => {
   const { showModal } = useModal();
@@ -135,6 +136,8 @@ const HiringDialog = ({
 													onClick={() =>
 														interviewBooked({ ...analyticsBasicParams() })
 													}
+                          href={calendly}
+                          target="_blank"
 													fullWidth
 													disableElevation
 												>
@@ -151,7 +154,7 @@ const HiringDialog = ({
 																color: "white",
 															}}
 															fullWidth
-															href={github}
+															href={behance}
 															target="_blank"
 															onClick={() =>
 																behancePressed({ ...analyticsBasicParams() })
@@ -191,7 +194,7 @@ const HiringDialog = ({
 																color: "white",
 															}}
 															fullWidth
-															href={github}
+															href={projectURL}
 															target="_blank"
 															onClick={() => 
                                 liveProjectPressed({ ...analyticsBasicParams() })
