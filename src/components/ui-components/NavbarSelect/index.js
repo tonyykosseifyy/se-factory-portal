@@ -34,7 +34,6 @@ const BootcampSelect = () => {
   const handleChange = (event) => {
     setbootcamp(event.target.value);
     queryParams.set('bootcamp', event.target.value);
-    console.log(queryParams.toString())
     // Updating the URL with modified bootcamp query parameter
     history.push({
       pathname: location.pathname,

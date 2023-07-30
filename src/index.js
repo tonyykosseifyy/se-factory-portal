@@ -33,7 +33,7 @@ const Theme = createTheme({
     },
     typography: {
         fontFamily: 'Noto Sans Mono, monospace' 
-    },});
+}});
 
 // mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN,  {debug: process.env.REACT_APP_ENV === "development"})
 

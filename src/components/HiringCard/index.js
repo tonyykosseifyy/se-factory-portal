@@ -64,11 +64,13 @@ const HiringCard = ({
   languages,
   calendly,
   projectURL,
+  behance,
   favoriteBy,
   projectTypes,
   dataVisualizationTools, 
   cloudPlatforms, 
-  databaseTechnologies
+  databaseTechnologies,
+  avatarImage
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
@@ -195,7 +197,8 @@ const HiringCard = ({
 						<Stack direction='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
 								<Avatar 
-									src={avatar_images[getRandomNumber(id) -1]}
+                  // just for testing, leave only avatarImage in production
+									src={avatarImage || avatar_images[getRandomNumber(id) - 1]}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>
@@ -347,7 +350,7 @@ const HiringCard = ({
                           liveProjectPressed({ ...analyticsBasicParams() })
                         }
                         fullWidth
-                        href={github}
+                        href={projectURL}
                         target="_blank"
                       >
                         Live Project
@@ -364,7 +367,7 @@ const HiringCard = ({
                           color: "white",
                         }}
                         fullWidth
-                        href={github}
+                        href={behance}
                         target="_blank"
                         onClick={() =>
                         	behancePressed({ ...analyticsBasicParams() })
