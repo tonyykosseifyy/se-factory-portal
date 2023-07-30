@@ -1,16 +1,16 @@
 import mixpanel from 'mixpanel-browser'
 
 const EVENTS = {
-    // PORTAL_ACCESSED: "Portal Accessed",
-    // PROJECT_PRESSED: "Project Pressed",
-    // LIVE_PROJECT_PRESSED: "Live Project Pressed",
-    // INTERVIEW_BOOKED: "Book Interview Pressed",
+    PORTAL_ACCESSED: "Portal Accessed",
+    PROJECT_PRESSED: "Project Pressed",
+    LIVE_PROJECT_PRESSED: "Live Project Pressed",
+    INTERVIEW_BOOKED: "Book Interview Pressed",
     GITHUB_PRESSED: "Github Project Pressed",
-    // VIDEO_PLAYED: "Video Played",
-    // SEARCH: 'Search',
-    // VIEW_CV: 'View CV',
-    // HOVERED_OVER_CARD: "Hover Card",
-    // BEHANCE_PRESSED: "Behance Pressed",
+    VIDEO_PLAYED: "Video Played",
+    SEARCH: 'Search',
+    VIEW_CV: 'View CV',
+    HOVERED_OVER_CARD: "Hover Card",
+    BEHANCE_PRESSED: "Behance Pressed",
 }
 
 export const behancePressed = ({user, graduateProfile, languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp}) => {
