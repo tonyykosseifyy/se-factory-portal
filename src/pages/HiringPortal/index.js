@@ -104,7 +104,7 @@ const HiringPortal = () => {
   useEffect(() => {
     reset();
     setFilters({ bootcamp, favorite: false });
-    searchLog({ bootcamp });
+    searchLog({ user, bootcamp });
     refetch();
   },[bootcamp]);
 
@@ -334,6 +334,7 @@ const HiringPortal = () => {
                       dataVisualizationTools
                     });
                     searchLog({
+											user,
                       languages,
                       projectTypes,
                       favorite: favoritesOnly,
