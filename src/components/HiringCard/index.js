@@ -147,6 +147,7 @@ const HiringCard = ({
             cloudPlatforms, 
             databaseTechnologies,             
             bootcamp,
+            behance,
             onCancel: () => {
               modal.hide();
             },
