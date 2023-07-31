@@ -97,7 +97,8 @@ const HiringPortal = () => {
     setDataVisualization([]);
     setFilters({
       favorite: false,
-    })
+			bootcamp 
+    });
   };
 
 
@@ -139,63 +140,66 @@ const HiringPortal = () => {
 						<div className='filters-wrapper'>
               <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
                 <Typography fontWeight={800} textTransform='uppercase' fontSize={isSM ? 14 : 17} variant='h6' color='#A5A6A9'>Filter By</Typography>
-                <Typography onClick={() => reset()} fontWeight={800} fontSize={isSM ? 12 : 14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography>
+                { bootcamp !== 'UIX' && <Typography onClick={() => reset()} fontWeight={800} fontSize={isSM ? 12 : 14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography> }
               </Stack>
 							<div className="filter-by-container">
-								<div
-									style={{
-										width: !isSmall ? "50%" : "100%",
-										flexBasis: !isSmall ? "50%" : "100%",
-									}}
-								>
-									<Autocomplete
-										multiple
-                    size='small'
-										value={projectTypes}
-										onChange={(e, newValue) => {
-											setProjectTypes(newValue);
+								{ bootcamp !== 'UIX' && <>
+									<div
+										style={{
+											width: !isSmall ? "50%" : "100%",
+											flexBasis: !isSmall ? "50%" : "100%",
 										}}
-										options={bootcamps_project_types[bootcamp]}
-										filterSelectedOptions
-										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
-										renderInput={(params) => (
-											<CustomTextField
-												{...params}
-												id={"languages"}
-												variant={"filled"}
-												label="Project Type"
-											/>
-										)}
-									/>
-								</div>
-								<div
-									style={{
-										width: !isSmall ? "50%" : "100%",
-										flexBasis: !isSmall ? "50%" : "100%",
-										padding: !isSmall ? "0 0 0 10px" : "5px 0",
-                    marginTop: !isSmall ? 0 : 20,
-									}}
-								>
-									<Autocomplete
-										multiple
-                    size="small"
-										value={languages}
-										onChange={(e, newValue) => {
-											setLanguages(newValue);
+									>
+										<Autocomplete
+											multiple
+											size='small'
+											value={projectTypes}
+											onChange={(e, newValue) => {
+												setProjectTypes(newValue);
+											}}
+											options={bootcamps_project_types[bootcamp]}
+											filterSelectedOptions
+											sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+											renderInput={(params) => (
+												<CustomTextField
+													{...params}
+													id={"languages"}
+													variant={"filled"}
+													label="Project Type"
+												/>
+											)}
+										/>
+									</div>
+									<div
+										style={{
+											width: !isSmall ? "50%" : "100%",
+											flexBasis: !isSmall ? "50%" : "100%",
+											padding: !isSmall ? "0 0 0 10px" : "5px 0",
+											marginTop: !isSmall ? 0 : 20,
 										}}
-										options={bootcamps_languages[bootcamp]}
-										filterSelectedOptions
-										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
-										renderInput={(params) => (
-											<CustomTextField
-												{...params}
-												id={"languages"}
-												variant={"filled"}
-												label="Technologies Used"
-											/>
-										)}
-									/>
-								</div>
+									>
+										<Autocomplete
+											multiple
+											size="small"
+											value={languages}
+											onChange={(e, newValue) => {
+												setLanguages(newValue);
+											}}
+											options={bootcamps_languages[bootcamp]}
+											filterSelectedOptions
+											sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+											renderInput={(params) => (
+												<CustomTextField
+													{...params}
+													id={"languages"}
+													variant={"filled"}
+													label="Technologies Used"
+												/>
+											)}
+										/>
+									</div>
+								</>
+								}
             { bootcamp === 'FSD' && 
             <>
                 <div
