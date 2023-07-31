@@ -1,5 +1,5 @@
 const FSW_LANGUAGES = ['Java', 'Laravel', 'React.js', 'Angular', 'React Native', 'Firebase', 'Flutter', 'Node.js', 'Go Lang', 'MySQL', 'MongoDB', 'Express', 'Django'];
-const FSD_LANGUAGES = ["Python","Java","Scala","SQL","R","Other"];
+const FSD_LANGUAGES = ["Python","Java","Scala","SQL","R"];
 const UIX_LANGUAGES = [];
 
 const languages = {
