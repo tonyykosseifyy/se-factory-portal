@@ -358,6 +358,7 @@ const HiringPortal = () => {
 						<Loader SELogo />
 					) : (
 						<>
+							{students && Array.isArray(students) && students.length === 0 && 
 							<Grid item xs={12} my={2}>
 								<Typography variant={"h5"} fontSize={isSmall ? isSM  ? 14 : 16 : 18 }>
 									Can't find what you're looking for? Some students? might have
@@ -374,9 +375,8 @@ const HiringPortal = () => {
 										</a>
 									</span>
 								</Typography>
-							</Grid>
+							</Grid>}
 							{
-								// cards?.length > 0 
                 students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
 										style={{
