@@ -70,7 +70,6 @@ const HiringCard = ({
 
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
 
-  const playButtonRef = useRef(null);
   const videoRef = useRef(null);
 
 
@@ -99,11 +98,6 @@ const HiringCard = ({
       })
     }
   }
-  const handlePlay = () => {
-    console.log('clicked');
-    videoRef.current.play();
-  }
-
 
 
   const analyticsBasicParams = () => {
