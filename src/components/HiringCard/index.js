@@ -5,6 +5,9 @@ import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
+import YouTube from "react-youtube";
+import videoSource from '../../assets/common/uix_video.mp4' ;
+
 import {
   githubPressed,
   hoveredOverLog,
@@ -22,24 +25,8 @@ import { MUTATION_KEYS } from "../../api/config/keys";
 import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
-import image1 from '../../assets/common/uix1.png';
 
-const avatar_images = [
-  "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
-  'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
-  'https://xsgames.co/randomusers/assets/avatars/male/55.jpg',
-  'https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
-];
 
-function getRandomNumber(id) {
-  // Convert the ID to a number
-  const parsedId = parseInt(id, 10);
-  
-  // Perform calculations based on the ID
-  const randomNumber = ((parsedId * 37) % 4) + 1;
-  
-  return randomNumber;
-}
 
 const includesFavorite = ( favoriteBy, user, name ) => {
   for (let i = 0; i < favoriteBy?.length; i++) {
@@ -82,6 +69,41 @@ const HiringCard = ({
   const { mutate: createFavorite } = useMutation([MUTATION_KEYS.POST_FAVORITE, { id }]);
 
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
+
+  const playButtonRef = useRef(null);
+  const videoRef = useRef(null);
+
+
+  const handleMouseEnter = () => {
+    const promise = videoRef.current.play();
+    
+    if (promise !== undefined) {
+      promise.then(_ => {
+        // Autoplay started!
+      }).catch(error => {
+        // Autoplay was prevented.
+        // Show a "Play" button so that user can start playback.
+      })
+    }
+  }
+
+  const handleMouseLeave = () => {
+    const promise = videoRef.current.pause();
+    
+    if (promise !== undefined) {
+      promise.then(_ => {
+        // Autoplay started!
+      }).catch(error => {
+        // Autoplay was prevented.
+        // Show a "Play" button so that user can start playback.
+      })
+    }
+  }
+  const handlePlay = () => {
+    console.log('clicked');
+    videoRef.current.play();
+  }
+
 
 
   const analyticsBasicParams = () => {
@@ -175,10 +197,12 @@ const HiringCard = ({
       }`}
       onMouseOver={(e) => {
         setOpen(true);
+        handleMouseEnter()
       }}
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
+        handleMouseLeave();
       }}
     >
       <div className={"hiring-card-favorite"} onClick={(e) => toggleIsFavorite(e)}>
@@ -232,6 +256,21 @@ const HiringCard = ({
                   : "calc(100% - 96px)",
             }}
           >
+            { bootcamp === 'UIX' && 
+            <div className="youtube-video">
+              <video
+                ref={videoRef}
+                width="100%"
+                height="auto"
+                controls={false}
+                playsInline
+              >
+                <source src={videoSource} type="video/mp4" />
+                  Your browser does not support video 
+                </video>
+            </div>
+            }
+              
             {bootcamp !== 'UIX' ?  
             <Typography
               variant={"h6"}
@@ -240,7 +279,7 @@ const HiringCard = ({
               fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
-            </Typography>: null }
+            </Typography> : null }
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
