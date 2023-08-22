@@ -184,12 +184,11 @@ const HiringCard = ({
 
   return (
     <div
-      className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()} ${
-        (PRE_RELEASE ) && "prerelease"
-      }`}
+      className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
       onMouseOver={(e) => {
         setOpen(true);
-        bootcamp === 'UIX' && handleMouseEnter()
+        alert('mouse over');
+        bootcamp === 'UIX' && handleMouseEnter();
       }}
       onMouseLeave={() => {
         setOpen(false);
@@ -197,7 +196,10 @@ const HiringCard = ({
         bootcamp === 'UIX' && handleMouseLeave();
       }}
     >
-      <div className={"hiring-card-favorite"} onClick={(e) => toggleIsFavorite(e)}>
+      <div 
+        className={"hiring-card-favorite"} 
+        onClick={(e) => toggleIsFavorite(e)}
+      >
         {isFavorite ? (
           <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         ) : (
