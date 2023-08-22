@@ -83,7 +83,7 @@ const HiringCard = ({
 
   const handleMouseEnter = () => {
     // pauses all other videos
-    pauseAllVideos()
+    // pauseAllVideos()
 
     // plays the video
     const promise = videoRef.current.play();
