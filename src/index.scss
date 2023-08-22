@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "src/assets/styles/_variables";
 
 
 body {
@@ -8,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #F1F2F3 ;
+  background-color: $se-light-background-grey !important ;
 }
 
 code {

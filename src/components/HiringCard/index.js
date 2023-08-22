@@ -245,7 +245,6 @@ const HiringCard = ({
 						<Stack direction='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
 								<Avatar 
-                  // just for testing, leave only avatarImage in production
 									src={avatarImage}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
