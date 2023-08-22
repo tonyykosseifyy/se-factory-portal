@@ -47,7 +47,6 @@ const HiringDialog = ({
   behance,
   ...props
 }) => {
-  const { showModal } = useModal();
 
   const { data: user } = hooks.useCurrentUser();
 
@@ -99,7 +98,6 @@ const HiringDialog = ({
 									sx={{color:'black'}}
                 >
                   <Tab color="red" label="Student Profile" value="1" />
-                  {/*<Tab label="Project Pictures" value="2" />*/}
                 </TabList>
               </Box>
               <TabPanel value="1" style={{ padding: "24px 0" }}>

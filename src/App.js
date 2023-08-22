@@ -1,11 +1,8 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
-// import "swiper/swiper-bundle.min.css";
-// import "swiper/swiper.min.css";
 import { ROUTES_WITH_LAYOUT } from "./utils/routes";
 import AuthRoute from "./router/AuthRoute";
 import LoginRedirect from "./pages/LoginRedirect";
-import Cookies from 'js-cookie';
 
 const App = () => {
   // me temporary, for testing only
