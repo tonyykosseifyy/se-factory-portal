@@ -4,12 +4,10 @@ import {
   Dialog,
   Grid,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import YouTube from "react-youtube";
 import { SE_GREY } from "../../utils/constants/colors";
 import "./styles.scss";
-import { useModal } from "mui-modal-provider";
 import SEButton from "../SEButton";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";

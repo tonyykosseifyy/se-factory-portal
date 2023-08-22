@@ -3,10 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import { ROUTES_WITH_LAYOUT } from "./utils/routes";
 import AuthRoute from "./router/AuthRoute";
 import LoginRedirect from "./pages/LoginRedirect";
+import Cookies from 'js-cookie';
 
 const App = () => {
   // me temporary, for testing only
-  // Cookies.set('se-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImlhdCI6MTY5MjM1MzU1NSwiZXhwIjoxNjk0OTQ1NTU1fQ.ZeUHLimAcdjgb8G8Vclmz4ygy9uSS4ZojzDzJK1H5WM');
+  Cookies.set('se-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImlhdCI6MTY5MjM1MzU1NSwiZXhwIjoxNjk0OTQ1NTU1fQ.ZeUHLimAcdjgb8G8Vclmz4ygy9uSS4ZojzDzJK1H5WM');
   return (
       <Switch>
           <Route exact path="/connect/:providerName" component={LoginRedirect} />
