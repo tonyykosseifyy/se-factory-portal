@@ -207,10 +207,22 @@ const HiringCard = ({
           bootcamp === 'UIX' && handleMouseEnter();
         }
       }}
+      onTouchStart={(e) => {
+        if (!('ontouchstart' in window)) {
+          setOpen(true);
+          bootcamp === 'UIX' && handleMouseEnter();
+        }
+      }}
       onMouseLeave={() => {
-          setOpen(false);
-          hoveredOverLog({ ...analyticsBasicParams() });
-          bootcamp === 'UIX' && handleMouseLeave();  
+        setOpen(false);
+        hoveredOverLog({ ...analyticsBasicParams() });
+        bootcamp === 'UIX' && handleMouseLeave();  
+      }}
+
+      onTouchEnd={() => {
+        setOpen(false);
+        hoveredOverLog({ ...analyticsBasicParams() });
+        bootcamp === 'UIX' && handleMouseLeave();  
       }}
     >
       <div 
