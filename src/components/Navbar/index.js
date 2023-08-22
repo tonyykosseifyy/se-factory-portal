@@ -20,17 +20,6 @@ const Navbar = () => {
         <LogoutButton />
       </Stack>
 
-      {/* {isGod && (
-          <SEButton
-              onClick={handlePreRelease}
-              variant={"outlined"}
-              color={"secondary"}
-              style={{ marginRight: 10 }}
-
-          >
-              {!preRelease ? 'UnRelease' : 'Release'}
-          </SEButton>
-      )} */}
     </nav>
   );
 };

@@ -5,7 +5,6 @@ import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
-import YouTube from "react-youtube";
 import videoSource from '../../assets/common/uix_video.mp4' ;
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
@@ -26,14 +25,6 @@ import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
 
-const pauseAllVideos = () => {
-  const videoElements = document.querySelectorAll('video');
-
-  // Function to pause all video elements
-  videoElements.forEach((video) => {
-    video.pause();
-  })
-}
 
 const includesFavorite = ( favoriteBy, user, name ) => {
   for (let i = 0; i < favoriteBy?.length; i++) {
