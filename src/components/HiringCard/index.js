@@ -144,7 +144,6 @@ const HiringCard = ({
 
   
   const handleClick = (e, skipCheck, pressedOn) => {
-    console.log(e.target.localName);
     if (
         skipCheck ||
         !(['a', 'button','svg', 'path'].includes(e.target.localName)) 
@@ -169,7 +168,7 @@ const HiringCard = ({
           },
         });
       }
-  };
+    };
 
   const projectTypeHandle = () => {
     let str = "";
