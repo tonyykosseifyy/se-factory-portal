@@ -163,3 +163,26 @@
   height: 100%;
   object-fit: cover;
 }
+
+.youtube-video {
+  position: relative ;
+  margin-bottom: 5px ;
+}
+.play-button-container {
+  position: absolute;
+  top: 0 ;
+  left: 0 ;
+  right: 0 ;
+  bottom: 0 ;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  background: black ;
+  z-index: 1000 ;
+}
+.play-button-container svg {
+  transition: .3s ;
+}
+.play-button-container svg:hover {
+  opacity: .7 ;
+}

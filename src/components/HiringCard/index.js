@@ -7,7 +7,7 @@ import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
 import YouTube from "react-youtube";
 import videoSource from '../../assets/common/uix_video.mp4' ;
-
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
   githubPressed,
   hoveredOverLog,
@@ -71,6 +71,7 @@ const HiringCard = ({
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
 
   const videoRef = useRef(null);
+  const [ showPlayButton, setShowPlayButton ] = useState(false);
 
 
   const handleMouseEnter = () => {
@@ -78,10 +79,9 @@ const HiringCard = ({
     
     if (promise !== undefined) {
       promise.then(_ => {
-        // Autoplay started!
+        !showPlayButton && setShowPlayButton(true);
       }).catch(error => {
-        // Autoplay was prevented.
-        // Show a "Play" button so that user can start playback.
+        setShowPlayButton(false);
       })
     }
   }
@@ -144,31 +144,30 @@ const HiringCard = ({
 
   
   const handleClick = (e, skipCheck, pressedOn) => {
-      if (!PRE_RELEASE) {
-        if (
-          skipCheck ||
-          (e.target.localName !== "button" && e.target.localName !== "a")
-        ) {
-          projectPressed({ ...analyticsBasicParams(), pressedOn });
-          const modal = showModal(HiringDialog, {
-            calendly,
-            youtubeId,
-            name ,
-            github,
-            pdf,
-            projectURL,
-            languages,
-            projectTypes,
-            dataVisualizationTools, 
-            cloudPlatforms, 
-            databaseTechnologies,             
-            bootcamp,
-            behance,
-            onCancel: () => {
-              modal.hide();
-            },
-          });
-        }
+    console.log(e.target.localName);
+    if (
+        skipCheck ||
+        !(['a', 'button','svg', 'path'].includes(e.target.localName)) 
+      ) {
+        projectPressed({ ...analyticsBasicParams(), pressedOn });
+        const modal = showModal(HiringDialog, {
+          calendly,
+          youtubeId,
+          name ,
+          github,
+          pdf,
+          projectURL,
+          languages,
+          projectTypes,
+          dataVisualizationTools, 
+          cloudPlatforms, 
+          databaseTechnologies,
+          bootcamp,
+          behance,
+          onCancel: () => {
+            modal.hide();
+          },
+        });
       }
   };
 
@@ -191,12 +190,12 @@ const HiringCard = ({
       }`}
       onMouseOver={(e) => {
         setOpen(true);
-        handleMouseEnter()
+        bootcamp === 'UIX' && handleMouseEnter()
       }}
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
-        handleMouseLeave();
+        bootcamp === 'UIX' && handleMouseLeave();
       }}
     >
       <div className={"hiring-card-favorite"} onClick={(e) => toggleIsFavorite(e)}>
@@ -262,6 +261,12 @@ const HiringCard = ({
                 <source src={videoSource} type="video/mp4" />
                   Your browser does not support video 
                 </video>
+                {!showPlayButton && <div className="play-button-container">
+                  <PlayArrowIcon 
+                    onClick={(e) => handleClick(e, false, "Play UIX video")} 
+                    sx={{ fontSize: '60px', color: 'white' }}
+                  />
+                </div>}
             </div>
             }
               
