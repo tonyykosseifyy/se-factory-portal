@@ -186,18 +186,17 @@ const HiringCard = ({
     <div
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
       onMouseOver={(e) => {
-        setOpen(true);
-        alert('mouse over');
-        bootcamp === 'UIX' && handleMouseEnter();
+        setOpen(!(['path', 'svg'].includes(e.target.localName)));
+        bootcamp === 'UIX' && handleMouseEnter(e);
       }}
-      onMouseLeave={() => {
+      onMouseLeave={(e) => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave();
+        bootcamp === 'UIX' && handleMouseLeave(e);
       }}
     >
       <div 
-        className={"hiring-card-favorite"} 
+        className="hiring-card-favorite" 
         onClick={(e) => toggleIsFavorite(e)}
       >
         {isFavorite ? (
