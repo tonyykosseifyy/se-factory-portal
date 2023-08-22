@@ -75,6 +75,7 @@ const HiringCard = ({
 
 
   const handleMouseEnter = () => {
+    // plays the video
     const promise = videoRef.current.play();
     
     if (promise !== undefined) {
@@ -87,6 +88,7 @@ const HiringCard = ({
   }
 
   const handleMouseLeave = () => {
+    // pauses the video
     const promise = videoRef.current.pause();
     
     if (promise !== undefined) {
@@ -99,6 +101,9 @@ const HiringCard = ({
     }
   }
 
+  useEffect(() => {
+    open ? handleMouseEnter() : handleMouseLeave() ;
+  },[open])
 
   const analyticsBasicParams = () => {
     return {
@@ -122,6 +127,7 @@ const HiringCard = ({
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
   const { showModal } = useModal();
 
+
   const flipCard = useCallback((e) => {
     hoveredOverLog({ ...analyticsBasicParams() })
     setOpen(true);
@@ -129,7 +135,7 @@ const HiringCard = ({
   },[]) ;
 
   const toggleIsFavorite = (e) => {
-    const operation = isFavorite ? deleteFavorite : createFavorite;
+    const operation = isFavorite ? deleteFavorite : createFavorite ; 
     operation({
       Api,
       id
@@ -186,19 +192,24 @@ const HiringCard = ({
     <div
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
       onMouseOver={(e) => {
-        setOpen(!(['path', 'svg'].includes(e.target.localName)));
-        bootcamp === 'UIX' && handleMouseEnter(e);
+        if (!('ontouchstart' in window)) {
+          console.log('true');
+          setOpen(true);
+          bootcamp === 'UIX' && handleMouseEnter();
+        }
       }}
-      onMouseLeave={(e) => {
-        setOpen(false);
-        hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave(e);
+      onMouseLeave={() => {
+        if (!('ontouchstart' in window)) {
+          setOpen(false);
+          hoveredOverLog({ ...analyticsBasicParams() });
+          bootcamp === 'UIX' && handleMouseLeave();  
+        }
       }}
     >
       <div 
-        className="hiring-card-favorite" 
+        className={"hiring-card-favorite"} 
         onClick={(e) => toggleIsFavorite(e)}
-      >
+        >
         {isFavorite ? (
           <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         ) : (
