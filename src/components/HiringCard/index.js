@@ -77,7 +77,7 @@ const HiringCard = ({
     // pauseAllVideos()
 
     // plays the video
-    const promise = videoRef.current.play();
+    const promise = videoRef.current?.play();
     
     if (promise !== undefined) {
       promise.then(_ => {
@@ -90,7 +90,7 @@ const HiringCard = ({
 
   const handleMouseLeave = () => {
     // pauses the video
-    const promise = videoRef.current.pause();
+    const promise = videoRef.current?.pause();
     
     if (promise !== undefined) {
       promise.then(_ => {
