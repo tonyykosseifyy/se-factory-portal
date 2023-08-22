@@ -26,7 +26,14 @@ import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
 
+const pauseAllVideos = () => {
+  const videoElements = document.querySelectorAll('video');
 
+  // Function to pause all video elements
+  videoElements.forEach((video) => {
+    video.pause();
+  })
+}
 
 const includesFavorite = ( favoriteBy, user, name ) => {
   for (let i = 0; i < favoriteBy?.length; i++) {
@@ -75,6 +82,9 @@ const HiringCard = ({
 
 
   const handleMouseEnter = () => {
+    // pauses all other videos
+    pauseAllVideos()
+
     // plays the video
     const promise = videoRef.current.play();
     
@@ -174,7 +184,7 @@ const HiringCard = ({
           },
         });
       }
-    };
+  };
 
   const projectTypeHandle = () => {
     let str = "";
@@ -193,17 +203,14 @@ const HiringCard = ({
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
       onMouseOver={(e) => {
         if (!('ontouchstart' in window)) {
-          console.log('true');
           setOpen(true);
           bootcamp === 'UIX' && handleMouseEnter();
         }
       }}
       onMouseLeave={() => {
-        if (!('ontouchstart' in window)) {
           setOpen(false);
           hoveredOverLog({ ...analyticsBasicParams() });
           bootcamp === 'UIX' && handleMouseLeave();  
-        }
       }}
     >
       <div 
