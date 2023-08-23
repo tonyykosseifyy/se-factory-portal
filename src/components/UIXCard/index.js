@@ -215,7 +215,7 @@ const UIXHiringCard = ({
         onClick={(e) => toggleIsFavorite(e)}
       >
       </div>
-      <div className={"hiring-card-container"} >
+      <div className={`hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
           style={{ backgroundImage: `url(${coverImage})` }}

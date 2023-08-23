@@ -223,7 +223,7 @@ const HiringCard = ({
           <FavoriteBorderIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         )}
       </div>
-      <div className={"hiring-card-container"} >
+      <div className={`hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
           style={{ backgroundImage: `url(${coverImage})` }}
