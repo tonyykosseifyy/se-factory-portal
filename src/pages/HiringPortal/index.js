@@ -134,9 +134,10 @@ const HiringPortal = () => {
 								<div className={`se-dot se-dot-${bootcamp?.toLowerCase()}`}/>
 							</Stack>
 						</Stack>
-						<Typography mb={5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 12 : 14 : 18} color='#888888'>
+						<Typography mb={bootcamp === 'UIX' ? 2: 5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 12 : 14 : 18} color='#888888'>
 							<span style={{marginRight:'7px'}}>//</span> {portalData[bootcamp]?.below_title}
 						</Typography>
+						{bootcamp !== 'UIX' && 
 						<div className='filters-wrapper'>
               <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
                 <Typography fontWeight={800} textTransform='uppercase' fontSize={isSM ? 14 : 17} variant='h6' color='#A5A6A9'>Filter By</Typography>
@@ -354,6 +355,7 @@ const HiringPortal = () => {
 								</CustomButton>
 							</Stack>
 						</div>
+						}
 						
 					</div>
 				</div>
