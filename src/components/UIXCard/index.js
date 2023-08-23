@@ -33,7 +33,7 @@ const includesFavorite = ( favoriteBy, user, name ) => {
   return false
 };
 
-const HiringCard = ({
+const UIXHiringCard = ({
   bootcamp,
   id,
   name,
@@ -53,10 +53,8 @@ const HiringCard = ({
   dataVisualizationTools, 
   cloudPlatforms, 
   databaseTechnologies,
-  avatarImage
 }) => {
   const [open, setOpen] = useState(false);
-  const optionsIcon = useRef(null);
   const theme = useTheme();
   const { Api } = useAxios();
   const { data: user } = hooks.useCurrentUser();
@@ -216,35 +214,13 @@ const HiringCard = ({
       <div 
         className={"hiring-card-favorite"} 
         onClick={(e) => toggleIsFavorite(e)}
-        >
-        {isFavorite ? (
-          <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
-        ) : (
-          <FavoriteBorderIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
-        )}
+      >
       </div>
       <div className={"hiring-card-container"} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
           style={{ backgroundImage: `url(${coverImage})` }}
         />
-        <div className={"hiring-card-footer"}>
-          <Stack sx={{width:'100%'}} direction='row' alignItems='center' justifyContent='space-between'>
-						<Stack direction='row' alignItems='center' gap={2}> 
-							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
-								<Avatar 
-									src={avatarImage}
-									alt={name}
-									sx={{ width: 25, height: 25 }}
-								/>
-							</div>
-							<Typography variant={"h6"} fontSize={15} fontWeight={"bold"}>
-								{name}
-							</Typography>
-						</Stack>
-						
-          </Stack>
-        </div>
       </div>
      
       <div
@@ -413,15 +389,8 @@ const HiringCard = ({
             </>
         </div>
       </div>
-      <div className={`hiring-card-flip ${open && 'flip-none'}` }>
-        <MoreHorizIcon 
-          ref={optionsIcon}
-          onClick={(e) => flipCard(e)}            
-          sx={{color: '#A5A6A9'}}  
-        />
-      </div>
     </div>
   );
 };
 
-export default HiringCard;
+export default UIXHiringCard;

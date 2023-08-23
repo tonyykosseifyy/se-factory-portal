@@ -11,6 +11,8 @@ import {
 	Stack
 } from "@mui/material";
 import HiringCard from "../../components/HiringCard";
+import UIXHiringCard from "../../components/UIXCard";
+
 import bootcamps_languages from "../../utils/constants/languages";
 import bootcamps_project_types from "../../utils/constants/projects-types";
 import fsd_filters from '../../utils/constants/fsd_filters';
@@ -396,7 +398,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-                    <HiringCard key={props.id} {...props} bootcamp={bootcamp} />
+                    { bootcamp === 'UIX' ? (<UIXHiringCard key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
 									</Grid>
 								))
 							}
