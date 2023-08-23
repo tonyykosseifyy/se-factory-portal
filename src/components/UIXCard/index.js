@@ -117,61 +117,63 @@ const UIXHiringCard = ({
 
 
   return (
-    <div
-      className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
-      onClick={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
-    >
-      <div className={`hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
-        <div
-          className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
-          style={{ backgroundImage: `url(${coverImage})` }}
-        />
-      </div>
-     
-      <div
-        className={`hiring-card-information-main-container ${open && "open"}`}
+    <div className={`flip-card ${open && "open"}`}>
+        <button
+          className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
+          onClick={() => setOpen(true)}
+          onBlur={() => setOpen(false)}
       >
-        <div className="hiring-card-information-container-uix">
-          {/* logo */}
-          <div className="hiring-card-logo">
-            <a href="https://sefactory.io/">
-              <img className={"logo"} src={Logo} alt="logo" />
-            </a>
-          </div>
-          {/* backround image */}
-          <div className="hiring-card-background">
-            <img src={backgroundImage} alt="cover" />
-          </div>
+        <div className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
+          <div
+            className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
+            style={{ backgroundImage: `url(${coverImage})` }}
+          />
+        </div>
+      
+        <div
+          className={`flip-card-back hiring-card-information-main-container ${open && "open"}`}
+        >
+          <div className="hiring-card-information-container-uix">
+            {/* logo */}
+            <div className="hiring-card-logo">
+              <a href="https://sefactory.io/">
+                <img className={"logo"} src={Logo} alt="logo" />
+              </a>
+            </div>
+            {/* backround image */}
+            <div className="hiring-card-background">
+              <img src={backgroundImage} alt="cover" />
+            </div>
 
-          {/* video */}
-          <div className="hiring-card-video-container">
-            <video
-              ref={videoRef}
-              className="hiring-card-video"
-              src={videoSource}
-              loop
-            />
-            {showPlayButton && (
-              <div className="hiring-card-video-play-button">
-                <PlayArrowIcon />
+            {/* video */}
+            <div className="hiring-card-video-container">
+              <video
+                ref={videoRef}
+                className="hiring-card-video"
+                src={videoSource}
+                loop
+              />
+              {showPlayButton && (
+                <div className="hiring-card-video-play-button">
+                  <PlayArrowIcon />
+                </div>
+              )}
+            </div>
+            {/* Card footer */}
+            <div className="hiring-card-footer-container-uix">
+              <div className="hiring-card-footer-uix">
+                <Stack direction="row">
+                  <Typography variant='h5' fontWeight={900} color={theme.palette.uix.main}>UIX</Typography>
+                  <Typography variant='h5' fontWeight={900} color={'white'}>01</Typography>
+                </Stack>
               </div>
-            )}
-          </div>
-          {/* Card footer */}
-          <div className="hiring-card-footer-container">
-
-            <div className="hiring-card-footer">
-              <Stack direction="row">
-                <Typography variant='h5' fontWeight={900} color={theme.palette.uix.main}>UIX </Typography>
-                <Typography variant='h5' fontWeight={900} color={'white'}>01</Typography>
-              </Stack>
             </div>
           </div>
-          
         </div>
-      </div>
+
+        </button>
     </div>
+
   );
 };
 
