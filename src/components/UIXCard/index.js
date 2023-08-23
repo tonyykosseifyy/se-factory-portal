@@ -7,6 +7,8 @@ import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
 import videoSource from '../../assets/common/uix_video.mp4' ;
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Logo from "../../assets/core/SEF_logo_text.svg";
+import backgroundImage from "../../assets/common/boxImage.png";
 import {
   githubPressed,
   hoveredOverLog,
@@ -56,12 +58,7 @@ const UIXHiringCard = ({
 }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  const { Api } = useAxios();
   const { data: user } = hooks.useCurrentUser();
-  const { mutate: deleteFavorite } = useMutation([MUTATION_KEYS.DELETE_FAVORITE, { id }]);
-  const { mutate: createFavorite } = useMutation([MUTATION_KEYS.POST_FAVORITE, { id }]);
-
-  const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
 
   const videoRef = useRef(null);
   const [ showPlayButton, setShowPlayButton ] = useState(false);
@@ -107,21 +104,9 @@ const UIXHiringCard = ({
       languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
     };
   };
-  const bootcampColor = useMemo(() => {
-    switch (bootcamp) {
-      case 'FSW':
-        return "primary";
-      case 'FSD':
-        return 'fsd';
-      case 'UIX':
-        return 'uix';
-      default:
-        return 'primary';
-  }}, [ bootcamp ]);
 
-  const isSM = useMediaQuery(theme.breakpoints.down("sm"));
+
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
-  const { showModal } = useModal();
 
 
   const flipCard = useCallback((e) => {
@@ -130,91 +115,13 @@ const UIXHiringCard = ({
     e.stopPropagation();
   },[]) ;
 
-  const toggleIsFavorite = (e) => {
-    const operation = isFavorite ? deleteFavorite : createFavorite ; 
-    operation({
-      Api,
-      id
-    });
-    e.stopPropagation();
-    setIsFavorite((prev) => !prev);
-  }
-
-  useEffect(() => {
-    setIsFavorite(includesFavorite(favoriteBy, user, name));
-  },[favoriteBy, user]);
-
-  
-  const handleClick = (e, skipCheck, pressedOn) => {
-    if (
-        skipCheck ||
-        !(['a', 'button','svg', 'path'].includes(e.target.localName)) 
-      ) {
-        projectPressed({ ...analyticsBasicParams(), pressedOn });
-        const modal = showModal(HiringDialog, {
-          calendly,
-          youtubeId,
-          name ,
-          github,
-          pdf,
-          projectURL,
-          languages,
-          projectTypes,
-          dataVisualizationTools, 
-          cloudPlatforms, 
-          databaseTechnologies,
-          bootcamp,
-          behance,
-          onCancel: () => {
-            modal.hide();
-          },
-        });
-      }
-  };
-
-  const projectTypeHandle = () => {
-    let str = "";
-    projectTypes?.forEach((e, index) => {
-      if (index > 0) {
-        str += " & " + e.projectType;
-      } else {
-        str += e.projectType;
-      }
-    });
-    return str;
-  };
 
   return (
     <div
       className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
-      onMouseOver={(e) => {
-        if (!('ontouchstart' in window)) {
-          setOpen(true);
-          bootcamp === 'UIX' && handleMouseEnter();
-        }
-      }}
-      onTouchStart={(e) => {
-        if (!('ontouchstart' in window)) {
-          setOpen(true);
-          bootcamp === 'UIX' && handleMouseEnter();
-        }
-      }}
-      onMouseLeave={() => {
-        setOpen(false);
-        hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave();  
-      }}
-      onTouchEnd={() => {
-        setOpen(false);
-        hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave();  
-      }}
+      onClick={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
     >
-      <div 
-        className={"hiring-card-favorite"} 
-        onClick={(e) => toggleIsFavorite(e)}
-      >
-      </div>
       <div className={`hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
@@ -223,20 +130,45 @@ const UIXHiringCard = ({
       </div>
      
       <div
-        onClick={(e) => handleClick(e, false, "Card")}
         className={`hiring-card-information-main-container ${open && "open"}`}
       >
-        <div className={"hiring-card-information-container"}>
-          <div
-            style={{
-              padding: "0",
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: "1",
-              maxHeight: isMD ? "calc(100% - 143px)" : "calc(100% - 96px)",
-            }}
-          >
+        <div className="hiring-card-information-container-uix">
+          {/* logo */}
+          <div className="hiring-card-logo">
+            <a href="https://sefactory.io/">
+              <img className={"logo"} src={Logo} alt="logo" />
+            </a>
           </div>
+          {/* backround image */}
+          <div className="hiring-card-background">
+            <img src={backgroundImage} alt="cover" />
+          </div>
+
+          {/* video */}
+          <div className="hiring-card-video-container">
+            <video
+              ref={videoRef}
+              className="hiring-card-video"
+              src={videoSource}
+              loop
+            />
+            {showPlayButton && (
+              <div className="hiring-card-video-play-button">
+                <PlayArrowIcon />
+              </div>
+            )}
+          </div>
+          {/* Card footer */}
+          <div className="hiring-card-footer-container">
+
+            <div className="hiring-card-footer">
+              <Stack direction="row">
+                <Typography variant='h5' fontWeight={900} color={theme.palette.uix.main}>UIX </Typography>
+                <Typography variant='h5' fontWeight={900} color={'white'}>01</Typography>
+              </Stack>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
