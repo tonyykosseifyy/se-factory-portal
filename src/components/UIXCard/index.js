@@ -105,17 +105,6 @@ const UIXHiringCard = ({
     };
   };
 
-
-  const isMD = useMediaQuery(theme.breakpoints.down("md"));
-
-
-  const flipCard = useCallback((e) => {
-    hoveredOverLog({ ...analyticsBasicParams() })
-    setOpen(true);
-    e.stopPropagation();
-  },[]) ;
-
-
   return (
     <div className={`flip-card ${open && "open"}`}>
         <button
@@ -124,9 +113,9 @@ const UIXHiringCard = ({
           onBlur={() => setOpen(false)}
       >
         <div className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
-          <div
+          <img
+            src={coverImage}
             className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
-            style={{ backgroundImage: `url(${coverImage})` }}
           />
         </div>
       
