@@ -1,0 +1,13 @@
+.hiring-card-main-container-uix {
+  box-shadow: 2px 2px 7px #BABBBC ;
+  transition: .3s ease-out ;
+}
+
+.hiring-card-main-container-uix:hover {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0px 0px 30px #aaabac;
+}
+
+
+

@@ -142,7 +142,7 @@ const UIXHiringCard = ({
 
   useEffect(() => {
     setIsFavorite(includesFavorite(favoriteBy, user, name));
-  },[favoriteBy, user])
+  },[favoriteBy, user]);
 
   
   const handleClick = (e, skipCheck, pressedOn) => {
