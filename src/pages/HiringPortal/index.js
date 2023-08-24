@@ -321,15 +321,7 @@ const HiringPortal = () => {
 									}}
 								>
 									<div style={{ display: "flex", marginTop: "10px", alignItems:'center' }}>
-										<Typography
-											my={1}
-											mr={isSM ? 1: 2}
-											variant={"h5"}
-											fontSize={isSM ? 14 : 16}
-										>
-											Only Favorites
-										</Typography>
-										<Checkbox
+									<Checkbox
                     sx={{color: 'white'}}
                     color="secondary"
                     size='small'
@@ -339,6 +331,15 @@ const HiringPortal = () => {
 											}
 											inputProps={{ "aria-label": "controlled" }}
 										/>
+										<Typography
+											my={1}
+											mr={isSM ? 1: 2}
+											variant={"h5"}
+											fontSize={isSM ? 14 : 16}
+										>
+											Only Favorites
+										</Typography>
+										
 									</div>
 								</div>
 							</div>
@@ -378,7 +379,6 @@ const HiringPortal = () => {
 							</Stack>
 						</div>
 						}
-						
 					</div>
 				</div>
 				<div onClick={() => setOpenOverlay(-1)} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
