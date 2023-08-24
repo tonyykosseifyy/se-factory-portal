@@ -381,7 +381,7 @@ const HiringPortal = () => {
 						
 					</div>
 				</div>
-				<div className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
+				<div onClick={() => setOpenOverlay(-1)} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
 				
 				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} marginBottom={3}>
 					{ isLoadingUser || isLoadingStudents ? (

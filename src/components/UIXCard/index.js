@@ -47,13 +47,16 @@ const UIXHiringCard = ({
   calendly,
   behance,
   setOpenOverlay,
+  openOverlay,
   avatarImage,
+
 }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { data: user } = hooks.useCurrentUser();
 
   const videoRef = useRef(null);
+  const cardDetailsRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
 
@@ -78,16 +81,14 @@ const UIXHiringCard = ({
 
   const handleClick = () => {
     setOpenOverlay(index);
-    setOpen(true);
   };
   const handleBlur = (e) => {
-    setOpen(false);
     setOpenOverlay(-1);
   };
 
   useEffect(() => {
-    open ? handleMouseEnter() : handleMouseLeave();
-  }, [open]);
+    openOverlay === index ? handleMouseEnter() : handleMouseLeave();
+  }, [openOverlay]);
 
   const analyticsBasicParams = () => {
     return {
@@ -98,14 +99,11 @@ const UIXHiringCard = ({
   };
 
   return (
-    <div
-    className="card"
-    onBlur={(e) => handleBlur(e)}>
-      <div className={`flip-card ${open && "open"}`}>
+    <div className="card" >
+      <div className={`flip-card ${openOverlay === index && "open"}`}>
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
           onClick={() => handleClick()}
-          
         >
           <div
             className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`}
@@ -118,7 +116,7 @@ const UIXHiringCard = ({
 
           <div
             className={`flip-card-back hiring-card-information-main-container ${
-              open && "open"
+              openOverlay === index && "open"
             }`}
           >
             <div className="hiring-card-information-container-uix">
@@ -166,7 +164,7 @@ const UIXHiringCard = ({
           </div>
         </button>
       </div>
-      <div className={`card-details ${open && 'open'} ${isAtRight(index) && 'right'}`}>
+      <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details ${openOverlay === index && 'open'} ${isAtRight(index) && 'right'}`}>
         <div className="card-details-top">
           <Stack direction="row" alignItems="center" gap={2}>
             <div
