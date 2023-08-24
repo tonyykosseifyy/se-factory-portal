@@ -169,28 +169,37 @@
   display: none;
   transition: .25s ease-in-out ;
   opacity: 0 ;
-  animation-name: fadeIn;
-  animation-duration: 0.7s; /* Total duration including the delay */
-  animation-delay: 0.3s;    /* Delay before animation starts */
-  animation-fill-mode: forwards;
+  &.open {
+    animation-name: fadeIn;
+    animation-duration: 0.7s; /* Total duration including the delay */
+    animation-delay: 0.3s;    /* Delay before animation starts */
+    animation-fill-mode: forwards;
+  }
 }
+.card-details.right {
+  left: auto ;
+  right: 100% ;
+  margin-right: 40px;
+  margin-left: 0px ;
+}
+
 @keyframes fadeIn {
   0% {
     display: none;
     opacity: 0;
   }
   30% {
-    display: block;
+    display: flex;
     opacity: 0;
   }
   100% {
-    display: block;
+    display: flex;
     opacity: 1;
   }
 }
 
 .card-details.open {
-  display: block;
+  display: flex;
 }
 
 .card-details-top, .card-details-bottom {
@@ -199,6 +208,14 @@
 }
 .card {
   position: relative;
+  outline: none;
+  border: none ;
+  height: 100%;
+  width: 100%;
+  padding: 0px ;
+  background-color: transparent;
+  text-align: left;
+  
 }
 .card-details .logout_outer {
   padding: 8px 25px;

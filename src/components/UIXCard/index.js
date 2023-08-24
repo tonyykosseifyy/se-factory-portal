@@ -30,6 +30,13 @@ import {
 import { hooks } from "../../api";
 
 
+
+function isAtRight(number) {
+  // Check if the number can be expressed as 2 + 3n
+  return (number - 2) % 3 === 0 && number >= 2;
+}
+
+
 const UIXHiringCard = ({
   index,
   bootcamp,
@@ -59,6 +66,7 @@ const UIXHiringCard = ({
       setIsPlaying(false);
     }
   };
+
   const handleMouseEnter = () => {
     videoRef.current?.play();
   };
@@ -72,7 +80,7 @@ const UIXHiringCard = ({
     setOpenOverlay(index);
     setOpen(true);
   };
-  const handleBlur = () => {
+  const handleBlur = (e) => {
     setOpen(false);
     setOpenOverlay(-1);
   };
@@ -90,12 +98,14 @@ const UIXHiringCard = ({
   };
 
   return (
-    <div className="card">
+    <div
+    className="card"
+    onBlur={(e) => handleBlur(e)}>
       <div className={`flip-card ${open && "open"}`}>
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
           onClick={() => handleClick()}
-          // onBlur={() => handleBlur()}
+          
         >
           <div
             className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`}
@@ -156,7 +166,7 @@ const UIXHiringCard = ({
           </div>
         </button>
       </div>
-      <div className="card-details">
+      <div className={`card-details ${open && 'open'} ${isAtRight(index) && 'right'}`}>
         <div className="card-details-top">
           <Stack direction="row" alignItems="center" gap={2}>
             <div
@@ -189,6 +199,7 @@ const UIXHiringCard = ({
           </div>
           <div className="logout_outer logout_outer-green" 
           onClick={() => {
+            alert('asd')
             window.open(calendly, '_blank');
             interviewBooked({ ...analyticsBasicParams() })
           }}>

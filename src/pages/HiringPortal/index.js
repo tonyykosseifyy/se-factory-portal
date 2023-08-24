@@ -50,7 +50,8 @@ function disableScroll() {
         window.scrollTo(scrollLeft, scrollTop);
     };
 }
-  
+
+
 function enableScroll() {
 		window.onscroll = function() {};
 }
@@ -102,7 +103,7 @@ const HiringPortal = () => {
 	useEffect(() => {
 		openOverlay === -1 ? enableScroll(): disableScroll(); 
 	},[openOverlay]);
-	
+
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
@@ -407,7 +408,7 @@ const HiringPortal = () => {
 							{
                 students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
-									sx={{ zIndex: openOverlay === index ? 100 : 0}}
+										sx={{ zIndex: openOverlay === index ? 100 : 0}}
 										key={`card-${props.id}`}
 										item
 										xs={12}
