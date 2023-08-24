@@ -126,3 +126,27 @@
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+// card details 
+
+.card-details {
+  position: absolute;
+  top: 0;
+  bottom: 0 ;
+  left: 100% ;
+  margin-left: 40px ;
+  color: white ;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 210px;
+}
+.card-details-top, .card-details-bottom {
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  position: relative;
+}

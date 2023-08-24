@@ -101,7 +101,8 @@ const HiringPortal = () => {
 
 	useEffect(() => {
 		openOverlay === -1 ? enableScroll(): disableScroll(); 
-	},[openOverlay])
+	},[openOverlay]);
+	
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
