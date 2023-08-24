@@ -63,7 +63,7 @@
   border-radius: 24px ;
   padding: 38px 25px 32px;
   width: calc(80vw - 62px);
-  z-index: 1000000000;
+  z-index: 1;
   border: 8px solid; 
   position: relative;
   overflow: hidden;
@@ -149,7 +149,7 @@
   }
 }
 .MuiAutocomplete-popper {
-  z-index: 10000000000 !important;
+  z-index: 1 !important;
 }
 
 .hiring-portal-upper-section-filters {

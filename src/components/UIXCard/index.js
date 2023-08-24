@@ -36,6 +36,7 @@ const includesFavorite = ( favoriteBy, user, name ) => {
 };
 
 const UIXHiringCard = ({
+  index,
   bootcamp,
   id,
   name,
@@ -55,6 +56,7 @@ const UIXHiringCard = ({
   dataVisualizationTools, 
   cloudPlatforms, 
   databaseTechnologies,
+  setOpenOverlay
 }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -93,7 +95,15 @@ const UIXHiringCard = ({
       })
     }
   }
-
+  const handleClick = () => {
+    setOpenOverlay(index);
+    setOpen(true)
+  }
+  const handleBlur = () => {
+    setOpen(false);
+    setOpenOverlay(-1); 
+  }
+  
   useEffect(() => {
     open ? handleMouseEnter() : handleMouseLeave() ;
   },[open])
@@ -107,10 +117,11 @@ const UIXHiringCard = ({
 
   return (
     <div className={`flip-card ${open && "open"}`}>
+      
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
-          onClick={() => setOpen(true)}
-          onBlur={() => setOpen(false)}
+          onClick={() => handleClick()}
+          onBlur={() => handleBlur()}
       >
         <div className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
           <img

@@ -41,6 +41,20 @@ export const CustomTextField = styled(TextField)({
   },
 });
 
+function disableScroll() {
+    // Get the current page scroll position
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+  
+    window.onscroll = function() {
+        window.scrollTo(scrollLeft, scrollTop);
+    };
+}
+  
+function enableScroll() {
+		window.onscroll = function() {};
+}
+
 const HiringPortal = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -63,6 +77,7 @@ const HiringPortal = () => {
 
   const { data: students, isLoading: isLoadingStudents, refetch } = hooks.useStudents({ filters });
 
+	const [ openOverlay, setOpenOverlay ] = useState(-1);
   const theme = useTheme();
   
 
@@ -84,6 +99,9 @@ const HiringPortal = () => {
   }}, [ location, bootcamp ]);
 
 
+	useEffect(() => {
+		openOverlay === -1 ? enableScroll(): disableScroll(); 
+	},[openOverlay])
   useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       setBootcamp(queryParams.get('bootcamp')) ;
@@ -361,6 +379,8 @@ const HiringPortal = () => {
 						
 					</div>
 				</div>
+				<div className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
+				
 				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} marginBottom={3}>
 					{ isLoadingUser || isLoadingStudents ? (
 						<Loader SELogo />
@@ -386,10 +406,7 @@ const HiringPortal = () => {
 							{
                 students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
-										style={{
-											marginTop: isSmall && "10px",
-											marginBottom: isSmall && "10px",
-										}}
+									sx={{ zIndex: openOverlay === index ? 100 : 0}}
 										key={`card-${props.id}`}
 										item
 										xs={12}
@@ -398,7 +415,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-                    { bootcamp === 'UIX' ? (<UIXHiringCard key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
+                    { bootcamp === 'UIX' ? (<UIXHiringCard openOverlay={openOverlay} index={index} setOpenOverlay={setOpenOverlay} key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
 									</Grid>
 								))
 							}
