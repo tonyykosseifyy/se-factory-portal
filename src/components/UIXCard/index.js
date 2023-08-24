@@ -26,6 +26,7 @@ import {
   projectPressed,
   liveProjectPressed,
   behancePressed,
+  viewCVLog
 } from "../../logger/analyticsTracking";
 import { hooks } from "../../api";
 
@@ -49,7 +50,6 @@ const UIXHiringCard = ({
   setOpenOverlay,
   openOverlay,
   avatarImage,
-
 }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -183,21 +183,29 @@ const UIXHiringCard = ({
           </Stack>
           <Typography
             mt={2}
-            sx={{ color: "white", fontSize: 14, fontWeight: 300 }}
+            sx={{ color: "white", fontSize: 13, fontWeight: 300 }}
           >
             {aboutMe}
           </Typography>
         </div>
         <div className="card-details-bottom">
-          <div className="logout_outer">
+          <div className="logout_outer" 
+          onClick={() => {
+            window.open(pdf, '_blank');
+            viewCVLog({ ...analyticsBasicParams() })
+          }}>
             <div className="logout_inner">View CV</div>
           </div>
-          <div className="logout_outer">
+          <div className="logout_outer" 
+           onClick={() => {
+            window.open(behance, '_blank');
+            behancePressed({ ...analyticsBasicParams() })
+          }}
+            >
             <div className="logout_inner">View Behance</div>
           </div>
           <div className="logout_outer logout_outer-green" 
           onClick={() => {
-            alert('asd')
             window.open(calendly, '_blank');
             interviewBooked({ ...analyticsBasicParams() })
           }}>

@@ -165,7 +165,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  min-width: 230px;
+  min-width: 220px;
   display: none;
   transition: .25s ease-in-out ;
   opacity: 0 ;
@@ -218,7 +218,8 @@
   
 }
 .card-details .logout_outer {
-  padding: 8px 25px;
+  padding: 7px 27px;
+  width: 220px ;
   background-color: white;
   color: #363738 ;
   border: none ;
