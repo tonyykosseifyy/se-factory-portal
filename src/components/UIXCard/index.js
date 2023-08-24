@@ -14,12 +14,9 @@ import {
   Stack,
 } from "@mui/material";
 import "./styles.scss";
-import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
-import { useModal } from "mui-modal-provider";
-import HiringDialog from "../HiringDialog";
-import SEButton from "../SEButton";
 import videoSource from "../../assets/common/uix_video.mp4";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from '@mui/icons-material/Pause';
 import Logo from "../../assets/core/SEF_logo_text.svg";
 import backgroundImage from "../../assets/common/boxImage.png";
 import {
@@ -30,44 +27,18 @@ import {
   liveProjectPressed,
   behancePressed,
 } from "../../logger/analyticsTracking";
-import { hooks, useMutation } from "../../api";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useAxios } from "../../context/axios";
-import { MUTATION_KEYS } from "../../api/config/keys";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import CustomButton from "../ui-components/CustomButton";
+import { hooks } from "../../api";
 
-const includesFavorite = (favoriteBy, user, name) => {
-  for (let i = 0; i < favoriteBy?.length; i++) {
-    if (favoriteBy[i]?.id === user?.id) {
-      return true;
-    }
-  }
-  return false;
-};
 
 const UIXHiringCard = ({
   index,
   bootcamp,
-  id,
   name,
   aboutMe,
-  title,
-  projectDescription: description,
-  github,
-  youtubeId,
   coverImage,
   pdf,
-  languages,
   calendly,
-  projectURL,
   behance,
-  favoriteBy,
-  projectTypes,
-  dataVisualizationTools,
-  cloudPlatforms,
-  databaseTechnologies,
   setOpenOverlay,
   avatarImage,
 }) => {
@@ -76,41 +47,27 @@ const UIXHiringCard = ({
   const { data: user } = hooks.useCurrentUser();
 
   const videoRef = useRef(null);
-  const [showPlayButton, setShowPlayButton] = useState(false);
 
-  const handleMouseEnter = () => {
-    // pauses all other videos
-    // pauseAllVideos()
+  const [isPlaying, setIsPlaying] = useState(true);
 
-    // plays the video
-    const promise = videoRef.current?.play();
-
-    if (promise !== undefined) {
-      promise
-        .then((_) => {
-          !showPlayButton && setShowPlayButton(true);
-        })
-        .catch((error) => {
-          setShowPlayButton(false);
-        });
+  const togglePlayPause = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
     }
+  };
+  const handleMouseEnter = () => {
+    videoRef.current?.play();
   };
 
   const handleMouseLeave = () => {
-    // pauses the video
-    const promise = videoRef.current?.pause();
-
-    if (promise !== undefined) {
-      promise
-        .then((_) => {
-          // Autoplay started!
-        })
-        .catch((error) => {
-          // Autoplay was prevented.
-          // Show a "Play" button so that user can start playback.
-        });
-    }
+    videoRef.current?.pause();
+    videoRef.current.currentTime = 0;
   };
+
   const handleClick = () => {
     setOpenOverlay(index);
     setOpen(true);
@@ -128,11 +85,6 @@ const UIXHiringCard = ({
     return {
       user,
       graduateProfile: name,
-      languages,
-      projectTypes,
-      dataVisualizationTools,
-      cloudPlatforms,
-      databaseTechnologies,
       bootcamp,
     };
   };
@@ -143,7 +95,7 @@ const UIXHiringCard = ({
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
           onClick={() => handleClick()}
-          onBlur={() => handleBlur()}
+          // onBlur={() => handleBlur()}
         >
           <div
             className={`flip-card-front hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`}
@@ -179,11 +131,9 @@ const UIXHiringCard = ({
                   src={videoSource}
                   loop
                 />
-                {showPlayButton && (
-                  <div className="hiring-card-video-play-button">
-                    <PlayArrowIcon />
-                  </div>
-                )}
+                <div className="hiring-card-video-play-button">
+                  {isPlaying ? <PauseIcon fontSize="large" sx={{color: 'white'}} onClick={() => togglePlayPause()} /> : <PlayArrowIcon fontSize="large" sx={{color: 'white', fontSize:"50px"}} onClick={() => togglePlayPause()} />}
+                </div>
               </div>
               {/* Card footer */}
               <div className="hiring-card-footer-container-uix">
@@ -223,12 +173,27 @@ const UIXHiringCard = ({
               {name}
             </Typography>
           </Stack>
-          <Typography mt={2} sx={{color: 'white', fontSize: 14, fontWeight: 300 }}>
-            I love how simple shapes can have a significant impact on the user's life. I love how simple shapes can have a significant impact on the user's life.
+          <Typography
+            mt={2}
+            sx={{ color: "white", fontSize: 14, fontWeight: 300 }}
+          >
+            {aboutMe}
           </Typography>
         </div>
         <div className="card-details-bottom">
-
+          <div className="logout_outer">
+            <div className="logout_inner">View CV</div>
+          </div>
+          <div className="logout_outer">
+            <div className="logout_inner">View Behance</div>
+          </div>
+          <div className="logout_outer logout_outer-green" 
+          onClick={() => {
+            window.open(calendly, '_blank');
+            interviewBooked({ ...analyticsBasicParams() })
+          }}>
+            <div className="logout_inner">Book Interview</div>
+          </div>
         </div>
       </div>
     </div>
