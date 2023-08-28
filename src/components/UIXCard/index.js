@@ -177,13 +177,13 @@ const UIXHiringCard = ({
                 sx={{ width: 30, height: 30 }}
               />
             </div>
-            <Typography variant={"h5"} fontSize={16} fontWeight={"bold"}>
+            <Typography variant={"h5"} fontSize={16} fontWeight={"900"}>
               {name}
             </Typography>
           </Stack>
           <Typography
             mt={2}
-            sx={{ color: "white", fontSize: 13, fontWeight: 300 }}
+            sx={{ color: "white", fontSize: 13, fontWeight: 400, lineHeight: '22px' }}
           >
             {aboutMe}
           </Typography>

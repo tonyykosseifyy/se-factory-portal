@@ -379,17 +379,8 @@ const HiringPortal = () => {
 							</Stack>
 						</div>
 						}
-					</div>
-				</div>
-				<div onClick={() => setOpenOverlay(-1)} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
-				
-				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} marginBottom={3}>
-					{ isLoadingUser || isLoadingStudents ? (
-						<Loader SELogo />
-					) : (
-						<>
-							<Grid item xs={12} my={2}>
-								<Typography variant={"h5"} fontSize={isSmall ? isSM  ? 14 : 16 : 18 }>
+						<Grid item  xs={12} my={1} mt={4}>
+								<Typography sx={{fontWeight: '400'}} variant={"h6"} fontSize={isSmall ? isSM  ? 12 : 13 : 15 }>
 									Can't find what you're looking for? Some students? might have
 									in-depth knowledge in specific technologies and didn't use
 									them in the final project.
@@ -405,6 +396,15 @@ const HiringPortal = () => {
 									</span>
 								</Typography>
 							</Grid>
+					</div>
+				</div>
+				<div onClick={() => setOpenOverlay(-1)} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
+				
+				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} my={3}>
+					{ isLoadingUser || isLoadingStudents ? (
+						<Loader SELogo />
+					) : (
+						<>
 							{
                 students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
@@ -426,12 +426,12 @@ const HiringPortal = () => {
 				</Grid>
         <Grid container spacing={3} mt={5}>
           <Grid item xs={12}>
-            <Typography variant={isSmall ? "h5" : "h3"} textAlign={"center"}>
+            <Typography sx={{fontWeight: '900'}} variant={isSmall ? "h5" : "h3"} textAlign={"center"}>
               Our Funding Partners
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant={isSmall ? "body1" : "h6"} textAlign={"center"}>
+            <Typography sx={{fontWeight: '400'}} variant={isSmall ? "body1" : "h6"} textAlign={"center"}>
               SE Factory partners have been critical to the success, growth, and
               expansion of our programs.
             </Typography>
