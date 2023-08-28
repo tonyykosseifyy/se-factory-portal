@@ -32,12 +32,6 @@ import { hooks } from "../../api";
 
 
 
-function isAtRight(number) {
-  // Check if the number can be expressed as 2 + 3n
-  return (number - 2) % 3 === 0 && number >= 2;
-}
-
-
 const UIXHiringCard = ({
   index,
   bootcamp,
@@ -52,7 +46,6 @@ const UIXHiringCard = ({
   avatarImage,
   setTransform
 }) => {
-  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { data: user } = hooks.useCurrentUser();
 
