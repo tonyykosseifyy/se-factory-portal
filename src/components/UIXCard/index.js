@@ -50,6 +50,7 @@ const UIXHiringCard = ({
   setOpenOverlay,
   openOverlay,
   avatarImage,
+  setTransform
 }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -57,6 +58,7 @@ const UIXHiringCard = ({
 
   const videoRef = useRef(null);
   const cardDetailsRef = useRef(null);
+  const cardRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
 
@@ -98,8 +100,29 @@ const UIXHiringCard = ({
     };
   };
 
+  // translate to center of screen
+  useEffect(() => {
+    if (openOverlay === index) {
+      translateToCenter();
+    }
+  }, [openOverlay]);
+  
+  const translateToCenter = useCallback(() => {
+    const card = cardRef.current;
+    const cardRect = card.getBoundingClientRect();
+    const cardCenterX = cardRect.left + cardRect.width / 2;
+    const cardCenterY = cardRect.top + cardRect.height / 2;
+    const translateX = window.innerWidth / 2 - cardCenterX;
+    const translateY = window.innerHeight / 2 - cardCenterY;
+    setTransform({
+      x: translateX,
+      y: translateY,
+    })
+  }, [cardRef]);
+
+
   return (
-    <div className="card" >
+    <div ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
       <div className={`flip-card ${openOverlay === index && "open"}`}>
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
@@ -164,7 +187,7 @@ const UIXHiringCard = ({
           </div>
         </button>
       </div>
-      <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details ${openOverlay === index && 'open'} ${isAtRight(index) && 'right'}`}>
+      <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details ${openOverlay === index && 'open'}`}>
         <div className="card-details-top">
           <Stack direction="row" alignItems="center" gap={2}>
             <div

@@ -131,7 +131,7 @@
   &.open {
     transform: scale(1);
     opacity: 1;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s ease-out;
   }
 }
 
@@ -183,6 +183,7 @@
     animation-duration: 0.7s; /* Total duration including the delay */
     animation-delay: 0.3s;    /* Delay before animation starts */
     animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
   }
 }
 .card-details.right {
@@ -225,7 +226,9 @@
   background-color: transparent;
   text-align: left;
   aspect-ratio: 0.7;
-  
+
+  // go to center 
+  transition: .3s ease-out ;
 }
 .card-details .logout_outer {
   padding: 7px 27px;

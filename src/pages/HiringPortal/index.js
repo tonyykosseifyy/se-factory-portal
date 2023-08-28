@@ -77,9 +77,11 @@ const HiringPortal = () => {
   const [ filters, setFilters ] = useState({ bootcamp });
 
   const { data: students, isLoading: isLoadingStudents, refetch } = hooks.useStudents({ filters });
-
+	
+	// uix animations
 	const [ openOverlay, setOpenOverlay ] = useState(-1);
-  const theme = useTheme();
+	const [ transform, setTransform ] = useState({ x: 0, y: 0 });
+	const theme = useTheme();
   
 
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
@@ -135,7 +137,10 @@ const HiringPortal = () => {
   useEffect(() => {
     portalAccessed({ user });
   }, [user]);
+	
 
+	
+	console.log(transform, openOverlay);
   return (
     <div className={"hiring-portal-wrapper"}>
       <div className={"hiring-portal-container"}>
@@ -398,7 +403,7 @@ const HiringPortal = () => {
 							</Grid>
 					</div>
 				</div>
-				<div onClick={() => setOpenOverlay(-1)} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
+				<div onClick={() => {setOpenOverlay(-1); setTransform({x:0, y:0})}} className={`card-overlay ${openOverlay !== -1 && 'open'}`} />
 				
 				<Grid container spacing={isSM ? 0 : isSmall ? 2 : 5} my={3}>
 					{ isLoadingUser || isLoadingStudents ? (
@@ -408,7 +413,7 @@ const HiringPortal = () => {
 							{
                 students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
-										sx={{ zIndex: openOverlay === index ? 100 : 0}}
+										sx={{ transition:'.3s ease-out',postition: 'relative', zIndex: openOverlay === index ? 100 : 0, transform: openOverlay === index ? `translate(${transform.x}px, ${transform.y}px)`: 'translate(0px,0px)'}}
 										key={`card-${props.id}`}
 										item
 										xs={12}
@@ -417,7 +422,7 @@ const HiringPortal = () => {
 										lg={4}
 										mt={2}
 									>
-                    { bootcamp === 'UIX' ? (<UIXHiringCard openOverlay={openOverlay} index={index} setOpenOverlay={setOpenOverlay} key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
+                    { bootcamp === 'UIX' ? (<UIXHiringCard setTransform={setTransform} openOverlay={openOverlay} index={index} setOpenOverlay={setOpenOverlay} key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
 									</Grid>
 								))
 							}
