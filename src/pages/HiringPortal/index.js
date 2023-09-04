@@ -43,12 +43,12 @@ export const CustomTextField = styled(TextField)({
 
 function disableScroll() {
     // Get the current page scroll position
-    // const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    // const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
   
-    // window.onscroll = function() {
-    //     window.scrollTo(scrollLeft, scrollTop);
-    // };
+    window.onscroll = function() {
+        window.scrollTo(scrollLeft, scrollTop);
+    };
 }
 
 
