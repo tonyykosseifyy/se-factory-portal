@@ -67,6 +67,8 @@
   border-radius: 750px;
   border-radius: 750px;
   -webkit-border-radius: 750px;
+  -webkit-transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
 
   & video {
     object-fit: cover;
