@@ -73,6 +73,7 @@ const UIXHiringCard = ({
   const handleMouseLeave = () => {
     videoRef.current?.pause();
     videoRef.current.currentTime = 0;
+    setIsPlaying(true);
   };
 
   const handleClick = () => {
