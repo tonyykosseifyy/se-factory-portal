@@ -9,12 +9,12 @@ import { useLocation, useHistory } from 'react-router-dom';
 const getBootcamp = (queryParams, history, location) => {
 	const bootcamp = queryParams.get('bootcamp');
 	if (!bootcamp || !['FSW', 'FSD', 'UIX'].includes(bootcamp)) {
-		queryParams.set('bootcamp', 'FSW');
+		queryParams.set('bootcamp', 'UIX');
     history.push({
       pathname: location.pathname,
       search: `?${queryParams.toString()}`,
     });
-		return 'FSW';
+		return 'UIX';
 	}
 	return bootcamp;
 };

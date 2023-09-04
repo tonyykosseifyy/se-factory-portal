@@ -411,7 +411,7 @@ const HiringPortal = () => {
 					) : (
 						<>
 							{
-                students && Array.isArray(students) && students.map((props, index) => (
+								bootcamp === 'UIX' ? students && Array.isArray(students) && students.map((props, index) => (
 									<Grid
 										sx={{ transition:'.3s ease-out',postition: 'relative', zIndex: openOverlay === index ? 100 : 0, transform: openOverlay === index ? `translate(${transform.x}px, ${transform.y}px)`: 'translate(0px,0px)'}}
 										key={`card-${props.id}`}
@@ -425,6 +425,20 @@ const HiringPortal = () => {
                     { bootcamp === 'UIX' ? (<UIXHiringCard setTransform={setTransform} openOverlay={openOverlay} index={index} setOpenOverlay={setOpenOverlay} key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
 									</Grid>
 								))
+							: 
+								<Grid 
+								item
+								xs={12}
+								sm={12}
+								md={12}
+								lg={12}
+								mt={4}
+								mb={20}
+								sx={{textAlign: 'center'}}
+								>
+									<Typography sx={{fontWeight: '900'}} variant={isSmall ? "h5" : "h4"}>{bootcamp} students have not yet graduated and are currently unavailable</Typography>
+									<Typography sx={{fontWeight: '400'}} mt={2} variant={isSmall ? "body2" : "h6"}>We appreciate your interest, and please check back in the future for updates</Typography>
+								</Grid>
 							}
 						</>
 					)}
