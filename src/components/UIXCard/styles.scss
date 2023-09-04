@@ -69,6 +69,7 @@
     transform: scale(1.8) ;
     -webkit-transform: scale(1.8) ;
     background-color: black ;
+    border-radius: 50%;
   }
 }
 
@@ -101,10 +102,6 @@
   bottom: 0 ;
   display: grid;
   place-items: center;
-  
-  @media screen and (max-width: 1200px) {
-    opacity: 1;
-  }
 }
 .hiring-card-video-container:hover .hiring-card-video-play-button {
   opacity: 1;
