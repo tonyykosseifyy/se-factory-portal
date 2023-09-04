@@ -44,7 +44,8 @@ const UIXHiringCard = ({
   setOpenOverlay,
   openOverlay,
   avatarImage,
-  setTransform
+  setTransform,
+  youtubeId
 }) => {
   const theme = useTheme();
   const { data: user } = hooks.useCurrentUser();
@@ -113,7 +114,6 @@ const UIXHiringCard = ({
     })
   }, [cardRef]);
 
-
   return (
     <div ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
       <div className={`flip-card ${openOverlay === index && "open"}`}>
@@ -152,7 +152,7 @@ const UIXHiringCard = ({
                 <video
                   ref={videoRef}
                   className="hiring-card-video"
-                  src={videoSource}
+                  src={`https://drive.google.com/uc?export=download&id=${youtubeId}`}
                   loop
                 />
                 <div className="hiring-card-video-play-button">
