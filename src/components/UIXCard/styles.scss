@@ -68,6 +68,7 @@
     height: 100%;
     transform: scale(1.8) ;
     -webkit-transform: scale(1.8) ;
+    background-color: black ;
   }
 }
 
@@ -100,6 +101,10 @@
   bottom: 0 ;
   display: grid;
   place-items: center;
+  
+  @media screen and (max-width: 1200px) {
+    opacity: 1;
+  }
 }
 .hiring-card-video-container:hover .hiring-card-video-play-button {
   opacity: 1;
@@ -166,9 +171,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-
 }
-
 
 .flip-card-back {
   -webkit-transform: rotateY(180deg) translateZ(1px);
