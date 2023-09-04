@@ -57,10 +57,15 @@
 .hiring-card-video-container {
   max-width: 190px ;
   aspect-ratio: 1 ;
-  border-radius: 50% ;
   overflow: hidden ;
   position: relative ;
   margin: 0 auto ;
+  
+  // border radius 
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -khtml-border-radius: 50%;
 
   & video {
     object-fit: cover;
@@ -69,7 +74,11 @@
     transform: scale(1.8) ;
     -webkit-transform: scale(1.8) ;
     background-color: black ;
+    // border radius
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
+    -khtml-border-radius: 50%;
   }
 }
 
