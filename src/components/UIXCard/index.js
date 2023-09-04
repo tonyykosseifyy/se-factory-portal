@@ -155,6 +155,8 @@ const UIXHiringCard = ({
                   className="hiring-card-video"
                   src={`https://drive.google.com/uc?export=download&id=${youtubeId}`}
                   loop
+                  playsInline
+                  webkit-playsinline
                 />
                 <div className="hiring-card-video-play-button">
                   {isPlaying ? <PauseIcon fontSize="large" sx={{color: 'white'}} onClick={() => togglePlayPause()} /> : <PlayArrowIcon fontSize="large" sx={{color: 'white', fontSize:"50px"}} onClick={() => togglePlayPause()} />}
