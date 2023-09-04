@@ -62,10 +62,13 @@
   margin: 0 auto ;
   
   // border radius 
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  -khtml-border-radius: 50%;
+  -webkit-border-radius: 750px;
+  -moz-border-radius: 750px;
+  border-radius: 750px;
+  border-radius: 750px;
+  -webkit-border-radius: 750px;
+  -webkit-transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black)
 
   & video {
     object-fit: cover;
@@ -75,10 +78,10 @@
     -webkit-transform: scale(1.8) ;
     background-color: black ;
     // border radius
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    -khtml-border-radius: 50%;
+    -webkit-border-radius: 750px;
+    -moz-border-radius: 750px;
+    border-radius: 750px;
+    -khtml-border-radius: 750px;
   }
 }
 
