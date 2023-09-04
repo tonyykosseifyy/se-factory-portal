@@ -233,15 +233,16 @@
 
 .card-details.open {
   display: flex;
+  
+  @media screen and (max-width: 768px) {
+    display: none ;
+  }
 }
 
 .card-details-top, .card-details-bottom {
   display: flex;
   flex-direction: column;
   
-  @media screen and (max-width: 768px) {
-    display: none ;
-  }
 }
 .card {
   position: relative;
