@@ -150,12 +150,24 @@ const UIXHiringCard = ({
 
               {/* video */}
               <div className="hiring-card-video-container">
-                <video
+                {/* <video
                   ref={videoRef}
                   className="hiring-card-video"
                   src={`https://drive.google.com/uc?export=download&id=${youtubeId}`}
                   loop
+                /> */}
+                <video ref={videoRef} className="hiring-card-video" loop>
+                <source
+                  src={`https://drive.google.com/uc?export=download&id=${youtubeId}&format=mp4`}
+                  type="video/mp4"
                 />
+                <source
+                  src={`https://drive.google.com/uc?export=download&id=${youtubeId}&format=webm`}
+                  type="video/webm"
+                />
+                {/* Add more source elements for other formats if needed */}
+                Your browser does not support the video tag.
+              </video>
                 <div className="hiring-card-video-play-button">
                   {isPlaying ? <PauseIcon fontSize="large" sx={{color: 'white'}} onClick={() => togglePlayPause()} /> : <PlayArrowIcon fontSize="large" sx={{color: 'white', fontSize:"50px"}} onClick={() => togglePlayPause()} />}
                 </div>
