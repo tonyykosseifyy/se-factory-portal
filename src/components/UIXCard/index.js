@@ -150,12 +150,12 @@ const UIXHiringCard = ({
 
               {/* video */}
               <div className="hiring-card-video-container">
-                {/* <video
+                <video
                   ref={videoRef}
                   className="hiring-card-video"
-                  src={`https://drive.google.com/uc?export=download&id=${youtubeId}`}
+                  src={videoSource}
                   loop
-                /> */}
+                />
                 {/* <video ref={videoRef} className="hiring-card-video" loop>
                 <source
                   src={`https://drive.google.com/uc?export=download&id=${youtubeId}&format=mp4`}
