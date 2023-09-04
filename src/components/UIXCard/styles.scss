@@ -194,7 +194,7 @@
   opacity: 0 ;
   &.open {
     animation-name: fadeIn;
-    animation-duration: 0.7s; /* Total duration including the delay */
+    animation-duration: 7.7s; /* Total duration including the delay */
     animation-delay: 0.3s;    /* Delay before animation starts */
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
@@ -202,7 +202,7 @@
 }
 .card-details:not(.open) {
   animation-name: fadeOut;
-  animation-duration: 30s; /* Total duration including the delay */
+  animation-duration: 3s; /* Total duration including the delay */
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
