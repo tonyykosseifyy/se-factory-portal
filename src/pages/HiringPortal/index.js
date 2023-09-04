@@ -432,8 +432,8 @@ const HiringPortal = () => {
 								sm={12}
 								md={12}
 								lg={12}
-								mt={4}
-								mb={20}
+								mt={5}
+								mb={7}
 								sx={{textAlign: 'center'}}
 								>
 									<Typography sx={{fontWeight: '900'}} variant={isSmall ? "h5" : "h4"}>{bootcamp} students have not yet graduated and are currently unavailable</Typography>
