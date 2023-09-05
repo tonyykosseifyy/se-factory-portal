@@ -14,29 +14,22 @@ import {
   Stack,
 } from "@mui/material";
 import "./styles.scss";
-import videoSource from "../../assets/common/uix_video.mp4";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from '@mui/icons-material/Pause';
 import Logo from "../../assets/core/SEF_logo_text.svg";
 import backgroundImage from "../../assets/common/boxImage.png";
 import {
-  githubPressed,
-  hoveredOverLog,
   interviewBooked,
-  projectPressed,
-  liveProjectPressed,
   behancePressed,
   viewCVLog
 } from "../../logger/analyticsTracking";
 import { hooks } from "../../api";
 
 
-
 const UIXHiringCard = ({
   index,
   bootcamp,
   name,
-  aboutMe,
   coverImage,
   pdf,
   calendly,
@@ -200,12 +193,12 @@ const UIXHiringCard = ({
               {name}
             </Typography>
           </Stack>
-          <Typography
+          {/* <Typography
             mt={2}
             sx={{ color: "white", fontSize: 13, fontWeight: 400, lineHeight: '22px' }}
           >
             {aboutMe}
-          </Typography>
+          </Typography> */}
         </div>
         <div className="card-details-bottom">
           <div className="logout_outer" 
