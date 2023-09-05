@@ -281,6 +281,10 @@
 }
 .card-details-bottom {
   top: calc(100% + 20px);
+
+  @media screen and (max-width: 320px) {
+    top: calc(100% + 40px);
+  }
 }
 .card {
   position: relative;

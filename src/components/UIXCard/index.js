@@ -109,8 +109,12 @@ const UIXHiringCard = ({
     const translateX = window.innerWidth / 2 - cardCenterX - (cardRect.width * 0.05);
     const translateY = window.innerHeight / 2 - cardCenterY - (cardRect.height * 0.05);
 
+    // if mobile phone add 10px to the translateX
+    let addon = 10 ;
+    if (window.innerWidth < 764) { addon = 20 ;};
+    console.log(addon);
     setTransform({
-      x: translateX + 15,
+      x: translateX + addon,
       y: translateY,
     })
   }, [cardRef]);
