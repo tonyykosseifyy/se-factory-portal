@@ -196,17 +196,20 @@
 
 .card-details {
   position: absolute;
-  top: 0;
-  bottom: 0 ;
-  left: 100% ;
-  margin-left: 40px ;
+  // top: 0;
+  // bottom: 0 ;
+  // left: 100% ;
+  // margin-left: 40px ;
   color: white ;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  min-width: 320px;
+  // min-width: 320px;
+  left: 0;
+  right: 0 ;
+  width: 100% ;
   display: none;
   transition: .25s ease-in-out ;
   opacity: 0 ;
@@ -219,10 +222,10 @@
   }
 }
 .card-details:not(.open) {
-  animation-name: fadeOut;
-  animation-duration: 3s; /* Total duration including the delay */
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
+  // animation-name: fadeOut;
+  // animation-duration: 3s; /* Total duration including the delay */
+  // animation-fill-mode: forwards;
+  // animation-timing-function: ease-out;
 }
 .card-details.right {
   left: auto ;
@@ -274,6 +277,12 @@
   width: 100% ;
 }
 
+.card-details-top {
+  top: -50px ;
+}
+.card-details-bottom {
+  top: calc(100% + 20px);
+}
 .card {
   position: relative;
   outline: none;
@@ -284,9 +293,14 @@
   background-color: transparent;
   text-align: left;
   aspect-ratio: 0.7;
+  
+  
 
   // go to center 
   transition: .3s ease-out ;
+  &.open {
+    transform: scale(0.9);
+  }
 }
 .card-details .logout_outer {
   padding: 7px 0px;

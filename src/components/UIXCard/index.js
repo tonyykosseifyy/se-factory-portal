@@ -101,8 +101,12 @@ const UIXHiringCard = ({
     const cardRect = card.getBoundingClientRect();
     const cardCenterX = cardRect.left + cardRect.width / 2;
     const cardCenterY = cardRect.top + cardRect.height / 2;
-    const translateX = window.innerWidth / 2 - cardCenterX;
-    const translateY = window.innerHeight / 2 - cardCenterY;
+    // const translateX = window.innerWidth / 2 - cardCenterX;
+    // const translateY = window.innerHeight / 2 - cardCenterY;
+    // with a scale of 0.9 
+    const translateX = window.innerWidth / 2 - cardCenterX - (cardRect.width * 0.05);
+    const translateY = window.innerHeight / 2 - cardCenterY - (cardRect.height * 0.05);
+
     setTransform({
       x: translateX,
       y: translateY,
@@ -179,8 +183,7 @@ const UIXHiringCard = ({
           </div>
         </button>
       </div>
-      <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details ${openOverlay === index && 'open'}`}>
-        <div className="card-details-top">
+        <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details card-details-top ${openOverlay === index && 'open'}`}>
           <Stack direction="row" alignItems="center" gap={2}>
             <div
               className="avatar-border"
@@ -203,7 +206,7 @@ const UIXHiringCard = ({
             {aboutMe}
           </Typography> */}
         </div>
-        <div className="card-details-bottom">
+        <div ref={cardDetailsRef} onClick={(e) => e.stopPropagation()} className={`card-details card-details-bottom ${openOverlay === index && 'open'}`} >
           <Stack direction='row' fullWith sx={{width: '100%'}} columnGap={2}> 
             <div className="logout_outer logout_outer_special" 
             onClick={() => {
@@ -228,7 +231,6 @@ const UIXHiringCard = ({
           }}>
             <div className="logout_inner">Book Interview</div>
           </div>
-        </div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const hiringPortalData = {
   },
   UIX: {
     title: 'UIX',
-    below_title: 'find UIX graduates, check their final projects, resumes, behance, portfolios and more...',
+    below_title: 'find UIX graduates, check their final projects, resumes, behance, portfolios, and more...',
   },
   FSD: {
     title: 'FSD',
