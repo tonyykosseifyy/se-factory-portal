@@ -386,9 +386,7 @@ const HiringPortal = () => {
 						}
 						<Grid item  xs={12} my={1} mt={4}>
 								<Typography sx={{fontWeight: '400'}} variant={"h6"} fontSize={isSmall ? isSM  ? 12 : 13 : 15 }>
-									Can't find what you're looking for? Some students? might have
-									in-depth knowledge in specific technologies and didn't use
-									them in the final project.
+									If you need any specific recommendations, please feel free to reach out to hire@sefactory.io.
 									<span style={{ fontWeight: "700" }}>
 										{" "}
 										Please reach out!{" "}
