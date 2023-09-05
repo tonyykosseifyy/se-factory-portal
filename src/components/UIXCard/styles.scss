@@ -200,7 +200,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  min-width: 220px;
+  min-width: 300px;
   display: none;
   transition: .25s ease-in-out ;
   opacity: 0 ;
@@ -265,8 +265,9 @@
 .card-details-top, .card-details-bottom {
   display: flex;
   flex-direction: column;
-  
+  width: 100% ;
 }
+
 .card {
   position: relative;
   outline: none;
@@ -282,14 +283,19 @@
   transition: .3s ease-out ;
 }
 .card-details .logout_outer {
-  padding: 7px 27px;
-  width: 220px ;
+  padding: 7px 0px;
+  width: 100% ;
   background-color: white;
   color: #363738 ;
   border: none ;
   margin-top: 10px ;
   transition: .25s ease-in-out ;
   justify-content: center;
+  font-size: 15px ;
+}
+.logout_outer_special {
+  width: 100% !important;
+  padding: 7px 0px !important;
 }
 .card-details .logout_outer-green {
   background-color: #28EEA7;

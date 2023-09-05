@@ -201,21 +201,23 @@ const UIXHiringCard = ({
           </Typography> */}
         </div>
         <div className="card-details-bottom">
-          <div className="logout_outer" 
-          onClick={() => {
-            window.open(pdf, '_blank');
-            viewCVLog({ ...analyticsBasicParams() })
-          }}>
-            <div className="logout_inner">View CV</div>
-          </div>
-          <div className="logout_outer" 
-           onClick={() => {
-            window.open(behance, '_blank');
-            behancePressed({ ...analyticsBasicParams() })
-          }}
-            >
-            <div className="logout_inner">View Behance</div>
-          </div>
+          <Stack direction='row' fullWith sx={{width: '100%'}} columnGap={2}> 
+            <div className="logout_outer logout_outer_special" 
+            onClick={() => {
+              window.open(pdf, '_blank');
+              viewCVLog({ ...analyticsBasicParams() })
+            }}>
+              <div className="logout_inner">View CV</div>
+            </div>
+            <div className="logout_outer logout_outer_special" 
+            onClick={() => {
+              window.open(behance, '_blank');
+              behancePressed({ ...analyticsBasicParams() })
+            }}
+              >
+              <div className="logout_inner">View Behance</div>
+            </div>
+          </Stack>
           <div className="logout_outer logout_outer-green" 
           onClick={() => {
             window.open(calendly, '_blank');
