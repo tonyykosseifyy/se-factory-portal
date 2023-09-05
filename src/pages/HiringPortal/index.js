@@ -125,7 +125,6 @@ const HiringPortal = () => {
     });
   };
 
-
   useEffect(() => {
     reset();
     setFilters({ bootcamp, favorite: false });
@@ -137,8 +136,6 @@ const HiringPortal = () => {
   useEffect(() => {
     portalAccessed({ user });
   }, [user]);
-	
-
 	
 	console.log(transform, openOverlay);
   return (

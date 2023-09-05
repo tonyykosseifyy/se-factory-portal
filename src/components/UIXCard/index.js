@@ -104,11 +104,13 @@ const UIXHiringCard = ({
     // const translateX = window.innerWidth / 2 - cardCenterX;
     // const translateY = window.innerHeight / 2 - cardCenterY;
     // with a scale of 0.9 
+    // it is a bit more to the left, i want it to be centered
+
     const translateX = window.innerWidth / 2 - cardCenterX - (cardRect.width * 0.05);
     const translateY = window.innerHeight / 2 - cardCenterY - (cardRect.height * 0.05);
 
     setTransform({
-      x: translateX,
+      x: translateX + 15,
       y: translateY,
     })
   }, [cardRef]);
