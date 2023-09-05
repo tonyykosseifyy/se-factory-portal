@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   place-content: space-between;
-  padding: 20px;
+  // padding: 20px;
   height: 100%;
 }
 .hiring-card-information-container-uix img.logo {
@@ -55,11 +55,18 @@
   place-items: center;
 }
 .hiring-card-video-container {
-  max-width: 190px ;
+  width: 65%;
   aspect-ratio: 1 ;
   overflow: hidden ;
   position: relative ;
   margin: 0 auto ;
+
+  position: absolute;
+  top: 50% ;
+  left: 50% ;
+  transform: translate(-50%,-50%) translateZ(0);
+  -webkit-transform: translate(-50%,-50%) translateZ(0);
+  z-index: 100 ;
   
   // border radius 
   -webkit-border-radius: 750px;
@@ -67,7 +74,6 @@
   border-radius: 750px;
   border-radius: 750px;
   -webkit-border-radius: 750px;
-  -webkit-transform: translateZ(0);
   -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
 
   & video {
@@ -311,4 +317,15 @@
 .card-details .logout_inner {
   font-size: 17px ;
   text-transform: none ;
+}
+
+.card-special-back {
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0 ;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }

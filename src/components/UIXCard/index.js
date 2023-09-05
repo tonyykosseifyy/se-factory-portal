@@ -38,7 +38,8 @@ const UIXHiringCard = ({
   openOverlay,
   avatarImage,
   setTransform,
-  youtubeId
+  youtubeId,
+  backImage
 }) => {
   const theme = useTheme();
   const { data: user } = hooks.useCurrentUser();
@@ -131,15 +132,17 @@ const UIXHiringCard = ({
           >
             <div className="hiring-card-information-container-uix">
               {/* logo */}
-              <div className="hiring-card-logo">
+              {/* <div className="hiring-card-logo">
                 <a href="https://sefactory.io/">
                   <img className={"logo"} src={Logo} alt="logo" />
                 </a>
-              </div>
+              </div> */}
               {/* backround image */}
-              <div className="hiring-card-background">
+              {/* <div className="hiring-card-background">
                 <img src={backgroundImage} alt="cover" />
-              </div>
+              </div>  */}
+              <img className='card-special-back' src={`https://drive.google.com/uc?id=${backImage}`} alt="Image Description" />
+
 
               {/* video */}
               <div className="hiring-card-video-container">
@@ -156,7 +159,7 @@ const UIXHiringCard = ({
                 </div>
               </div>
               {/* Card footer */}
-              <div className="hiring-card-footer-container-uix">
+              {/* <div className="hiring-card-footer-container-uix">
                 <div className="hiring-card-footer-uix">
                   <Stack direction="row">
                     <Typography
@@ -171,7 +174,7 @@ const UIXHiringCard = ({
                     </Typography>
                   </Stack>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </button>

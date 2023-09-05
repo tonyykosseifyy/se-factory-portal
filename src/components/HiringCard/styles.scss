@@ -89,6 +89,7 @@
   border-radius: 10px;
   pointer-events: none;
   z-index: 4;
+  overflow: hidden;
 
   &.open {
     opacity: 1 !important;
