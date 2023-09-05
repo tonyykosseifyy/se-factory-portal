@@ -387,16 +387,6 @@ const HiringPortal = () => {
 						<Grid item  xs={12} my={1} mt={4}>
 								<Typography sx={{fontWeight: '400'}} variant={"h6"} fontSize={isSmall ? isSM  ? 12 : 13 : 15 }>
 									If you need any specific recommendations, please feel free to reach out to hire@sefactory.io.
-									<span style={{ fontWeight: "700" }}>
-										{" "}
-										Please reach out!{" "}
-										<a
-											href="mailto: hire@sefactory.io"
-											style={{ color: `unset` }}
-										>
-											hire@sefactory.io
-										</a>
-									</span>
 								</Typography>
 							</Grid>
 					</div>
