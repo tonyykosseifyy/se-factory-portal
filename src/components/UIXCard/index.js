@@ -123,6 +123,7 @@ const UIXHiringCard = ({
     <div  
     onMouseLeave={() => {
       hoveredOverLog({ ...analyticsBasicParams() });
+      
     }}
     ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
       <div className={`flip-card ${openOverlay === index && "open"}`}>
