@@ -120,7 +120,11 @@ const UIXHiringCard = ({
   }, [cardRef]);
 
   return (
-    <div ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
+    <div  
+    onMouseLeave={() => {
+      hoveredOverLog({ ...analyticsBasicParams() });
+    }}
+    ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
       <div className={`flip-card ${openOverlay === index && "open"}`}>
         <button
           className={`flip-card-inner hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
