@@ -21,7 +21,8 @@ import backgroundImage from "../../assets/common/boxImage.png";
 import {
   interviewBooked,
   behancePressed,
-  viewCVLog
+  viewCVLog,
+  hoveredOverLog
 } from "../../logger/analyticsTracking";
 import { hooks } from "../../api";
 
@@ -123,7 +124,6 @@ const UIXHiringCard = ({
     <div  
     onMouseLeave={() => {
       hoveredOverLog({ ...analyticsBasicParams() });
-      
     }}
     ref={cardRef} className={`card ${openOverlay === index && "open"}`} >
       <div className={`flip-card ${openOverlay === index && "open"}`}>
