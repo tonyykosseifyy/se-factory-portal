@@ -5,15 +5,12 @@ import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
-import videoSource from '../../assets/common/uix_video.mp4' ;
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
   githubPressed,
   hoveredOverLog,
   interviewBooked,
   projectPressed,
   liveProjectPressed,
-  behancePressed
 } from "../../logger/analyticsTracking";
 import { hooks, useMutation } from "../../api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -37,7 +34,6 @@ const HiringCard = ({
   bootcamp,
   id,
   name,
-  aboutMe,
   title,
   projectDescription: description,
   github,
@@ -46,7 +42,6 @@ const HiringCard = ({
   pdf,
   calendly,
   projectURL,
-  behance,
   favoriteBy,
   avatarImage,
   projectTypes
@@ -61,10 +56,6 @@ const HiringCard = ({
 
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
 
-  const videoRef = useRef(null);
-  const [ showPlayButton, setShowPlayButton ] = useState(false);
-
-
   const analyticsBasicParams = () => {
     return {
       user, 
@@ -78,8 +69,6 @@ const HiringCard = ({
         return "primary";
       case 'FSD':
         return 'fsd';
-      case 'UIX':
-        return 'uix';
       default:
         return 'primary';
   }}, [ bootcamp ]);
@@ -87,7 +76,6 @@ const HiringCard = ({
   const isSM = useMediaQuery(theme.breakpoints.down("sm"));
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
   const { showModal } = useModal();
-
 
   const flipCard = useCallback((e) => {
     hoveredOverLog({ ...analyticsBasicParams() })
@@ -124,7 +112,6 @@ const HiringCard = ({
           pdf,
           projectURL,
           bootcamp,
-          behance,
           onCancel: () => {
             modal.hide();
           },
@@ -215,28 +202,7 @@ const HiringCard = ({
               maxHeight: isMD ? "calc(100% - 143px)" : "calc(100% - 96px)",
             }}
           >
-            { bootcamp === 'UIX' && 
-            <div className="youtube-video">
-              <video
-                ref={videoRef}
-                width="100%"
-                height="auto"
-                controls={false}
-                playsInline
-              >
-                <source src={videoSource} type="video/mp4" />
-                  Your browser does not support video 
-                </video>
-                {!showPlayButton && <div className="play-button-container">
-                  <PlayArrowIcon 
-                    onClick={(e) => handleClick(e, false, "Play UIX video")} 
-                    sx={{ fontSize: '60px', color: 'white' }}
-                  />
-                </div>}
-            </div>
-            }
               
-            {bootcamp !== 'UIX' ?  
             <Typography
               variant={"h6"}
               fontWeight={"bolder"}
@@ -244,20 +210,20 @@ const HiringCard = ({
               fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
-            </Typography> : null }
+            </Typography>
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
               fontSize={isSM ? 18: 24}
             >
-              { bootcamp === 'UIX' ? name : title }
+              { title }
             </Typography>
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
             <div
               className="hiring-card-project-description"
             >
-              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? aboutMe: description}</Typography>
+              <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{description}</Typography>
             </div>
           </div>
             <>
@@ -298,9 +264,7 @@ const HiringCard = ({
                     Book Interview
                   </SEButton>
                 </Grid>
-                { bootcamp != 'UIX' ?
                 
-                (<>
                   <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton
                       variant={"contained"}
@@ -341,28 +305,6 @@ const HiringCard = ({
                       Live Project
                     </SEButton>
                   </Grid>
-                </>)
-                :
-                (<Grid item xs={12} sm={12} md={12} lg={12}>
-                  <SEButton
-                      variant={"contained"}
-                      color='secondary'
-                      sx={{
-                        backgroundColor: SE_GREY,
-                        color: "white",
-                      }}
-                      fullWidth
-                      href={behance}
-                      target="_blank"
-                      onClick={() =>
-                        behancePressed({ ...analyticsBasicParams() })
-                      }
-                      disableElevation
-                    >
-                      View Behance
-                    </SEButton>
-                </Grid>)
-                }
               </Grid>
             </>
         </div>
