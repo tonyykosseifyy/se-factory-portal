@@ -44,16 +44,12 @@ const HiringCard = ({
   youtubeId,
   coverImage,
   pdf,
-  languages,
   calendly,
   projectURL,
   behance,
   favoriteBy,
-  projectTypes,
-  dataVisualizationTools, 
-  cloudPlatforms, 
-  databaseTechnologies,
-  avatarImage
+  avatarImage,
+  projectTypes
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
@@ -69,44 +65,11 @@ const HiringCard = ({
   const [ showPlayButton, setShowPlayButton ] = useState(false);
 
 
-  const handleMouseEnter = () => {
-    // pauses all other videos
-    // pauseAllVideos()
-
-    // plays the video
-    const promise = videoRef.current?.play();
-    
-    if (promise !== undefined) {
-      promise.then(_ => {
-        !showPlayButton && setShowPlayButton(true);
-      }).catch(error => {
-        setShowPlayButton(false);
-      })
-    }
-  }
-
-  const handleMouseLeave = () => {
-    // pauses the video
-    const promise = videoRef.current?.pause();
-    
-    if (promise !== undefined) {
-      promise.then(_ => {
-        // Autoplay started!
-      }).catch(error => {
-        // Autoplay was prevented.
-        // Show a "Play" button so that user can start playback.
-      })
-    }
-  }
-
-  useEffect(() => {
-    open ? handleMouseEnter() : handleMouseLeave() ;
-  },[open])
-
   const analyticsBasicParams = () => {
     return {
-      user, graduateProfile: name, 
-      languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
+      user, 
+      graduateProfile: name, 
+      bootcamp
     };
   };
   const bootcampColor = useMemo(() => {
@@ -160,11 +123,6 @@ const HiringCard = ({
           github,
           pdf,
           projectURL,
-          languages,
-          projectTypes,
-          dataVisualizationTools, 
-          cloudPlatforms, 
-          databaseTechnologies,
           bootcamp,
           behance,
           onCancel: () => {
@@ -192,25 +150,21 @@ const HiringCard = ({
       onMouseOver={(e) => {
         if (!('ontouchstart' in window)) {
           setOpen(true);
-          bootcamp === 'UIX' && handleMouseEnter();
         }
       }}
       onTouchStart={(e) => {
         if (!('ontouchstart' in window)) {
           setOpen(true);
-          bootcamp === 'UIX' && handleMouseEnter();
         }
       }}
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave();  
       }}
 
       onTouchEnd={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
-        bootcamp === 'UIX' && handleMouseLeave();  
       }}
     >
       <div 
