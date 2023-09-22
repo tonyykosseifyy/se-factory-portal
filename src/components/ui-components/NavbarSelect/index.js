@@ -16,7 +16,7 @@ const getBootcamp = (queryParams, history, location) => {
     });
 		return 'FSW';
 	}
-	return bootcamp;
+  return bootcamp;
 };
 
 
@@ -34,7 +34,6 @@ const BootcampSelect = () => {
   const handleChange = (event) => {
     setbootcamp(event.target.value);
     queryParams.set('bootcamp', event.target.value);
-    console.log(queryParams.toString())
     // Updating the URL with modified bootcamp query parameter
     history.push({
       pathname: location.pathname,
@@ -73,7 +72,6 @@ const BootcampSelect = () => {
         mr={4}
         size='small'
         sx={{color: bootcampColor , fontWeight: 'bold' }}
-
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
         <MenuItem value='FSW'>FSW</MenuItem>
