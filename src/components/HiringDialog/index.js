@@ -4,12 +4,10 @@ import {
   Dialog,
   Grid,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import YouTube from "react-youtube";
 import { SE_GREY } from "../../utils/constants/colors";
 import "./styles.scss";
-import { useModal } from "mui-modal-provider";
 import SEButton from "../SEButton";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -44,9 +42,9 @@ const HiringDialog = ({
   dataVisualizationTools, 
   cloudPlatforms, 
   databaseTechnologies, 
+  behance,
   ...props
 }) => {
-  const { showModal } = useModal();
 
   const { data: user } = hooks.useCurrentUser();
 
@@ -98,7 +96,6 @@ const HiringDialog = ({
 									sx={{color:'black'}}
                 >
                   <Tab color="red" label="Student Profile" value="1" />
-                  {/*<Tab label="Project Pictures" value="2" />*/}
                 </TabList>
               </Box>
               <TabPanel value="1" style={{ padding: "24px 0" }}>
@@ -135,6 +132,8 @@ const HiringDialog = ({
 													onClick={() =>
 														interviewBooked({ ...analyticsBasicParams() })
 													}
+                          href={calendly}
+                          target="_blank"
 													fullWidth
 													disableElevation
 												>
@@ -151,7 +150,7 @@ const HiringDialog = ({
 																color: "white",
 															}}
 															fullWidth
-															href={github}
+															href={behance}
 															target="_blank"
 															onClick={() =>
 																behancePressed({ ...analyticsBasicParams() })
@@ -191,7 +190,7 @@ const HiringDialog = ({
 																color: "white",
 															}}
 															fullWidth
-															href={github}
+															href={projectURL}
 															target="_blank"
 															onClick={() => 
                                 liveProjectPressed({ ...analyticsBasicParams() })

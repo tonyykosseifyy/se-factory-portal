@@ -1,6 +1,19 @@
 @import "src/assets/styles/_variables";
 
+// .hiring-portal-container {
+//   padding: 2% 10vw;
+//   max-width: 1600px;
+//   margin: auto;
+//   @media screen and (max-width: 768px) {
+//       padding: 2% 6vw;
+//   }
+//   @media screen and (max-width: 500px) {
+//     padding: 2% 4vw;
+//   }
+// }
+
 .navbar {
+  margin: auto ; 
   width: 100% ;
   display: flex;
   justify-content: space-between;
@@ -9,34 +22,39 @@
   padding: 4vh 10vw ;
   background-color: $se-light-background-grey ;
   position: relative;
-  z-index: 3;
+  z-index: 1;
+  max-width: 1600px;
 
   .logo {
     pointer-events: all;
     cursor: pointer;
-    height: 80px;
-    width: 200px;
+    height: 50px;
+    width: auto;
     object-fit: contain;
   }
-}
 
+  @media screen and (max-width: 768px) {
+    padding: 4vh 6vw;
+    & .logo {
+      max-width: 170px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    padding: 4vh 4vw;
+    & .logo {
+      max-width: 120px;
+    }
+  }
+}
 
 @media screen and (max-width: 768px) {
   .navbar {
     padding: 4vh 6vw ;
-
-    .logo {
-      width: 150px;
-    }
   }
 }
 
 @media screen and (max-width: 500px) {
   .navbar {
     padding: 3vh 4vw ;
-
-    .logo {
-      width: 120px;
-    }
   }
 }

@@ -43,13 +43,6 @@
   margin-top: 20px;
 }
 
-// .hiring-card-name {
-//   margin-left: 10px !important;
-//   display: flex;
-//   flex-direction: column;
-//   place-content: center;
-//   flex-grow: 1;
-// }
 .avatar-border {
   border-radius: 50%;
   border: 2px solid $fsw-color;
@@ -69,22 +62,17 @@
   height: 100%;
   box-shadow: 2px 2px 7px #BABBBC ;
   border-radius: 10px;
-  &.prerelease {
-    cursor:unset;
-  }
+  // button override styles
+  outline: none;
+  border: none ;
+  height: 100%;
+  width: 100%;
+  padding: 0px ;
+
   @media screen and (min-width: 320px) {
     min-height: 450px;
   }
-  // @media screen and (min-width: 1000px) {
-  //   min-height: fit-content;
-  // }
 }
-// .hiring-card-main-container-uix {
-//   // @media screen and (max-width: 768px) { 
-//   //   min-height: fit-content;
-//   //   max-height: 400px !important;
-//   // }
-// }
 
 .hiring-card-information-main-container {
   top: 0;
@@ -101,6 +89,7 @@
   border-radius: 10px;
   pointer-events: none;
   z-index: 4;
+  overflow: hidden;
 
   &.open {
     opacity: 1 !important;
@@ -128,17 +117,7 @@
   opacity: 0;
 }
 .hiring-card-project-description {
-  //display: -webkit-box;
-  //-webkit-line-clamp: 3;
-  //-webkit-box-orient: vertical;
-  // overflow: scroll;
   flex-grow: 1;
-  //margin:auto !important;
-  &.prerelease {
-    margin: auto 0 0 0 !important;
-    flex-grow: 1;
-  }
-
 }
 
 .hiring-card-information-container {
@@ -156,4 +135,33 @@
   a {
     font-size: 13px;
   }
+}
+
+.video-holder, .video-holder > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.youtube-video {
+  position: relative ;
+  margin-bottom: 5px ;
+}
+.play-button-container {
+  position: absolute;
+  top: 0 ;
+  left: 0 ;
+  right: 0 ;
+  bottom: 0 ;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  background: black ;
+  z-index: 1000 ;
+}
+.play-button-container svg {
+  transition: .3s ;
+}
+.play-button-container svg:hover {
+  opacity: .7 ;
 }

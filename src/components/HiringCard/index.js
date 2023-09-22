@@ -5,12 +5,13 @@ import { SE_GREY, SE_MID_GREY } from "../../utils/constants/colors";
 import { useModal } from "mui-modal-provider";
 import HiringDialog from "../HiringDialog";
 import SEButton from "../SEButton";
+import videoSource from '../../assets/common/uix_video.mp4' ;
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
   githubPressed,
   hoveredOverLog,
   interviewBooked,
   projectPressed,
-  viewCVLog,
   liveProjectPressed,
   behancePressed
 } from "../../logger/analyticsTracking";
@@ -19,27 +20,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAxios } from "../../context/axios";
 import { MUTATION_KEYS } from "../../api/config/keys";
-import { useGodMode } from "../../context/godMode";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CustomButton from "../ui-components/CustomButton";
-import image1 from '../../assets/common/uix1.png';
 
-const avatar_images = [
-  "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
-  'https://xsgames.co/randomusers/assets/avatars/male/42.jpg',
-  'https://xsgames.co/randomusers/assets/avatars/male/55.jpg',
-  'https://xsgames.co/randomusers/assets/avatars/female/46.jpg'
-];
-
-function getRandomNumber(id) {
-  // Convert the ID to a number
-  const parsedId = parseInt(id, 10);
-  
-  // Perform calculations based on the ID
-  const randomNumber = ((parsedId * 37) % 4) + 1;
-  
-  return randomNumber;
-}
 
 const includesFavorite = ( favoriteBy, user, name ) => {
   for (let i = 0; i < favoriteBy?.length; i++) {
@@ -64,16 +47,17 @@ const HiringCard = ({
   languages,
   calendly,
   projectURL,
+  behance,
   favoriteBy,
   projectTypes,
   dataVisualizationTools, 
   cloudPlatforms, 
-  databaseTechnologies
+  databaseTechnologies,
+  avatarImage
 }) => {
   const [open, setOpen] = useState(false);
   const optionsIcon = useRef(null);
   const theme = useTheme();
-  const { preRelease: PRE_RELEASE } = useGodMode();
   const { Api } = useAxios();
   const { data: user } = hooks.useCurrentUser();
   const { mutate: deleteFavorite } = useMutation([MUTATION_KEYS.DELETE_FAVORITE, { id }]);
@@ -81,6 +65,43 @@ const HiringCard = ({
 
   const [ isFavorite, setIsFavorite ] = useState(includesFavorite(favoriteBy, user, name));
 
+  const videoRef = useRef(null);
+  const [ showPlayButton, setShowPlayButton ] = useState(false);
+
+
+  const handleMouseEnter = () => {
+    // pauses all other videos
+    // pauseAllVideos()
+
+    // plays the video
+    const promise = videoRef.current?.play();
+    
+    if (promise !== undefined) {
+      promise.then(_ => {
+        !showPlayButton && setShowPlayButton(true);
+      }).catch(error => {
+        setShowPlayButton(false);
+      })
+    }
+  }
+
+  const handleMouseLeave = () => {
+    // pauses the video
+    const promise = videoRef.current?.pause();
+    
+    if (promise !== undefined) {
+      promise.then(_ => {
+        // Autoplay started!
+      }).catch(error => {
+        // Autoplay was prevented.
+        // Show a "Play" button so that user can start playback.
+      })
+    }
+  }
+
+  useEffect(() => {
+    open ? handleMouseEnter() : handleMouseLeave() ;
+  },[open])
 
   const analyticsBasicParams = () => {
     return {
@@ -104,6 +125,7 @@ const HiringCard = ({
   const isMD = useMediaQuery(theme.breakpoints.down("md"));
   const { showModal } = useModal();
 
+
   const flipCard = useCallback((e) => {
     hoveredOverLog({ ...analyticsBasicParams() })
     setOpen(true);
@@ -111,7 +133,7 @@ const HiringCard = ({
   },[]) ;
 
   const toggleIsFavorite = (e) => {
-    const operation = isFavorite ? deleteFavorite : createFavorite;
+    const operation = isFavorite ? deleteFavorite : createFavorite ; 
     operation({
       Api,
       id
@@ -126,30 +148,29 @@ const HiringCard = ({
 
   
   const handleClick = (e, skipCheck, pressedOn) => {
-      if (!PRE_RELEASE) {
-        if (
-          skipCheck ||
-          (e.target.localName !== "button" && e.target.localName !== "a")
-        ) {
-          projectPressed({ ...analyticsBasicParams(), pressedOn });
-          const modal = showModal(HiringDialog, {
-            calendly,
-            youtubeId,
-            name ,
-            github,
-            pdf,
-            projectURL,
-            languages,
-            projectTypes,
-            dataVisualizationTools, 
-            cloudPlatforms, 
-            databaseTechnologies,             
-            bootcamp,
-            onCancel: () => {
-              modal.hide();
-            },
-          });
-        }
+    if (
+        skipCheck ||
+        !(['a', 'button','svg', 'path'].includes(e.target.localName)) 
+      ) {
+        projectPressed({ ...analyticsBasicParams(), pressedOn });
+        const modal = showModal(HiringDialog, {
+          calendly,
+          youtubeId,
+          name ,
+          github,
+          pdf,
+          projectURL,
+          languages,
+          projectTypes,
+          dataVisualizationTools, 
+          cloudPlatforms, 
+          databaseTechnologies,
+          bootcamp,
+          behance,
+          onCancel: () => {
+            modal.hide();
+          },
+        });
       }
   };
 
@@ -167,25 +188,42 @@ const HiringCard = ({
 
   return (
     <div
-      className={`hiring-card-main-container hiring-card-main-container-${bootcamp.toLowerCase()} ${
-        (PRE_RELEASE ) && "prerelease"
-      }`}
+      className={`hiring-card-main-container hiring-card-main-container-${bootcamp?.toLowerCase()}`}
       onMouseOver={(e) => {
-        setOpen(true);
+        if (!('ontouchstart' in window)) {
+          setOpen(true);
+          bootcamp === 'UIX' && handleMouseEnter();
+        }
+      }}
+      onTouchStart={(e) => {
+        if (!('ontouchstart' in window)) {
+          setOpen(true);
+          bootcamp === 'UIX' && handleMouseEnter();
+        }
       }}
       onMouseLeave={() => {
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
+        bootcamp === 'UIX' && handleMouseLeave();  
+      }}
+
+      onTouchEnd={() => {
+        setOpen(false);
+        hoveredOverLog({ ...analyticsBasicParams() });
+        bootcamp === 'UIX' && handleMouseLeave();  
       }}
     >
-      <div className={"hiring-card-favorite"} onClick={(e) => toggleIsFavorite(e)}>
+      <div 
+        className={"hiring-card-favorite"} 
+        onClick={(e) => toggleIsFavorite(e)}
+        >
         {isFavorite ? (
           <FavoriteIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         ) : (
           <FavoriteBorderIcon sx={{width: '27px', height: '27px', color: theme.palette[bootcampColor].main}} />
         )}
       </div>
-      <div className={"hiring-card-container"} >
+      <div className={`hiring-card-container hiring-card-container-${bootcamp.toLowerCase()}`} >
         <div
           className={`hiring-card-image-container hiring-card-image-container-${bootcamp.toLowerCase()}`}
           style={{ backgroundImage: `url(${coverImage})` }}
@@ -195,7 +233,7 @@ const HiringCard = ({
 						<Stack direction='row' alignItems='center' gap={2}> 
 							<div className='avatar-border' style={{ borderColor: theme.palette[bootcampColor].main }}>
 								<Avatar 
-									src={avatar_images[getRandomNumber(id) -1]}
+									src={avatarImage}
 									alt={name}
 									sx={{ width: 25, height: 25 }}
 								/>
@@ -220,14 +258,30 @@ const HiringCard = ({
               display: "flex",
               flexDirection: "column",
               flexGrow: "1",
-              maxHeight:
-                PRE_RELEASE
-                  ? "calc(100% - 40px)"
-                  : isMD
-                  ? "calc(100% - 143px)"
-                  : "calc(100% - 96px)",
+              maxHeight: isMD ? "calc(100% - 143px)" : "calc(100% - 96px)",
             }}
           >
+            { bootcamp === 'UIX' && 
+            <div className="youtube-video">
+              <video
+                ref={videoRef}
+                width="100%"
+                height="auto"
+                controls={false}
+                playsInline
+              >
+                <source src={videoSource} type="video/mp4" />
+                  Your browser does not support video 
+                </video>
+                {!showPlayButton && <div className="play-button-container">
+                  <PlayArrowIcon 
+                    onClick={(e) => handleClick(e, false, "Play UIX video")} 
+                    sx={{ fontSize: '60px', color: 'white' }}
+                  />
+                </div>}
+            </div>
+            }
+              
             {bootcamp !== 'UIX' ?  
             <Typography
               variant={"h6"}
@@ -236,7 +290,7 @@ const HiringCard = ({
               fontSize={isSM ? 14: 16}
             >
               &gt; {projectTypeHandle()}
-            </Typography>: null }
+            </Typography> : null }
             <Typography
               variant={"h5"}
               fontWeight={"bolder"}
@@ -247,136 +301,115 @@ const HiringCard = ({
 						<div className="small-divider" />
             {/*<div className={"small-divider"}/>*/}
             <div
-              className={`hiring-card-project-description ${
-                PRE_RELEASE && " prerelease"
-              }`}
+              className="hiring-card-project-description"
             >
               <Typography mt={1} textAlign={'center'} variant={"body2"} fontSize={isSM ? 12: 13}>{bootcamp ==='UIX' ? aboutMe: description}</Typography>
             </div>
           </div>
             <>
-              {PRE_RELEASE ? (
-                <Grid container spacing={1}>
-                  <Grid item xs={12}>
-                    <CustomButton
-                      className={`${bootcamp?.toLowerCase()}-button`}
-                      fullWidth
-                      href={pdf}
-                      target="_blank"
-                      disableElevation
-                      onClick={() => {
-                        viewCVLog({ ...analyticsBasicParams() });
-                      }}
-                    >
-                      View CV
-                    </CustomButton>
-                  </Grid>
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <CustomButton
+                    disableElevation
+                    fullWidth
+                    className={`${bootcamp?.toLowerCase()}-button`}
+                    sx={{
+                      height: "40px",
+                      color: "black",
+                    }}
+                    onClick={(e) => handleClick(e, true, "About Me Button")}
+                  >
+                    About Me
+                  </CustomButton>
                 </Grid>
-              ) : (
-                <Grid container spacing={1}>
-                  <Grid item xs={12} sm={12} md={6} lg={6}>
-                    <CustomButton
-                      disableElevation
-                      fullWidth
-                      className={`${bootcamp?.toLowerCase()}-button`}
-                      sx={{
-                        height: "40px",
-                        color: "black",
-                      }}
-                      onClick={(e) => handleClick(e, true, "About Me Button")}
-                    >
-                      About Me
-                    </CustomButton>
-                  </Grid>
-                    
+                  
+                <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <SEButton
+                    variant={"contained"}
+                    color={"secondary"}
+                    disableElevation
+                    fullWidth
+                    href={calendly}
+                    onClick={() =>
+                      interviewBooked({ ...analyticsBasicParams() })
+                    }
+                    target="_blank"
+                    sx={{
+                      height: "40px",
+                      textOverflow: "ellipsis",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Book Interview
+                  </SEButton>
+                </Grid>
+                { bootcamp != 'UIX' ?
+                
+                (<>
                   <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton
                       variant={"contained"}
                       color={"secondary"}
                       disableElevation
-                      fullWidth
-                      href={calendly}
-                      onClick={() =>
-                        interviewBooked({ ...analyticsBasicParams() })
-                      }
-                      target="_blank"
                       sx={{
                         height: "40px",
-                        textOverflow: "ellipsis",
-                        overflow: "hidden",
-                        whiteSpace: "nowrap",
+                        backgroundColor: SE_GREY,
+                        color: "white",
                       }}
+                      onClick={() =>
+                        githubPressed({ ...analyticsBasicParams() })
+                      }
+                      fullWidth
+                      href={github}
+                      target="_blank"
                     >
-                      Book Interview
+                      View Github
                     </SEButton>
                   </Grid>
-                  { bootcamp != 'UIX' ?
-                  
-                  (<>
-                    <Grid item xs={12} sm={12} md={6} lg={6}>
-                      <SEButton
-                        variant={"contained"}
-                        color={"secondary"}
-                        disableElevation
-                        sx={{
-                          height: "40px",
-                          backgroundColor: SE_GREY,
-                          color: "white",
-                        }}
-                        onClick={() =>
-                          githubPressed({ ...analyticsBasicParams() })
-                        }
-                        fullWidth
-                        href={github}
-                        target="_blank"
-                      >
-                        View Github
-                      </SEButton>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={6}>
-                      <SEButton
-                        variant={"contained"}
-                        color={"secondary"}
-                        disableElevation
-                        sx={{
-                          height: "40px",
-                          backgroundColor: SE_GREY,
-                          color: "white",
-                        }}
-                        onClick={() =>
-                          liveProjectPressed({ ...analyticsBasicParams() })
-                        }
-                        fullWidth
-                        href={github}
-                        target="_blank"
-                      >
-                        Live Project
-                      </SEButton>
-                    </Grid>
-                  </>)
-                  :
-                  (<Grid item xs={12} sm={12} md={12} lg={12}>
+                  <Grid item xs={12} sm={12} md={6} lg={6}>
                     <SEButton
-                        variant={"contained"}
-                        color='secondary'
-                        sx={{
-                          backgroundColor: SE_GREY,
-                          color: "white",
-                        }}
-                        fullWidth
-                        href={github}
-                        target="_blank"
-                        onClick={() =>
-                        	behancePressed({ ...analyticsBasicParams() })
-                        }
-                        disableElevation
-                      >
-                        View Behance
-                      </SEButton>
-                  </Grid>)
-                  }
-                </Grid>
-              )}
+                      variant={"contained"}
+                      color={"secondary"}
+                      disableElevation
+                      sx={{
+                        height: "40px",
+                        backgroundColor: SE_GREY,
+                        color: "white",
+                      }}
+                      onClick={() =>
+                        liveProjectPressed({ ...analyticsBasicParams() })
+                      }
+                      fullWidth
+                      href={projectURL}
+                      target="_blank"
+                    >
+                      Live Project
+                    </SEButton>
+                  </Grid>
+                </>)
+                :
+                (<Grid item xs={12} sm={12} md={12} lg={12}>
+                  <SEButton
+                      variant={"contained"}
+                      color='secondary'
+                      sx={{
+                        backgroundColor: SE_GREY,
+                        color: "white",
+                      }}
+                      fullWidth
+                      href={behance}
+                      target="_blank"
+                      onClick={() =>
+                        behancePressed({ ...analyticsBasicParams() })
+                      }
+                      disableElevation
+                    >
+                      View Behance
+                    </SEButton>
+                </Grid>)
+                }
+              </Grid>
             </>
         </div>
       </div>

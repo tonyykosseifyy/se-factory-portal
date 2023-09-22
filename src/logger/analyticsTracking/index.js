@@ -5,7 +5,7 @@ const EVENTS = {
     PROJECT_PRESSED: "Project Pressed",
     LIVE_PROJECT_PRESSED: "Live Project Pressed",
     INTERVIEW_BOOKED: "Book Interview Pressed",
-    GITHUB_PRESSED: "Project Pressed",
+    GITHUB_PRESSED: "Github Project Pressed",
     VIDEO_PLAYED: "Video Played",
     SEARCH: 'Search',
     VIEW_CV: 'View CV',

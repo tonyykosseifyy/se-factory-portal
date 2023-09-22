@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useMemo} from "react";
 import Axios from 'axios'
 import Cookies from 'js-cookie';
-import {AUTHENTICATION_API_ROUTE, FAVORITES_API_ROUTE, STUDENTS_API_ROUTE, USER_API_ROUTE, STUDENTS_FAVORITE_ROUTE } from "./api-routes";
+import { FAVORITES_API_ROUTE, STUDENTS_API_ROUTE, USER_API_ROUTE, STUDENTS_FAVORITE_ROUTE } from "./api-routes";
 
 
 const AxiosContext = React.createContext();
@@ -36,17 +36,14 @@ export default function AxiosProvider({ children }) {
             }
         }
     }
-    // Students
+    // students
     const getStudents = (query_string) =>
         axios.get(STUDENTS_API_ROUTE+query_string).then(data => data);
 
-    // User
-    const postLogin = ({email, password}) =>
-        fetch(process.env.REACT_APP_API_HOST+AUTHENTICATION_API_ROUTE).then(data => data);
-
+    // me
     const getUser = () => axios.get(USER_API_ROUTE).then(data => data);
 
-    // Favorites
+    // favorites
     const getFavorites = (filter='?populate=*&pagination[page]=1&pagination[pageSize]=100') => axios.get(FAVORITES_API_ROUTE+filter).then(data => data);
 
     const createFavorite = (id) => {
@@ -69,7 +66,6 @@ export default function AxiosProvider({ children }) {
             axios,
             Api : {
                 getStudents,
-                postLogin,
                 getUser,
                 getFavorites,
                 createFavorite,
