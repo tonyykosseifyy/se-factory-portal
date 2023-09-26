@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 const App = () => {
   // me temporary, for testing only
-  Cookies.set('se-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImlhdCI6MTY5NTM2MDgyOCwiZXhwIjoxNjk3OTUyODI4fQ.P1hhXO_KHH08lor4Ey65KlRy54LpUuzuNTphbft9nOM');
+  Cookies.set('se-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImlhdCI6MTY5NTcxNjA3NywiZXhwIjoxNjk4MzA4MDc3fQ.ambsCcdQZUCjAQREo71V4eGSenI7LwTqSup8JdiXPSk');
   return (
       <Switch>
           <Route exact path="/connect/:providerName" component={LoginRedirect} />

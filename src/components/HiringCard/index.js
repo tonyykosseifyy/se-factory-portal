@@ -168,9 +168,12 @@ const HiringCard = ({
         setOpen(false);
         hoveredOverLog({ ...analyticsBasicParams() });
       }}
-      onTouchEnd={() => {
-        setOpen(false);
-        hoveredOverLog({ ...analyticsBasicParams() });
+      onTouchEnd={(e) => {
+        // if the event wasn't a button click
+        if (!["a", "button", "svg", "path"].includes(e.target.localName)) {
+          setOpen(false);
+          hoveredOverLog({ ...analyticsBasicParams() });
+        }
       }}
     >
       <div
