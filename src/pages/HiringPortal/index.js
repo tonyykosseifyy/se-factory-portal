@@ -396,7 +396,11 @@ const HiringPortal = () => {
 					) : (
 						<>
 							{
-								bootcamp === 'UIX' ? students && Array.isArray(students) && students.map((props, index) => (
+								students && Array.isArray(students) && students.length > 0 
+								? 
+								(
+									// sort student in alphabetical order
+								students.sort((a, b) => a.name.localeCompare(b.name)).map((props, index) => (
 									<Grid
 										sx={{ transition:'.3s ease-out',postition: 'relative', zIndex: openOverlay === index ? 100 : 0, transform: openOverlay === index ? `translate(${transform.x}px, ${transform.y}px)`: 'translate(0px,0px)'}}
 										key={`card-${props.id}`}
@@ -410,22 +414,28 @@ const HiringPortal = () => {
                     { bootcamp === 'UIX' ? (<UIXHiringCard setTransform={setTransform} openOverlay={openOverlay} index={index} setOpenOverlay={setOpenOverlay} key={props.id} {...props} bootcamp={bootcamp} />) : (<HiringCard key={props.id} {...props} bootcamp={bootcamp} />) }
 									</Grid>
 								))
-							: 
-								<Grid 
-								item
-								xs={12}
-								sm={12}
-								md={12}
-								lg={12}
-								mt={5}
-								mb={7}
-								sx={{textAlign: 'center'}}
-								>
-									<Typography sx={{fontWeight: '900'}} variant={isSmall ? "h5" : "h4"}>{bootcamp} students have not yet graduated and are currently unavailable</Typography>
-									<Typography sx={{fontWeight: '400'}} mt={2} variant={isSmall ? "body2" : "h6"}>We appreciate your interest, and please check back in the future for updates</Typography>
-								</Grid>
+								)
+								:
+								<Grid item xs={12} my={2}>
+								<Typography variant={"h5"} fontSize={isSmall ? isSM  ? 14 : 16 : 18 }>
+									Can't find what you're looking for? Some students might have
+									in-depth knowledge in specific technologies and didn't use
+									them in the final project.
+									<span style={{ fontWeight: "700" }}>
+										{" "}
+										Please reach out!{" "}
+										<a
+											href="mailto: hire@sefactory.io"
+											style={{ color: `unset` }}
+										>
+											hire@sefactory.io
+										</a>
+									</span>
+								</Typography>
+							</Grid>
 							}
-						</>
+
+					</>
 					)}
 				</Grid>
         <Grid container spacing={3} mt={5}>
@@ -469,3 +479,4 @@ const HiringPortal = () => {
 };
 
 export default HiringPortal;
+

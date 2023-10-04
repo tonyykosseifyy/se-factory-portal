@@ -8,16 +8,15 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 const getBootcamp = (queryParams, history, location) => {
 	const bootcamp = queryParams.get('bootcamp');
-	if (!bootcamp || !['UIX'].includes(bootcamp)) {
-		queryParams.set('bootcamp', 'UIX');
+	if (!bootcamp || !['FSW', 'UIX'].includes(bootcamp)) {
+		queryParams.set('bootcamp', 'FSW');
     history.push({
       pathname: location.pathname,
       search: `?${queryParams.toString()}`,
     });
-		return 'UIX';
+		return 'FSW';
 	}
-  // only for uix: temporary solution to redirect to uix page if bootcamp is not set
-  // 	if (!bootcamp || !['FSD', 'FSW', 'UIX'].includes(bootcamp)) {
+  return bootcamp;
 };
 
 
@@ -62,22 +61,21 @@ const BootcampSelect = () => {
   return (
     <div className='bootcamp-select'>
       <Select
-        // open={open}
-        // onAbort={() => setOpen(false)}
-        // onClose={() => setOpen(false)}
-        // onOpen={() => setOpen(true)}
-        value={'UIX'}
-        // onChange={handleChange}
+        open={open}
+        onAbort={() => setOpen(false)}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        value={bootcamp}
+        onChange={handleChange}
         displayEmpty
         inputProps={{ 'aria-label': 'select bootcamp' }}
         mr={4}
         size='small'
-        sx={{color: theme.palette.uix.main , fontWeight: 'bold' }}
-        readOnly
+        sx={{color: bootcampColor , fontWeight: 'bold' }}
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
         <MenuItem value='FSW'>FSW</MenuItem>
-        <MenuItem value='FSD'>FSD</MenuItem>
+        {/* <MenuItem value='FSD'>FSD</MenuItem> */}
         <MenuItem value='UIX'>UIX</MenuItem>
       </Select>
     </div>
@@ -85,3 +83,4 @@ const BootcampSelect = () => {
 }
 
 export default BootcampSelect;
+

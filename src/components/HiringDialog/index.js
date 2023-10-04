@@ -19,7 +19,6 @@ import {
   interviewBooked,
   videoPlayed,
   viewCVLog,
-  behancePressed,
   liveProjectPressed
 } from "../../logger/analyticsTracking";
 import { hooks } from "../../api";
@@ -37,11 +36,6 @@ const HiringDialog = ({
   projectURL,
   hiringStatus,
 	bootcamp,
-  languages, 
-  projectTypes, 
-  dataVisualizationTools, 
-  cloudPlatforms, 
-  databaseTechnologies, 
   behance,
   ...props
 }) => {
@@ -50,8 +44,9 @@ const HiringDialog = ({
 
   const analyticsBasicParams = () => {
     return {
-      user, graduateProfile: name, 
-      languages, projectTypes, dataVisualizationTools, cloudPlatforms, databaseTechnologies, bootcamp
+      user, graduateProfile: 
+      name, 
+      bootcamp
     };
   };
 
@@ -140,68 +135,44 @@ const HiringDialog = ({
 													Book Interview
 												</CustomButton>
 											</Grid>
-											{ bootcamp === 'UIX' ? 
-												<Grid item xs={12} sm={12} md={12} lg={12}>
-													<SEButton
-															variant={"contained"}
-															color='secondary'
-															sx={{
-																backgroundColor: SE_GREY,
-																color: "white",
-															}}
-															fullWidth
-															href={behance}
-															target="_blank"
-															onClick={() =>
-																behancePressed({ ...analyticsBasicParams() })
-															}
-															disableElevation
-														>
-															View Behance
-														</SEButton>
-												</Grid>
-												:
-												<>
-													<Grid item xs={12} sm={6} md={6} lg={6}>
-														<SEButton
-															variant={"contained"}
-															color='secondary'
-															sx={{
-																backgroundColor: SE_GREY,
-																color: "white",
-															}}
-															fullWidth
-															href={github}
-															target="_blank"
-															onClick={() =>
-																githubPressed({ ...analyticsBasicParams() })
-															}
-															disableElevation
-														>
-															View Github
-														</SEButton>
-													</Grid>
-													<Grid item xs={12} sm={6} md={6} lg={6}>
-														<SEButton
-															variant={"contained"}
-															color='secondary'
-															sx={{
-																backgroundColor: SE_GREY,
-																color: "white",
-															}}
-															fullWidth
-															href={projectURL}
-															target="_blank"
-															onClick={() => 
-                                liveProjectPressed({ ...analyticsBasicParams() })
-															}
-															disableElevation
-														>
-															Live Project
-														</SEButton>
-													</Grid>
-												</>	
-										}
+                      <Grid item xs={12} sm={6} md={12} lg={12}>
+                        <SEButton
+                          variant={"contained"}
+                          color='secondary'
+                          sx={{
+                            backgroundColor: SE_GREY,
+                            color: "white",
+                          }}
+                          fullWidth
+                          href={github}
+                          target="_blank"
+                          onClick={() =>
+                            githubPressed({ ...analyticsBasicParams() })
+                          }
+                          disableElevation
+                        >
+                          View Github
+                        </SEButton>
+                      </Grid>
+                      {/* <Grid item xs={12} sm={6} md={6} lg={6}>
+                        <SEButton
+                          variant={"contained"}
+                          color='secondary'
+                          sx={{
+                            backgroundColor: SE_GREY,
+                            color: "white",
+                          }}
+                          fullWidth
+                          href={projectURL}
+                          target="_blank"
+                          onClick={() => 
+                            liveProjectPressed({ ...analyticsBasicParams() })
+                          }
+                          disableElevation
+                        >
+                          Live Project
+                        </SEButton>
+                      </Grid> */}
 										</Grid>
                   </div>
                 </Grid>
