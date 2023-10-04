@@ -8,7 +8,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 const getBootcamp = (queryParams, history, location) => {
 	const bootcamp = queryParams.get('bootcamp');
-	if (!bootcamp || !['FSW', 'FSD', 'UIX'].includes(bootcamp)) {
+	if (!bootcamp || !['FSW', 'UIX'].includes(bootcamp)) {
 		queryParams.set('bootcamp', 'FSW');
     history.push({
       pathname: location.pathname,
@@ -75,7 +75,7 @@ const BootcampSelect = () => {
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
         <MenuItem value='FSW'>FSW</MenuItem>
-        <MenuItem value='FSD'>FSD</MenuItem>
+        {/* <MenuItem value='FSD'>FSD</MenuItem> */}
         <MenuItem value='UIX'>UIX</MenuItem>
       </Select>
     </div>

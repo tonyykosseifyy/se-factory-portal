@@ -135,7 +135,7 @@ const HiringDialog = ({
 													Book Interview
 												</CustomButton>
 											</Grid>
-                      <Grid item xs={12} sm={6} md={6} lg={6}>
+                      <Grid item xs={12} sm={6} md={12} lg={12}>
                         <SEButton
                           variant={"contained"}
                           color='secondary'
@@ -154,7 +154,7 @@ const HiringDialog = ({
                           View Github
                         </SEButton>
                       </Grid>
-                      <Grid item xs={12} sm={6} md={6} lg={6}>
+                      {/* <Grid item xs={12} sm={6} md={6} lg={6}>
                         <SEButton
                           variant={"contained"}
                           color='secondary'
@@ -172,7 +172,7 @@ const HiringDialog = ({
                         >
                           Live Project
                         </SEButton>
-                      </Grid>
+                      </Grid> */}
 										</Grid>
                   </div>
                 </Grid>

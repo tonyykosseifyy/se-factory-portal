@@ -1,4 +1,4 @@
-const FSW_LANGUAGES = ['Java', 'Laravel', 'React.js', 'Angular', 'React Native', 'Firebase', 'Flutter', 'Node.js', 'Go Lang', 'MySQL', 'MongoDB', 'Express', 'Django'];
+const FSW_LANGUAGES = ['TensorFlow','Electron.js','Next.js','Docker','Java', 'Laravel', 'React.js', 'Angular', 'React Native', 'Firebase', 'Flutter', 'Node.js', 'Go Lang', 'MySQL', 'MongoDB', 'Express', 'Django'];
 const FSD_LANGUAGES = ["Python","Java","Scala","SQL","R"];
 const UIX_LANGUAGES = [];
 

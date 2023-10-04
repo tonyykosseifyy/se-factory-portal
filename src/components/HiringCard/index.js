@@ -309,7 +309,7 @@ const HiringCard = ({
                 </SEButton>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Grid item xs={12} sm={12} md={12} lg={12}>
                 <SEButton
                   variant={"contained"}
                   color={"secondary"}
@@ -327,8 +327,8 @@ const HiringCard = ({
                   View Github
                 </SEButton>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <SEButton
+              {/* <Grid item xs={12} sm={12} md={6} lg={6}> */}
+                {/* <SEButton
                   variant={"contained"}
                   color={"secondary"}
                   disableElevation
@@ -345,8 +345,8 @@ const HiringCard = ({
                   target="_blank"
                 >
                   Live Project
-                </SEButton>
-              </Grid>
+                </SEButton> */}
+              {/* </Grid> */}
             </Grid>
           </>
         </div>
