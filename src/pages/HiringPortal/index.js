@@ -479,3 +479,4 @@ const HiringPortal = () => {
 };
 
 export default HiringPortal;
+

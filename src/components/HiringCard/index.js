@@ -363,3 +363,4 @@ const HiringCard = ({
 };
 
 export default HiringCard;
+
