@@ -399,7 +399,8 @@ const HiringPortal = () => {
 								students && Array.isArray(students) && students.length > 0 
 								? 
 								(
-									students.map((props, index) => (
+									// sort student in alphabetical order
+								students.sort((a, b) => a.name.localeCompare(b.name)).map((props, index) => (
 									<Grid
 										sx={{ transition:'.3s ease-out',postition: 'relative', zIndex: openOverlay === index ? 100 : 0, transform: openOverlay === index ? `translate(${transform.x}px, ${transform.y}px)`: 'translate(0px,0px)'}}
 										key={`card-${props.id}`}
