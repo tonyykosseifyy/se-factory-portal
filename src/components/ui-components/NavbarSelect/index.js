@@ -75,7 +75,7 @@ const BootcampSelect = () => {
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
         <MenuItem value='FSW'>FSW</MenuItem>
-        {/* <MenuItem value='FSD'>FSD</MenuItem> */}
+        <MenuItem value='FSD'>FSD</MenuItem>
         <MenuItem value='UIX'>UIX</MenuItem>
       </Select>
     </div>
