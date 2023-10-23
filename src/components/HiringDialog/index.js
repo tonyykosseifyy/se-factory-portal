@@ -135,7 +135,7 @@ const HiringDialog = ({
 													Book Interview
 												</CustomButton>
 											</Grid>
-                      <Grid item xs={12} sm={6} md={bootcamp === "FSD" ? 6 : 12} lg={bootcamp === "FSD" ? 6 : 12}>
+                      <Grid item xs={12} sm={bootcamp === "FSD" ? 6 : 12} md={bootcamp === "FSD" ? 6 : 12} lg={bootcamp === "FSD" ? 6 : 12}>
                         <SEButton
                           variant={"contained"}
                           color='secondary'
