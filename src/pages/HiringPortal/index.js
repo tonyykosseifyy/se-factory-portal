@@ -298,8 +298,8 @@ const HiringPortal = () => {
                       setDatabaseTech(newValue);
 										}}
 										options={fsd_filters["Database Technologies"]}
-                    getOptionLabel={(option) => option.name}
-                    groupBy={(option) => option.category}
+                    // getOptionLabel={(option) => option.name}
+                    // groupBy={(option) => option.category}
 
 										filterSelectedOptions
 										sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}

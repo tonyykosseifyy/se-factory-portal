@@ -1,24 +1,12 @@
-const DATBASE_TECHNOLOGIES = [
-  { category: 'Relational databases', name: 'MySQL' },
-  { category: 'Relational databases', name: 'PostgreSQL' },
-  { category: 'Relational databases', name: 'Oracle' },
-  { category: 'NoSQL databases', name: 'MongoDB' },
-  { category: 'NoSQL databases', name: 'Cassandra' },
-  { category: 'NoSQL databases', name: 'Redis' },
-];
+const DATBASE_TECHNOLOGIES = ['PostgreSQL'];
 
 const CLOUD_PLATFORMS = [
-  "Amazon Web Services (AWS)",
-  "Google Cloud Platform (GCP)",
-  "Microsoft Azure"
+  "AWS",
+  "Digital Ocean"
 ];
 
 const DATA_VISUALIZATION_TOOLS = [
-  "Tableau",
   "Power BI",
-  "QlikView",
-  "Looker",
-  "Google Data Studio"
 ];
 
 const FSD_FILTERS = {
