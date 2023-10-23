@@ -74,9 +74,9 @@ const BootcampSelect = () => {
         sx={{color: bootcampColor , fontWeight: 'bold' }}
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
-        <MenuItem value='FSW'>FSW</MenuItem>
-        <MenuItem value='FSD'>FSD</MenuItem>
-        <MenuItem value='UIX'>UIX</MenuItem>
+        <MenuItem value='FSW'>Full-Stack Web (FSW)</MenuItem>
+        <MenuItem value='FSD'>Full-Stack Data (FSD)</MenuItem>
+        <MenuItem value='UIX'>UI/UX (UIX)</MenuItem>
       </Select>
     </div>
   )
