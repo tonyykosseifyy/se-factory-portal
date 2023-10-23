@@ -309,7 +309,7 @@ const HiringCard = ({
                 </SEButton>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid item xs={12} sm={12} md={bootcamp === "FSD" ? 6:12} lg={bootcamp === "FSD" ? 6:12}>
                 <SEButton
                   variant={"contained"}
                   color={"secondary"}
