@@ -164,8 +164,8 @@ const HiringPortal = () => {
 						{bootcamp !== 'UIX' && 
 						<div className='filters-wrapper'>
               <Stack my={2} flexDirection='row' alignItems='center' justifyContent='space-between'>
-                <Typography fontWeight={800} textTransform='uppercase' fontSize={isSM ? 14 : 17} variant='h6' color='#A5A6A9'>Filter By</Typography>
-                { bootcamp !== 'UIX' && <Typography onClick={() => reset()} fontWeight={800} fontSize={isSM ? 12 : 14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography> }
+                <Typography fontWeight={800} textTransform='uppercase' fontSize={isSM ? 11 : 17} variant='h6' color='#A5A6A9'>Filter By</Typography>
+                { bootcamp !== 'UIX' && <Typography onClick={() => reset()} fontWeight={800} fontSize={isSM ? 11 : 14} variant='h6' color='#A5A6A9' sx={{cursor:'pointer'}}>reset all</Typography> }
               </Stack>
 							<div className="filter-by-container">
 								{ bootcamp !== 'UIX' && <>
@@ -184,7 +184,7 @@ const HiringPortal = () => {
 											}}
 											options={bootcamps_project_types[bootcamp]}
 											filterSelectedOptions
-											sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+											sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}
 											renderInput={(params) => (
 												<CustomTextField
 													{...params}
@@ -212,7 +212,7 @@ const HiringPortal = () => {
 											}}
 											options={bootcamps_languages[bootcamp]}
 											filterSelectedOptions
-											sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+											sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}
 											renderInput={(params) => (
 												<CustomTextField
 													{...params}
@@ -243,7 +243,7 @@ const HiringPortal = () => {
 										}}
 										options={fsd_filters["Cloud Platforms"]}
 										filterSelectedOptions
-										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
 											<CustomTextField
 												{...params}
@@ -271,7 +271,7 @@ const HiringPortal = () => {
 										}}
 										options={fsd_filters["Data Visualization"]}
 										filterSelectedOptions
-										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
 											<CustomTextField
 												{...params}
@@ -302,7 +302,7 @@ const HiringPortal = () => {
                     groupBy={(option) => option.category}
 
 										filterSelectedOptions
-										sx={{ fontSize:isSM ? 12: 16 , zIndex: "10000000000" }}
+										sx={{ fontSize:isSM ? 11: 16 , zIndex: "10000000000" }}
 										renderInput={(params) => (
 											<CustomTextField
 												{...params}
@@ -337,7 +337,7 @@ const HiringPortal = () => {
 											my={1}
 											mr={isSM ? 1: 2}
 											variant={"h5"}
-											fontSize={isSM ? 14 : 16}
+											fontSize={isSM ? 11 : 16}
 										>
 											Only Favorites
 										</Typography>
@@ -349,9 +349,10 @@ const HiringPortal = () => {
 								<CustomButton
                   className={`${bootcamp?.toLowerCase()}-button`}
 									sx={{
-										height: "40px",
+										height: isSM ? "35px":"40px",
 										color: "black",
-                    minWidth: isSM ? '160px':'220px'
+                    minWidth: isSM ? '150px':'220px',
+										fontSize: isSM ? '12px': '16px'
 									}}
                   onClick={() => {
                     setFilters({
@@ -382,7 +383,7 @@ const HiringPortal = () => {
 						</div>
 						}
 						<Grid item  xs={12} my={1} mt={4}>
-								<Typography sx={{fontWeight: '400'}} variant={"h6"} fontSize={isSmall ? isSM  ? 12 : 13 : 15 }>
+								<Typography sx={{fontWeight: '400'}} variant={"h6"} fontSize={isSmall ? isSM  ? 10 : 13 : 15 }>
 									If you need any specific recommendations, please feel free to reach out to <a href="mailto: hire@sefactory.io" style={{  color: `unset` }}>hire@sefactory.io</a>.
 								</Typography>
 							</Grid>
