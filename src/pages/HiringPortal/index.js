@@ -148,9 +148,9 @@ const HiringPortal = () => {
 					<div className='filters-content'>
 						<Stack flexDirection='row' alignItems='center' justifyContent='space-between'>
 							<Stack flexDirection='row' >
-								<Typography sx={{transition:'.4s ease-out'}} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 15 : 17 : 24} color={bootcampColor}>&gt;</Typography>
-								<Typography sx={{transition:'.4s ease-out'}} ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 15 : 17 : 24} color={bootcampColor}>{portalData[bootcamp]?.title}</Typography>
-								<Typography ml={isSmall ? 1: 2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 15 : 17 : 24} color='white'>Hiring Portal</Typography>
+								<Typography sx={{transition:'.4s ease-out'}} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 12 : 16 : 24} color={bootcampColor}>&gt;</Typography>
+								<Typography sx={{transition:'.4s ease-out'}} ml={2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 12 : 16 : 24} color={bootcampColor}>{portalData[bootcamp]?.title}</Typography>
+								<Typography ml={isSmall ? 1: 2} variant='h1' fontWeight={900} fontSize={isSmall ? isSM ? 12 : 16 : 24} color='white'>Hiring Portal</Typography>
 							</Stack>
 							<Stack flexDirection='row' alignItems='center' gap={1}>
 								<div className='se-dot se-dot-white'/>
@@ -158,7 +158,7 @@ const HiringPortal = () => {
 								<div className={`se-dot se-dot-${bootcamp?.toLowerCase()}`}/>
 							</Stack>
 						</Stack>
-						<Typography mb={bootcamp === 'UIX' ? 2: 5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 12 : 14 : 18} color='#888888'>
+						<Typography mb={bootcamp === 'UIX' ? 2: 5} mt={2} variant='h5' fontWeight={800} fontSize={isSmall ? isSM ? 10 : 13 : 18} color='#888888'>
 							<span style={{marginRight:'7px'}}>//</span> {portalData[bootcamp]?.below_title}
 						</Typography>
 						{bootcamp !== 'UIX' && 
