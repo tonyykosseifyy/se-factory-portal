@@ -71,12 +71,12 @@ const BootcampSelect = () => {
         inputProps={{ 'aria-label': 'select bootcamp' }}
         mr={4}
         size='small'
-        sx={{color: bootcampColor , fontWeight: 'bold' }}
+        sx={{color: bootcampColor , fontWeight: 'bold', fontSize:"14px" }}
         IconComponent={() => <ArrowDropDownIcon onClick={() => toggleOpen()} sx={{cursor: 'pointer'}} color='secondary' />}
       >
-        <MenuItem value='FSW'>Full-Stack Web (FSW)</MenuItem>
-        <MenuItem value='FSD'>Full-Stack Data (FSD)</MenuItem>
-        <MenuItem value='UIX'>UI/UX (UIX)</MenuItem>
+        <MenuItem sx={{fontSize: "14px"}} value='FSW'>Full-Stack Web (FSW)</MenuItem>
+        <MenuItem sx={{fontSize: "14px"}} value='FSD'>Full-Stack Data (FSD)</MenuItem>
+        <MenuItem sx={{fontSize: "14px"}} value='UIX'>UI/UX (UIX)</MenuItem>
       </Select>
     </div>
   )
