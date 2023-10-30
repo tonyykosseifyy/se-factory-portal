@@ -424,7 +424,7 @@ const HiringPortal = () => {
 									them in the final project.
 									<span style={{ fontWeight: "700" }}>
 										{" "}
-										Please reach out!{" "}
+										Please reach out to {" "}
 										<a
 											href="mailto: hire@sefactory.io"
 											style={{ color: `unset` }}
