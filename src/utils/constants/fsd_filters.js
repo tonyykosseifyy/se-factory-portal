@@ -1,4 +1,4 @@
-const DATBASE_TECHNOLOGIES = ['PostgreSQL'];
+const DATBASE_TECHNOLOGIES = ["PostgreSQL", "SQL"];
 
 const CLOUD_PLATFORMS = [
   "AWS",
