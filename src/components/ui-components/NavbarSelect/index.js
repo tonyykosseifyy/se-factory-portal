@@ -14,7 +14,7 @@ const getBootcamp = (queryParams, history, location) => {
       pathname: location.pathname,
       search: `?${queryParams.toString()}`,
     });
-		return 'FSW';
+		return 'FSD';
 	}
   return bootcamp;
 };

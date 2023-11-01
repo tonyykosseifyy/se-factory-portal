@@ -3,10 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import { ROUTES_WITH_LAYOUT } from "./utils/routes";
 import AuthRoute from "./router/AuthRoute";
 import LoginRedirect from "./pages/LoginRedirect";
-import Cookies from 'js-cookie';
 
 const App = () => {
-
   
   return (
       <Switch>
