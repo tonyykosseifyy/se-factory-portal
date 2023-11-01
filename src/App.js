@@ -6,8 +6,6 @@ import LoginRedirect from "./pages/LoginRedirect";
 import Cookies from 'js-cookie';
 
 const App = () => {
-
-  Cookies.set('se-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjk4MDQ3Mjg3LCJleHAiOjE3MDA2MzkyODd9.mRB3t-ycbGqwf4Hv1O5rH85wp04ih-7pkFKSNnjq95o');
   
   return (
       <Switch>
