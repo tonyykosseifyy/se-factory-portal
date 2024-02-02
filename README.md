@@ -61,11 +61,3 @@ This will launch the portal in development mode. Visit [http://localhost:3000](h
 - ![Material UI (MUI)](https://img.shields.io/badge/Material--UI-0081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white)
 - ![Mixpanel](https://img.shields.io/badge/Mixpanel-%23FF5500.svg?style=for-the-badge&logo=mixpanel&logoColor=white)
 
-## Contact
-
-For more information, reach out to the SE Factory team:
-
-- Email: contact@sefactory.io
-- LinkedIn: [SE Factory](#LinkedIn-Profile)
-
-Join us in shaping the future of tech talent recruitment!
