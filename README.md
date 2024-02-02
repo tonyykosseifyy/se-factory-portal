@@ -1,72 +1,71 @@
-# Getting Started with Create React App
+# SE Factory Hiring Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Demo
 
-## Available Scripts
+Explore the live version of the `SE Factory Hiring Portal` here: [Live Portal](#live-portal-link)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+The SE Factory Hiring Portal is a specialized platform aimed at connecting graduates from various bootcamps, including Full Stack Web (FSW), Full Stack Development (FSD), and User Interface & Experience (UIX), with potential employers. This exclusive portal, designed for SE Factory partners, features advanced search and filter capabilities, a favorites system for recruiters, and insightful analytics on skill demand and recruiter activities. Utilizing robust technologies like React and Auth0 for authentication, the portal ensures a secure and efficient recruiting process.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![SE Factory Hiring Portal Interface](#screenshot-placeholder)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Features include:
+- **Advanced Search**: Recruiters can easily search for students by name, skills, or bootcamp.
+- **Custom Filters**: Enables filtering of candidates based on specific criteria such as skills, availability, and bootcamp.
+- **Favorites Feature**: Recruiters can mark students as favorites for easy access later.
+- **Analytics Dashboard**: Provides valuable insights into the most searched skills and recruiter engagement.
+- **Secure Access**: Only partners of SE Factory have access, ensured by Auth0 authentication.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Follow these instructions to set up the project locally for development and testing purposes.
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have Node.js and npm (Node Package Manager) installed on your computer. Download them from the [Node.js website](https://nodejs.org/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Execute these steps to start the development environment:
 
-### `npm run eject`
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-repository/SE-Factory-Hiring-Portal.git
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the project directory:
+   ```
+   cd SE-Factory-Hiring-Portal
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install the necessary dependencies:
+   ```
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Start the application:
+   ```
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This will launch the portal in development mode. Visit [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Learn More
+## Built With
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+- ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![Axios](https://img.shields.io/badge/Axios-%231572B6.svg?style=for-the-badge&logo=axios&logoColor=white)
+- ![Auth0](https://img.shields.io/badge/Auth0-%23EB5424.svg?style=for-the-badge&logo=auth0&logoColor=white)
+- ![Material UI (MUI)](https://img.shields.io/badge/Material--UI-0081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white)
+- ![Mixpanel](https://img.shields.io/badge/Mixpanel-%23FF5500.svg?style=for-the-badge&logo=mixpanel&logoColor=white)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact
 
-### Code Splitting
+For more information, reach out to the SE Factory team:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Email: contact@sefactory.io
+- LinkedIn: [SE Factory](#LinkedIn-Profile)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# se-factory-portal" 
-
+Join us in shaping the future of tech talent recruitment!
