@@ -1,14 +1,11 @@
 # SE Factory Hiring Portal
 
-## Live Demo
-
-Explore the live version of the `SE Factory Hiring Portal` here: [Live Portal](#live-portal-link)
 
 ## Overview
 
 The SE Factory Hiring Portal is a specialized platform aimed at connecting graduates from various bootcamps, including Full Stack Web (FSW), Full Stack Development (FSD), and User Interface & Experience (UIX), with potential employers. This exclusive portal, designed for SE Factory partners, features advanced search and filter capabilities, a favorites system for recruiters, and insightful analytics on skill demand and recruiter activities. Utilizing robust technologies like React and Auth0 for authentication, the portal ensures a secure and efficient recruiting process.
 
-![SE Factory Hiring Portal Interface](#screenshot-placeholder)
+![Clapy - Export Figma design to code (React, HTML, CSS) (Community)](https://github.com/tonyykosseifyy/se-factory-portal/assets/68602228/6660a0a4-1f49-4aa2-8a0b-7710c4111d17)
 
 Features include:
 - **Advanced Search**: Recruiters can easily search for students by name, skills, or bootcamp.
